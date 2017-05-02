@@ -1,6 +1,6 @@
 import org.eclipse.swt.widgets.Display;
 
-import window.MainWindow;
+import org.lbchild.window.MainWindow;
 
 public class Main {
     public static void main(String[] args) {
