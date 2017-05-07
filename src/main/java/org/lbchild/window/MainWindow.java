@@ -113,22 +113,22 @@ public class MainWindow extends ApplicationWindow {
         text_Type.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
         text_Type.setEnabled(true);
         text_Type.setEditable(false);
-        text_Type.setText("±¨Ö½Àà±ğ");
+        text_Type.setText("æŠ¥çº¸ç±»åˆ«");
 
         Button btnRadioButtonTypeCenter = new Button(composite_Type, SWT.RADIO);
         btnRadioButtonTypeCenter.setBounds(0, 25, 97, 17);
         btnRadioButtonTypeCenter.setEnabled(true);
-        btnRadioButtonTypeCenter.setText("ÖĞÑëÒ»¼¶");
+        btnRadioButtonTypeCenter.setText("ä¸­å¤®ä¸€çº§");
 
         Button btnRadioButtonTypeProvince = new Button(composite_Type, SWT.RADIO);
         btnRadioButtonTypeProvince.setBounds(0, 45, 100, 17);
         btnRadioButtonTypeProvince.setEnabled(true);
-        btnRadioButtonTypeProvince.setText("Ê¡Ò»¼¶");
+        btnRadioButtonTypeProvince.setText("çœä¸€çº§");
 
         Button btnRadioButtonTypeMarket = new Button(composite_Type, SWT.RADIO);
         btnRadioButtonTypeMarket.setBounds(0, 65, 100, 17);
         btnRadioButtonTypeMarket.setEnabled(true);
-        btnRadioButtonTypeMarket.setText("¾­ÓªÄ£Ê½ÊĞ³¡»¯");
+        btnRadioButtonTypeMarket.setText("ç»è¥æ¨¡å¼å¸‚åœºåŒ–");
 
         final ArrayList<Button> btnType = new ArrayList<>();
         btnType.add(btnRadioButtonTypeCenter);
@@ -144,47 +144,47 @@ public class MainWindow extends ApplicationWindow {
         text_Theme.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
         text_Theme.setEnabled(true);
         text_Theme.setEditable(false);
-        text_Theme.setText("±¨µÀÖ÷Ìâ");
+        text_Theme.setText("æŠ¥é“ä¸»é¢˜");
 
         Button btnRadioButtonThemeHelp = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemeHelp.setBounds(0, 26, 120, 17);
-        btnRadioButtonThemeHelp.setText("Éç»á¸÷½ç°ïÖú¹Ø°®");
+        btnRadioButtonThemeHelp.setText("ç¤¾ä¼šå„ç•Œå¸®åŠ©å…³çˆ±");
 
         Button btnRadioButtonThemeAdvice = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemeAdvice.setBounds(0, 46, 250, 17);
-        btnRadioButtonThemeAdvice.setText("Éç»á¸÷½ç¶ÔÁôÊØ¶ùÍ¯ÏÖÏóÌá³öµÄ½¨ÒéºÍ¿´·¨");
+        btnRadioButtonThemeAdvice.setText("ç¤¾ä¼šå„ç•Œå¯¹ç•™å®ˆå„¿ç«¥ç°è±¡æå‡ºçš„å»ºè®®å’Œçœ‹æ³•");
 
         Button btnRadioButtonThemePraise = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemePraise.setBounds(0, 66, 250, 17);
-        btnRadioButtonThemePraise.setText("±íÕÃ°ïÖú¹Ø°®ÁôÊØ¶ùÍ¯µÄµ¥Î»»ò¸öÈË");
+        btnRadioButtonThemePraise.setText("è¡¨å½°å¸®åŠ©å…³çˆ±ç•™å®ˆå„¿ç«¥çš„å•ä½æˆ–ä¸ªäºº");
 
         Button btnRadioButtonThemeViolent = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemeViolent.setBounds(0, 86, 250, 17);
-        btnRadioButtonThemeViolent.setText("ÁôÊØ¶ùÍ¯ÔâÊÜ±©Á¦");
+        btnRadioButtonThemeViolent.setText("ç•™å®ˆå„¿ç«¥é­å—æš´åŠ›");
 
         Button btnRadioButtonThemeAbuse = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemeAbuse.setBounds(0, 106, 300, 17);
-        btnRadioButtonThemeAbuse.setText("ÁôÊØ¶ùÍ¯±»ĞÔÇÖ¡¢â«Ùô¡¢Ç¿¼é»òÊÇ»³ÔĞ¡¢Éú×ÓµÈ");
+        btnRadioButtonThemeAbuse.setText("ç•™å®ˆå„¿ç«¥è¢«æ€§ä¾µã€çŒ¥äºµã€å¼ºå¥¸æˆ–æ˜¯æ€€å­•ã€ç”Ÿå­ç­‰");
 
         Button btnRadioButtonThemeCriminal = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemeCriminal.setBounds(0, 126, 150, 17);
-        btnRadioButtonThemeCriminal.setText("ÁôÊØ¶ùÍ¯·¸×ïµÈ");
+        btnRadioButtonThemeCriminal.setText("ç•™å®ˆå„¿ç«¥çŠ¯ç½ªç­‰");
 
         Button btnRadioButtonThemeDeath = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemeDeath.setBounds(0, 146, 150, 17);
-        btnRadioButtonThemeDeath.setText("ÁôÊØ¶ùÍ¯ÒâÍâËÀÍö");
+        btnRadioButtonThemeDeath.setText("ç•™å®ˆå„¿ç«¥æ„å¤–æ­»äº¡");
 
         Button btnRadioButtonThemeEffort = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemeEffort.setBounds(0, 166, 150, 17);
-        btnRadioButtonThemeEffort.setText("ÁôÊØ¶ùÍ¯Å¬Á¦ÉÏ½ø");
+        btnRadioButtonThemeEffort.setText("ç•™å®ˆå„¿ç«¥åŠªåŠ›ä¸Šè¿›");
 
         Button btnRadioButtonThemeRough = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemeRough.setBounds(0, 186, 200, 17);
-        btnRadioButtonThemeRough.setText("´ò¹¤¸¸Ä¸ÔÚ³ÇÊĞ¼èÄÑÉú»î");
+        btnRadioButtonThemeRough.setText("æ‰“å·¥çˆ¶æ¯åœ¨åŸå¸‚è‰°éš¾ç”Ÿæ´»");
 
         Button btnRadioButtonThemeElse = new Button(composite_Theme, SWT.RADIO);
         btnRadioButtonThemeElse.setBounds(0, 206, 100, 17);
-        btnRadioButtonThemeElse.setText("ÆäËû");
+        btnRadioButtonThemeElse.setText("å…¶ä»–");
 
         final ArrayList<Button> btnTheme = new ArrayList<>();
         btnTheme.add(btnRadioButtonThemeHelp);
@@ -206,39 +206,39 @@ public class MainWindow extends ApplicationWindow {
         text_Source.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
         text_Source.setEnabled(true);
         text_Source.setEditable(false);
-        text_Source.setText("ĞÂÎÅ±¨µÀÀ´Ô´");
+        text_Source.setText("æ–°é—»æŠ¥é“æ¥æº");
 
         Button btnRadioButtonSourceReporter = new Button(composite_Source, SWT.RADIO);
         btnRadioButtonSourceReporter.setBounds(0, 26, 54, 17);
-        btnRadioButtonSourceReporter.setText("¼ÇÕß");
+        btnRadioButtonSourceReporter.setText("è®°è€…");
 
         Button btnRadioButtonSourceGovern = new Button(composite_Source, SWT.RADIO);
         btnRadioButtonSourceGovern.setBounds(71, 26, 73, 17);
-        btnRadioButtonSourceGovern.setText("Õş¸®");
+        btnRadioButtonSourceGovern.setText("æ”¿åºœ");
 
         Button btnRadioButtonSourceEnte = new Button(composite_Source, SWT.RADIO);
         btnRadioButtonSourceEnte.setBounds(0, 46, 45, 17);
-        btnRadioButtonSourceEnte.setText("ÆóÒµ");
+        btnRadioButtonSourceEnte.setText("ä¼ä¸š");
 
         Button btnRadioButtonSourceInstitution = new Button(composite_Source, SWT.RADIO);
         btnRadioButtonSourceInstitution.setBounds(71, 46, 73, 17);
-        btnRadioButtonSourceInstitution.setText("ÊÂÒµµ¥Î»");
+        btnRadioButtonSourceInstitution.setText("äº‹ä¸šå•ä½");
 
         Button btnRadioButtonSourceTeam = new Button(composite_Source, SWT.RADIO);
         btnRadioButtonSourceTeam.setBounds(0, 66, 69, 17);
-        btnRadioButtonSourceTeam.setText("¹«ÒæÍÅÌå");
+        btnRadioButtonSourceTeam.setText("å…¬ç›Šå›¢ä½“");
 
         Button btnRadioButtonSourceExpert = new Button(composite_Source, SWT.RADIO);
         btnRadioButtonSourceExpert.setBounds(71, 66, 100, 17);
-        btnRadioButtonSourceExpert.setText("×¨¼ÒÑ§Õß");
+        btnRadioButtonSourceExpert.setText("ä¸“å®¶å­¦è€…");
 
         Button btnRadioButtonSourceLeader = new Button(composite_Source, SWT.RADIO);
         btnRadioButtonSourceLeader.setBounds(0, 86, 200, 17);
-        btnRadioButtonSourceLeader.setText("Õş¸®Áìµ¼¡¢ÕşĞ­»òÈË´ó´ú±í");
+        btnRadioButtonSourceLeader.setText("æ”¿åºœé¢†å¯¼ã€æ”¿åæˆ–äººå¤§ä»£è¡¨");
 
         Button btnRadioButtonSourceElse = new Button(composite_Source, SWT.RADIO);
         btnRadioButtonSourceElse.setBounds(0, 106, 150, 17);
-        btnRadioButtonSourceElse.setText("ÆäËû");
+        btnRadioButtonSourceElse.setText("å…¶ä»–");
 
         final ArrayList<Button> btnSource = new ArrayList<>();
         btnSource.add(btnRadioButtonSourceReporter);
@@ -258,27 +258,27 @@ public class MainWindow extends ApplicationWindow {
         text_Reason.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
         text_Reason.setEnabled(true);
         text_Reason.setEditable(false);
-        text_Reason.setText("ĞÂÎÅ±¨µÀÖĞÅ©Ãñ¹¤×ÓÅ®²»ÄÜÁôÔÚ³ÇÊĞ¶ÁÊéµÄÔ­Òò");
+        text_Reason.setText("æ–°é—»æŠ¥é“ä¸­å†œæ°‘å·¥å­å¥³ä¸èƒ½ç•™åœ¨åŸå¸‚è¯»ä¹¦çš„åŸå› ");
 
         Button btnRadioButtonReasonRegister = new Button(composite_Reason, SWT.RADIO);
         btnRadioButtonReasonRegister.setBounds(0, 26, 150, 17);
-        btnRadioButtonReasonRegister.setText("ÎŞ±¾µØ»§¼®ÄÑÈë¹«Á¢Ñ§Ğ£");
+        btnRadioButtonReasonRegister.setText("æ— æœ¬åœ°æˆ·ç±éš¾å…¥å…¬ç«‹å­¦æ ¡");
 
         Button btnRadioButtonReasonFee = new Button(composite_Reason, SWT.RADIO);
         btnRadioButtonReasonFee.setBounds(0, 46, 129, 17);
-        btnRadioButtonReasonFee.setText("Ë½Á¢Ñ§Ğ£Ñ§·Ñ¸ß");
+        btnRadioButtonReasonFee.setText("ç§ç«‹å­¦æ ¡å­¦è´¹é«˜");
 
         Button btnRadioButtonReasonQuality = new Button(composite_Reason, SWT.RADIO);
         btnRadioButtonReasonQuality.setBounds(0, 66, 173, 17);
-        btnRadioButtonReasonQuality.setText("Ë½Á¢Ñ§Ğ£½ÌÑ§ÖÊÁ¿Ã»±£ÕÏ");
+        btnRadioButtonReasonQuality.setText("ç§ç«‹å­¦æ ¡æ•™å­¦è´¨é‡æ²¡ä¿éšœ");
 
         Button btnRadioButtonReasonCancel = new Button(composite_Reason, SWT.RADIO);
         btnRadioButtonReasonCancel.setBounds(0, 86, 270, 17);
-        btnRadioButtonReasonCancel.setText("Ô½À´Ô½¶àµÄĞ¡ĞÍË½Á¢Ñ§Ğ£±»¹ú¼ÒÈ¡Ïû°ìÑ§×Ê¸ñ");
+        btnRadioButtonReasonCancel.setText("è¶Šæ¥è¶Šå¤šçš„å°å‹ç§ç«‹å­¦æ ¡è¢«å›½å®¶å–æ¶ˆåŠå­¦èµ„æ ¼");
 
         Button btnRadioButtonReasonElse = new Button(composite_Reason, SWT.RADIO);
         btnRadioButtonReasonElse.setBounds(0, 106, 80, 17);
-        btnRadioButtonReasonElse.setText("ÆäËû");
+        btnRadioButtonReasonElse.setText("å…¶ä»–");
 
         final ArrayList<Button> btnReason = new ArrayList<>();
         btnReason.add(btnRadioButtonReasonRegister);
@@ -295,23 +295,23 @@ public class MainWindow extends ApplicationWindow {
         text_NType.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
         text_NType.setEnabled(true);
         text_NType.setEditable(false);
-        text_NType.setText("ĞÂÎÅÀàĞÍ");
+        text_NType.setText("æ–°é—»ç±»å‹");
 
         Button btnRadioButtonNTypePure = new Button(composite_NType, SWT.RADIO);
         btnRadioButtonNTypePure.setBounds(0, 25, 100, 17);
-        btnRadioButtonNTypePure.setText("´¿¾»ĞÂÎÅ");
+        btnRadioButtonNTypePure.setText("çº¯å‡€æ–°é—»");
 
         Button btnRadioButtonNTypeFeature = new Button(composite_NType, SWT.RADIO);
         btnRadioButtonNTypeFeature.setBounds(0, 45, 100, 17);
-        btnRadioButtonNTypeFeature.setText("ÌØ¸åÓëÌØĞ´");
+        btnRadioButtonNTypeFeature.setText("ç‰¹ç¨¿ä¸ç‰¹å†™");
 
         Button btnRadioButtonNTypeComment = new Button(composite_NType, SWT.RADIO);
         btnRadioButtonNTypeComment.setBounds(0, 65, 97, 17);
-        btnRadioButtonNTypeComment.setText("ÆÀÂÛ");
+        btnRadioButtonNTypeComment.setText("è¯„è®º");
 
         Button btnRadioButtonNTypeElse = new Button(composite_NType, SWT.RADIO);
         btnRadioButtonNTypeElse.setBounds(0, 85, 97, 17);
-        btnRadioButtonNTypeElse.setText("ÆäËû");
+        btnRadioButtonNTypeElse.setText("å…¶ä»–");
 
         final ArrayList<Button> btnNType = new ArrayList<>();
         btnNType.add(btnRadioButtonNTypePure);
@@ -327,27 +327,27 @@ public class MainWindow extends ApplicationWindow {
         text_Image.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
         text_Image.setEnabled(true);
         text_Image.setEditable(false);
-        text_Image.setText("Ã½Ìå³ÊÏÖĞÎÏó");
+        text_Image.setText("åª’ä½“å‘ˆç°å½¢è±¡");
 
         Button btnRadioButtonImagePositive = new Button(composite_Image, SWT.RADIO);
         btnRadioButtonImagePositive.setBounds(0, 26, 97, 17);
-        btnRadioButtonImagePositive.setText("»ı¼«½¡¿µ");
+        btnRadioButtonImagePositive.setText("ç§¯æå¥åº·");
 
         Button btnRadioButtonImagePoor = new Button(composite_Image, SWT.RADIO);
         btnRadioButtonImagePoor.setBounds(0, 46, 100, 17);
-        btnRadioButtonImagePoor.setText("¿ÉÁæ±¯²Ò");
+        btnRadioButtonImagePoor.setText("å¯ä¼¶æ‚²æƒ¨");
 
         Button btnRadioButtonImageHappiness = new Button(composite_Image, SWT.RADIO);
         btnRadioButtonImageHappiness.setBounds(0, 66, 100, 17);
-        btnRadioButtonImageHappiness.setText("Ä­¶÷ĞÒ¸£");
+        btnRadioButtonImageHappiness.setText("æ²«æ©å¹¸ç¦");
 
         Button btnRadioButtonImageProblem = new Button(composite_Image, SWT.RADIO);
         btnRadioButtonImageProblem.setBounds(0, 86, 97, 17);
-        btnRadioButtonImageProblem.setText("ÎÊÌâ¶ùÍ¯");
+        btnRadioButtonImageProblem.setText("é—®é¢˜å„¿ç«¥");
 
         Button btnRadioButtonImageElse = new Button(composite_Image, SWT.RADIO);
         btnRadioButtonImageElse.setBounds(0, 106, 97, 17);
-        btnRadioButtonImageElse.setText("ÆäËû");
+        btnRadioButtonImageElse.setText("å…¶ä»–");
 
         final ArrayList<Button> btnImage = new ArrayList<>();
         btnImage.add(btnRadioButtonImagePositive);
@@ -364,27 +364,27 @@ public class MainWindow extends ApplicationWindow {
         text_Subject.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
         text_Subject.setEnabled(true);
         text_Subject.setEditable(false);
-        text_Subject.setText("°ïÖúÀàĞÂÎÅµÄÖ÷Ìå");
+        text_Subject.setText("å¸®åŠ©ç±»æ–°é—»çš„ä¸»ä½“");
 
         Button btnRadioButtonSubjectGovern = new Button(composite_Subject, SWT.RADIO);
         btnRadioButtonSubjectGovern.setBounds(0, 26, 100, 17);
-        btnRadioButtonSubjectGovern.setText("Õş¸®²¿ÃÅ");
+        btnRadioButtonSubjectGovern.setText("æ”¿åºœéƒ¨é—¨");
 
         Button btnRadioButtonSubjectFirm = new Button(composite_Subject, SWT.RADIO);
         btnRadioButtonSubjectFirm.setBounds(0, 46, 100, 17);
-        btnRadioButtonSubjectFirm.setText("ÆóÒµ");
+        btnRadioButtonSubjectFirm.setText("ä¼ä¸š");
 
         Button btnRadioButtonSubjectUnits = new Button(composite_Subject, SWT.RADIO);
         btnRadioButtonSubjectUnits.setBounds(0, 66, 97, 17);
-        btnRadioButtonSubjectUnits.setText("ÊÂÒµµ¥Î»");
+        btnRadioButtonSubjectUnits.setText("äº‹ä¸šå•ä½");
 
         Button btnRadioButtonSubjectInterest = new Button(composite_Subject, SWT.RADIO);
         btnRadioButtonSubjectInterest.setBounds(0, 86, 97, 17);
-        btnRadioButtonSubjectInterest.setText("¹«ÒæÍÅÌå");
+        btnRadioButtonSubjectInterest.setText("å…¬ç›Šå›¢ä½“");
 
         Button btnRadioButtonSubjectIndividual = new Button(composite_Subject, SWT.RADIO);
         btnRadioButtonSubjectIndividual.setBounds(0, 106, 97, 17);
-        btnRadioButtonSubjectIndividual.setText("¸öÈË");
+        btnRadioButtonSubjectIndividual.setText("ä¸ªäºº");
 
         final ArrayList<Button> btnSubject = new ArrayList<>();
         btnSubject.add(btnRadioButtonSubjectGovern);
@@ -401,27 +401,27 @@ public class MainWindow extends ApplicationWindow {
         text_Specific.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
         text_Specific.setEnabled(true);
         text_Specific.setEditable(false);
-        text_Specific.setText("°ïÖúĞÂÎÅµÄ¾ßÌåÖÖÀà");
+        text_Specific.setText("å¸®åŠ©æ–°é—»çš„å…·ä½“ç§ç±»");
 
         Button btnRadioButtonSpecificDonate = new Button(composite_Specific, SWT.RADIO);
         btnRadioButtonSpecificDonate.setBounds(0, 26, 100, 17);
-        btnRadioButtonSpecificDonate.setText("µ¥´¿Ò»´Î¾è¿î¾èÎï");
+        btnRadioButtonSpecificDonate.setText("å•çº¯ä¸€æ¬¡ææ¬¾æç‰©");
 
         Button btnRadioButtonSpecificTravel = new Button(composite_Specific, SWT.RADIO);
         btnRadioButtonSpecificTravel.setBounds(0, 46, 100, 17);
-        btnRadioButtonSpecificTravel.setText("ÂÃÓÎ»î¶¯°²ÅÅµÄÏîÄ¿Ö®Ò»");
+        btnRadioButtonSpecificTravel.setText("æ—…æ¸¸æ´»åŠ¨å®‰æ’çš„é¡¹ç›®ä¹‹ä¸€");
 
         Button btnRadioButtonSpecificFree = new Button(composite_Specific, SWT.RADIO);
         btnRadioButtonSpecificFree.setBounds(0, 66, 97, 17);
-        btnRadioButtonSpecificFree.setText("Ãâ·Ñ¿ª·Å");
+        btnRadioButtonSpecificFree.setText("å…è´¹å¼€æ”¾");
 
         Button btnRadioButtonSpecificLong = new Button(composite_Specific, SWT.RADIO);
         btnRadioButtonSpecificLong.setBounds(0, 86, 97, 17);
-        btnRadioButtonSpecificLong.setText("ÉèÁ¢³¤ÆÚ×ÊÖúÏîÄ¿");
+        btnRadioButtonSpecificLong.setText("è®¾ç«‹é•¿æœŸèµ„åŠ©é¡¹ç›®");
 
         Button btnRadioButtonSpecificElse = new Button(composite_Specific, SWT.RADIO);
         btnRadioButtonSpecificElse.setBounds(0, 106, 97, 17);
-        btnRadioButtonSpecificElse.setText("ÆäËû");
+        btnRadioButtonSpecificElse.setText("å…¶ä»–");
 
         final ArrayList<Button> btnSpecific = new ArrayList<>();
         btnSpecific.add(btnRadioButtonSpecificDonate);
@@ -438,27 +438,27 @@ public class MainWindow extends ApplicationWindow {
         text_Praise.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
         text_Praise.setEnabled(true);
         text_Praise.setEditable(false);
-        text_Praise.setText("±íÕÃ½±ÀøµÄĞÂÎÅÖ÷Ìå");
+        text_Praise.setText("è¡¨å½°å¥–åŠ±çš„æ–°é—»ä¸»ä½“");
 
         Button btnRadioButtonPraiseGovern = new Button(composite_Praise, SWT.RADIO);
         btnRadioButtonPraiseGovern.setBounds(0, 26, 100, 17);
-        btnRadioButtonPraiseGovern.setText("Õş¸®²¿ÃÅ");
+        btnRadioButtonPraiseGovern.setText("æ”¿åºœéƒ¨é—¨");
 
         Button btnRadioButtonPraiseFirm = new Button(composite_Praise, SWT.RADIO);
         btnRadioButtonPraiseFirm.setBounds(0, 46, 100, 17);
-        btnRadioButtonPraiseFirm.setText("ÆóÒµ");
+        btnRadioButtonPraiseFirm.setText("ä¼ä¸š");
 
         Button btnRadioButtonPraiseUnits = new Button(composite_Praise, SWT.RADIO);
         btnRadioButtonPraiseUnits.setBounds(0, 66, 97, 17);
-        btnRadioButtonPraiseUnits.setText("ÊÂÒµµ¥Î»");
+        btnRadioButtonPraiseUnits.setText("äº‹ä¸šå•ä½");
 
         Button btnRadioButtonPraiseInterest = new Button(composite_Praise, SWT.RADIO);
         btnRadioButtonPraiseInterest.setBounds(0, 86, 97, 17);
-        btnRadioButtonPraiseInterest.setText("¹«ÒæÍÅÌå");
+        btnRadioButtonPraiseInterest.setText("å…¬ç›Šå›¢ä½“");
 
         Button btnRadioButtonPraiseIndividual = new Button(composite_Praise, SWT.RADIO);
         btnRadioButtonPraiseIndividual.setBounds(0, 106, 97, 17);
-        btnRadioButtonPraiseIndividual.setText("¸öÈË");
+        btnRadioButtonPraiseIndividual.setText("ä¸ªäºº");
 
         final ArrayList<Button> btnPraise = new ArrayList<>();
         btnPraise.add(btnRadioButtonPraiseGovern);
@@ -472,18 +472,18 @@ public class MainWindow extends ApplicationWindow {
 
         text_Sex = new Text(composite_Sex, SWT.CENTER);
         text_Sex.setBounds(0, 0, 62, 20);
-        text_Sex.setText("ĞÔ±ğ");
+        text_Sex.setText("æ€§åˆ«");
         text_Sex.setEnabled(true);
         text_Sex.setEditable(false);
         text_Sex.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
 
         Button btnRadioButtonSexMan = new Button(composite_Sex, SWT.RADIO);
         btnRadioButtonSexMan.setBounds(0, 20, 106, 17);
-        btnRadioButtonSexMan.setText("ÄĞ");
+        btnRadioButtonSexMan.setText("ç”·");
 
         Button btnRadioButtonSexWoman = new Button(composite_Sex, SWT.RADIO);
         btnRadioButtonSexWoman.setBounds(0, 40, 106, 17);
-        btnRadioButtonSexWoman.setText("Å®");
+        btnRadioButtonSexWoman.setText("å¥³");
 
         ArrayList<Button> btnSex = new ArrayList<>();
         btnSex.add(btnRadioButtonSexMan);
