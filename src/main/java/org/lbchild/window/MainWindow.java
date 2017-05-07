@@ -20,7 +20,7 @@ import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
 import org.lbchild.controller.AnalyzeAction;
-import org.lbchild.res.management.SWTResourceManager;;
+import org.lbchild.res.management.SWTResourceManager;
 
 import org.eclipse.swt.widgets.Text;
 
@@ -498,7 +498,7 @@ public class MainWindow extends ApplicationWindow {
         btnSex.add(btnRadioButtonSexMan);
         btnSex.add(btnRadioButtonSexWoman);
 
-        ArrayList<ArrayList<Button>> btnMarks = new ArrayList<>();
+        final ArrayList<ArrayList<Button>> btnMarks = new ArrayList<>();
         btnMarks.add(btnType);
         btnMarks.add(btnNType);
         btnMarks.add(btnTheme);
