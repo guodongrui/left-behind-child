@@ -20,24 +20,15 @@ import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
 import org.lbchild.controller.AnalyzeAction;
-import org.lbchild.res.management.SWTResourceManager;;
+import org.lbchild.res.management.SWTResourceManager;
 
 import org.eclipse.swt.widgets.Text;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
-import org.eclipse.jface.action.Action;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.ScrolledComposite;
 
 public class MainWindow extends ApplicationWindow {
@@ -498,7 +489,7 @@ public class MainWindow extends ApplicationWindow {
         btnSex.add(btnRadioButtonSexMan);
         btnSex.add(btnRadioButtonSexWoman);
 
-        ArrayList<ArrayList<Button>> btnMarks = new ArrayList<>();
+        final ArrayList<ArrayList<Button>> btnMarks = new ArrayList<>();
         btnMarks.add(btnType);
         btnMarks.add(btnNType);
         btnMarks.add(btnTheme);
