@@ -11,30 +11,18 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.ui.forms.events.ExpansionAdapter;
-import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.jfree.experimental.chart.swt.ChartComposite;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.TreeColumn;
-import org.eclipse.swt.widgets.TreeItem;
 
 import org.lbchild.chart.PieChart;
 import org.lbchild.res.management.SWTResourceManager;
@@ -72,25 +60,23 @@ public class AnalysisWindow extends ApplicationWindow {
 
         Composite container = new Composite(parent, SWT.NONE);
         container.setLayout(new FormLayout());
-        
+
         Section sctnSectionType = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
         FormData fd_sctnSectionType = new FormData();
         fd_sctnSectionType.top = new FormAttachment(0);
         fd_sctnSectionType.left = new FormAttachment(0);
         sctnSectionType.setLayoutData(fd_sctnSectionType);
         formToolkit.paintBordersFor(sctnSectionType);
-        sctnSectionType.setText("±¨Ö½Àà±ğ");
-        
-        
+        sctnSectionType.setText("æŠ¥çº¸ç±»åˆ«");
+
         Composite composite_Type = formToolkit.createComposite(sctnSectionType);
         composite_Type.setLayout(new GridLayout());
-        Button btnRadioButtonTypeCenter = formToolkit.createButton(composite_Type, "ÖĞÑëÒ»¼¶", SWT.RADIO);
-        Button btnRadioButtonTypeProvince = formToolkit.createButton(composite_Type, "Ê¡Ò»¼¶", SWT.RADIO);
-        Button btnRadioButtonTypeMarket = formToolkit.createButton(composite_Type, "¾­ÓªÄ£Ê½ÊĞ³¡»¯", SWT.RADIO);
+        Button btnRadioButtonTypeCenter = formToolkit.createButton(composite_Type, "ä¸­å¤®ä¸€çº§", SWT.RADIO);
+        Button btnRadioButtonTypeProvince = formToolkit.createButton(composite_Type, "çœä¸€çº§", SWT.RADIO);
+        Button btnRadioButtonTypeMarket = formToolkit.createButton(composite_Type, "ç»è¥æ¨¡å¼å¸‚åœºåŒ–", SWT.RADIO);
 
         sctnSectionType.setClient(composite_Type);
-        
-        //-------------NType
+
         Section sctnSecionNType = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
         fd_sctnSectionType.right = new FormAttachment(sctnSecionNType, 0, SWT.RIGHT);
         FormData fd_sctnSecionNType = new FormData();
@@ -98,65 +84,61 @@ public class AnalysisWindow extends ApplicationWindow {
         fd_sctnSecionNType.left = new FormAttachment(0);
         sctnSecionNType.setLayoutData(fd_sctnSecionNType);
         formToolkit.paintBordersFor(sctnSecionNType);
-        sctnSecionNType.setText("ĞÂÎÅÀàĞÍ");
-        
+        sctnSecionNType.setText("æ–°é—»ç±»å‹");
+
         Composite composite_NType = formToolkit.createComposite(sctnSecionNType);
         composite_NType.setLayout(new GridLayout());
-        Button btnRadioButtonNTypePure = formToolkit.createButton(composite_NType, "´¿¾»ĞÂÎÅ", SWT.RADIO);
-        Button btnRadioButtonNTypeFeature = formToolkit.createButton(composite_NType, "ÌØ¸åÓëÌØĞ´", SWT.RADIO);
-        Button btnRadioButtonNTypeComment = formToolkit.createButton(composite_NType, "ÆÀÂÛ", SWT.RADIO);
-        Button btnRadioButtonNTypeElse = formToolkit.createButton(composite_NType, "ÆäËû", SWT.RADIO);
-        
+        Button btnRadioButtonNTypePure = formToolkit.createButton(composite_NType, "çº¯å‡€æ–°é—»", SWT.RADIO);
+        Button btnRadioButtonNTypeFeature = formToolkit.createButton(composite_NType, "ç‰¹ç¨¿ä¸ç‰¹å†™", SWT.RADIO);
+        Button btnRadioButtonNTypeComment = formToolkit.createButton(composite_NType, "è¯„è®º", SWT.RADIO);
+        Button btnRadioButtonNTypeElse = formToolkit.createButton(composite_NType, "å…¶ä»–", SWT.RADIO);
+
         sctnSecionNType.setClient(composite_NType);
-        
-        // -----
+
         Section sctnSectionTheme = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
         FormData fd_sctnSectionTheme = new FormData();
         fd_sctnSectionTheme.top = new FormAttachment(sctnSecionNType);
         fd_sctnSectionTheme.left = new FormAttachment(0);
         sctnSectionTheme.setLayoutData(fd_sctnSectionTheme);
         formToolkit.paintBordersFor(sctnSectionTheme);
-        sctnSectionTheme.setText("±¨µÀÖ÷Ìâ");
-        
+        sctnSectionTheme.setText("æŠ¥é“ä¸»é¢˜");
+
         Composite composite_Theme = formToolkit.createComposite(sctnSectionTheme);
         composite_Theme.setLayout(new GridLayout());
-        Button btnRadioButtonThemeHelp = formToolkit.createButton(composite_Theme, "Éç»á¸÷½ç°ïÖú¹Ø°®", SWT.RADIO);
-        Button btnRadioButtonThemeAdvice = formToolkit.createButton(composite_Theme, "Éç»á¸÷½ç¶ÔÁôÊØ¶ùÍ¯ÏÖÏóÌá³öµÄ½¨ÒéºÍ¿´·¨", SWT.RADIO);
-        Button btnRadioButtonThemePraise = formToolkit.createButton(composite_Theme, "±íÕÃ°ïÖú¹Ø°®ÁôÊØ¶ùÍ¯µÄµ¥Î»»ò¸öÈË", SWT.RADIO);
-        Button btnRadioButtonThemeViolent = formToolkit.createButton(composite_Theme, "ÁôÊØ¶ùÍ¯ÔâÊÜ±©Á¦", SWT.RADIO);
-        Button btnRadioButtonThemeAbuse = formToolkit.createButton(composite_Theme, "ÁôÊØ¶ùÍ¯±»ĞÔÇÖ¡¢â«Ùô¡¢Ç¿¼é»òÊÇ»³ÔĞ¡¢Éú×ÓµÈ", SWT.RADIO);
-        Button btnRadioButtonThemeCriminal = formToolkit.createButton(composite_Theme, "ÁôÊØ¶ùÍ¯·¸×ïµÈ", SWT.RADIO);
-        Button btnRadioButtonThemeDeath = formToolkit.createButton(composite_Theme, "ÁôÊØ¶ùÍ¯ÒâÍâËÀÍö", SWT.RADIO);
-        Button btnRadioButtonThemeEffort = formToolkit.createButton(composite_Theme, "ÁôÊØ¶ùÍ¯Å¬Á¦ÉÏ½ø", SWT.RADIO);
-        Button btnRadioButtonThemeRough = formToolkit.createButton(composite_Theme, "´ò¹¤¸¸Ä¸ÔÚ³ÇÊĞ¼èÄÑÉú»î", SWT.RADIO);
-        Button btnRadioButtonThemeElse = formToolkit.createButton(composite_Theme, "ÆäËû", SWT.RADIO);
-        
+        Button btnRadioButtonThemeHelp = formToolkit.createButton(composite_Theme, "ç¤¾ä¼šå„ç•Œå¸®åŠ©å…³çˆ±", SWT.RADIO);
+        Button btnRadioButtonThemeAdvice = formToolkit.createButton(composite_Theme, "ç¤¾ä¼šå„ç•Œå¯¹ç•™å®ˆå„¿ç«¥ç°è±¡æå‡ºçš„å»ºè®®å’Œçœ‹æ³•", SWT.RADIO);
+        Button btnRadioButtonThemePraise = formToolkit.createButton(composite_Theme, "è¡¨å½°å¸®åŠ©å…³çˆ±ç•™å®ˆå„¿ç«¥çš„å•ä½æˆ–ä¸ªäºº", SWT.RADIO);
+        Button btnRadioButtonThemeViolent = formToolkit.createButton(composite_Theme, "ç•™å®ˆå„¿ç«¥é­å—æš´åŠ›", SWT.RADIO);
+        Button btnRadioButtonThemeAbuse = formToolkit.createButton(composite_Theme, "ç•™å®ˆå„¿ç«¥è¢«æ€§ä¾µã€çŒ¥äºµã€å¼ºå¥¸æˆ–æ˜¯æ€€å­•ã€ç”Ÿå­ç­‰", SWT.RADIO);
+        Button btnRadioButtonThemeCriminal = formToolkit.createButton(composite_Theme, "ç•™å®ˆå„¿ç«¥çŠ¯ç½ªç­‰", SWT.RADIO);
+        Button btnRadioButtonThemeDeath = formToolkit.createButton(composite_Theme, "ç•™å®ˆå„¿ç«¥æ„å¤–æ­»äº¡", SWT.RADIO);
+        Button btnRadioButtonThemeEffort = formToolkit.createButton(composite_Theme, "ç•™å®ˆå„¿ç«¥åŠªåŠ›ä¸Šè¿›", SWT.RADIO);
+        Button btnRadioButtonThemeRough = formToolkit.createButton(composite_Theme, "æ‰“å·¥çˆ¶æ¯åœ¨åŸå¸‚è‰°éš¾ç”Ÿæ´»", SWT.RADIO);
+        Button btnRadioButtonThemeElse = formToolkit.createButton(composite_Theme, "å…¶ä»–", SWT.RADIO);
+
         sctnSectionTheme.setClient(composite_Theme);
-        
-        //-------
+
         Section sctnSectionSource = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
         FormData fd_sctnSectionSource = new FormData();
         fd_sctnSectionSource.left = new FormAttachment(0);
         fd_sctnSectionSource.top = new FormAttachment(sctnSectionTheme, 1);
         sctnSectionSource.setLayoutData(fd_sctnSectionSource);
         formToolkit.paintBordersFor(sctnSectionSource);
-        sctnSectionSource.setText("ĞÂÎÅ±¨µÀÀ´Ô´");
-        sctnSectionSource.setExpanded(true);
-        
+        sctnSectionSource.setText("æ–°é—»æŠ¥é“æ¥æº");
+
         Composite composite_Source = formToolkit.createComposite(sctnSectionSource);
         composite_Source.setLayout(new GridLayout());
-        Button btnRadioButtonSourceReporter = formToolkit.createButton(composite_Source, "¼ÇÕß", SWT.RADIO);
-        Button btnRadioButtonSourceGovern = formToolkit.createButton(composite_Source, "Õş¸®", SWT.RADIO);
-        Button btnRadioButtonSourceInterest = formToolkit.createButton(composite_Source, "¹«ÒæÍÅÌå", SWT.RADIO);
-        Button btnRadioButtonSourceExpert = formToolkit.createButton(composite_Source, "×¨¼ÒÑ§Õß", SWT.RADIO);
-        Button btnRadioButtonSourceFirm = formToolkit.createButton(composite_Source, "ÆóÒµ", SWT.RADIO);
-        Button btnRadioButtonSourceUnits = formToolkit.createButton(composite_Source, "ÊÂÒµµ¥Î»", SWT.RADIO);
-        Button btnRadioButtonSourceLeader = formToolkit.createButton(composite_Source, "Õş¸®Áìµ¼¡¢ÕşĞ­»òÈË´ó´ú±í", SWT.RADIO);
-        Button btnRadioButtonSourceElse = formToolkit.createButton(composite_Source, "ÆäËû", SWT.RADIO);
-        
+        Button btnRadioButtonSourceReporter = formToolkit.createButton(composite_Source, "è®°è€…", SWT.RADIO);
+        Button btnRadioButtonSourceGovern = formToolkit.createButton(composite_Source, "æ”¿åºœ", SWT.RADIO);
+        Button btnRadioButtonSourceInterest = formToolkit.createButton(composite_Source, "å…¬ç›Šå›¢ä½“", SWT.RADIO);
+        Button btnRadioButtonSourceExpert = formToolkit.createButton(composite_Source, "ä¸“å®¶å­¦è€…", SWT.RADIO);
+        Button btnRadioButtonSourceFirm = formToolkit.createButton(composite_Source, "ä¼ä¸š", SWT.RADIO);
+        Button btnRadioButtonSourceUnits = formToolkit.createButton(composite_Source, "äº‹ä¸šå•ä½", SWT.RADIO);
+        Button btnRadioButtonSourceLeader = formToolkit.createButton(composite_Source, "æ”¿åºœé¢†å¯¼ã€æ”¿åæˆ–äººå¤§ä»£è¡¨", SWT.RADIO);
+        Button btnRadioButtonSourceElse = formToolkit.createButton(composite_Source, "å…¶ä»–", SWT.RADIO);
+
         sctnSectionSource.setClient(composite_Source);
-        
-        //--------
+
         Section sctnSectionImage = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
         FormData fd_sctnSectionImage = new FormData();
         fd_sctnSectionImage.right = new FormAttachment(sctnSectionType, 0, SWT.RIGHT);
@@ -164,19 +146,18 @@ public class AnalysisWindow extends ApplicationWindow {
         fd_sctnSectionImage.top = new FormAttachment(sctnSectionSource);
         sctnSectionImage.setLayoutData(fd_sctnSectionImage);
         formToolkit.paintBordersFor(sctnSectionImage);
-        sctnSectionImage.setText("Ã½Ìå³ÊÏÖĞÎÏó");
-        
+        sctnSectionImage.setText("åª’ä½“å‘ˆç°å½¢è±¡");
+
         Composite composite_Image = formToolkit.createComposite(sctnSectionImage);
         composite_Image.setLayout(new GridLayout());
-        Button btnRadioButtonImagePositive = formToolkit.createButton(composite_Image, "»ı¼«½¡¿µ", SWT.RADIO);
-        Button btnRadioButtonImagePoor = formToolkit.createButton(composite_Image, "¿ÉÁæ±¯²Ò", SWT.RADIO);
-        Button btnRadioButtonImageHappiness = formToolkit.createButton(composite_Image, "Ä­¶÷ĞÒ¸£", SWT.RADIO);
-        Button btnRadioButtonImageProblem = formToolkit.createButton(composite_Image, "ÎÊÌâ¶ùÍ¯", SWT.RADIO);
-        Button btnRadioButtonImageElse = formToolkit.createButton(composite_Image, "ÆäËû", SWT.RADIO);
-        
+        Button btnRadioButtonImagePositive = formToolkit.createButton(composite_Image, "ç§¯æå¥åº·", SWT.RADIO);
+        Button btnRadioButtonImagePoor = formToolkit.createButton(composite_Image, "å¯ä¼¶æ‚²æƒ¨", SWT.RADIO);
+        Button btnRadioButtonImageHappiness = formToolkit.createButton(composite_Image, "æ²«æ©å¹¸ç¦", SWT.RADIO);
+        Button btnRadioButtonImageProblem = formToolkit.createButton(composite_Image, "é—®é¢˜å„¿ç«¥", SWT.RADIO);
+        Button btnRadioButtonImageElse = formToolkit.createButton(composite_Image, "å…¶ä»–", SWT.RADIO);
+
         sctnSectionImage.setClient(composite_Image);
-        
-        //-----
+
         Section sctnSectionSpecific = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
         FormData fd_sctnSectionSpecific = new FormData();
         fd_sctnSectionSpecific.top = new FormAttachment(sctnSectionImage);
@@ -184,40 +165,37 @@ public class AnalysisWindow extends ApplicationWindow {
         fd_sctnSectionSpecific.left = new FormAttachment(0);
         sctnSectionSpecific.setLayoutData(fd_sctnSectionSpecific);
         formToolkit.paintBordersFor(sctnSectionSpecific);
-        sctnSectionSpecific.setText("°ïÖúĞÂÎÅµÄ¾ßÌåÖÖÀà");
-        
+        sctnSectionSpecific.setText("å¸®åŠ©æ–°é—»çš„å…·ä½“ç§ç±»");
+
         Composite composite_Specific = formToolkit.createComposite(sctnSectionSpecific);
         composite_Specific.setLayout(new GridLayout());
-        Button btnRadioButtonSpecificDonate = formToolkit.createButton(composite_Specific, "µ¥´¿Ò»´Î¾è¿î¾èÎï", SWT.RADIO);
-        Button btnRadioButtonSpecificTravel = formToolkit.createButton(composite_Specific, "ÂÃÓÎ»î¶¯°²ÅÅµÄÏîÄ¿Ö®Ò»", SWT.RADIO);
-        Button btnRadioButtonSpecificFree = formToolkit.createButton(composite_Specific, "Ãâ·Ñ¿ª·Å", SWT.RADIO);
-        Button btnRadioButtonSpecificLong = formToolkit.createButton(composite_Specific, "ÉèÁ¢³¤ÆÚ×ÊÖúÏîÄ¿", SWT.RADIO);
-        Button btnRadioButtonSpecificElse = formToolkit.createButton(composite_Specific, "ÆäËû", SWT.RADIO);
-        
-        sctnSectionSpecific.setClient(composite_Specific);  
-        
-        //-------
+        Button btnRadioButtonSpecificDonate = formToolkit.createButton(composite_Specific, "å•çº¯ä¸€æ¬¡ææ¬¾æç‰©", SWT.RADIO);
+        Button btnRadioButtonSpecificTravel = formToolkit.createButton(composite_Specific, "æ—…æ¸¸æ´»åŠ¨å®‰æ’çš„é¡¹ç›®ä¹‹ä¸€", SWT.RADIO);
+        Button btnRadioButtonSpecificFree = formToolkit.createButton(composite_Specific, "å…è´¹å¼€æ”¾", SWT.RADIO);
+        Button btnRadioButtonSpecificLong = formToolkit.createButton(composite_Specific, "è®¾ç«‹é•¿æœŸèµ„åŠ©é¡¹ç›®", SWT.RADIO);
+        Button btnRadioButtonSpecificElse = formToolkit.createButton(composite_Specific, "å…¶ä»–", SWT.RADIO);
+
+        sctnSectionSpecific.setClient(composite_Specific);
+
         Section sctnSectionSubject = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        fd_sctnSectionSpecific.bottom = new FormAttachment(sctnSectionSubject);
         FormData fd_sctnSectionSubject = new FormData();
         fd_sctnSectionSubject.right = new FormAttachment(sctnSectionType, 0, SWT.RIGHT);
-        fd_sctnSectionSubject.top = new FormAttachment(0, 335);
+        fd_sctnSectionSubject.top = new FormAttachment(sctnSectionSpecific);
         fd_sctnSectionSubject.left = new FormAttachment(0);
         sctnSectionSubject.setLayoutData(fd_sctnSectionSubject);
         formToolkit.paintBordersFor(sctnSectionSubject);
-        sctnSectionSubject.setText("°ïÖúÀàĞÂÎÅµÄÖ÷Ìå");
-        
+        sctnSectionSubject.setText("å¸®åŠ©ç±»æ–°é—»çš„ä¸»ä½“");
+
         Composite composite_Subject = formToolkit.createComposite(sctnSectionSubject);
         composite_Subject.setLayout(new GridLayout());
-        Button btnRadioButtonSubjectGovern = formToolkit.createButton(composite_Subject, "Õş¸®²¿ÃÅ", SWT.RADIO);
-        Button btnRadioButtonSubjectInterest = formToolkit.createButton(composite_Subject, "¹«ÒæÍÅÌå", SWT.RADIO);
-        Button btnRadioButtonSubjectFirm = formToolkit.createButton(composite_Subject, "ÆóÒµ", SWT.RADIO);
-        Button btnRadioButtonSubjectUnits = formToolkit.createButton(composite_Subject, "ÊÂÒµµ¥Î»", SWT.RADIO);
-        Button btnRadioButtonSubjectIndividual = formToolkit.createButton(composite_Subject, "¸öÈË", SWT.RADIO);
- 
-        sctnSectionSubject.setClient(composite_Subject);  
-        
-        //---------
+        Button btnRadioButtonSubjectGovern = formToolkit.createButton(composite_Subject, "æ”¿åºœéƒ¨é—¨", SWT.RADIO);
+        Button btnRadioButtonSubjectInterest = formToolkit.createButton(composite_Subject, "å…¬ç›Šå›¢ä½“", SWT.RADIO);
+        Button btnRadioButtonSubjectFirm = formToolkit.createButton(composite_Subject, "ä¼ä¸š", SWT.RADIO);
+        Button btnRadioButtonSubjectUnits = formToolkit.createButton(composite_Subject, "äº‹ä¸šå•ä½", SWT.RADIO);
+        Button btnRadioButtonSubjectIndividual = formToolkit.createButton(composite_Subject, "ä¸ªäºº", SWT.RADIO);
+
+        sctnSectionSubject.setClient(composite_Subject);
+
         Section sctnSectionPraise = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
         FormData fd_sctnSectionPraise = new FormData();
         fd_sctnSectionPraise.right = new FormAttachment(sctnSectionType, 0, SWT.RIGHT);
@@ -225,19 +203,18 @@ public class AnalysisWindow extends ApplicationWindow {
         fd_sctnSectionPraise.left = new FormAttachment(0);
         sctnSectionPraise.setLayoutData(fd_sctnSectionPraise);
         formToolkit.paintBordersFor(sctnSectionPraise);
-        sctnSectionPraise.setText("±íÕÃ½±ÀøµÄĞÂÎÅÖ÷Ìå");
-        
+        sctnSectionPraise.setText("è¡¨å½°å¥–åŠ±çš„æ–°é—»ä¸»ä½“");
+
         Composite composite_Praise = formToolkit.createComposite(sctnSectionPraise);
         composite_Praise.setLayout(new GridLayout());
-        Button btnRadioButtonPraiseGovern = formToolkit.createButton(composite_Praise, "Õş¸®²¿ÃÅ", SWT.RADIO);
-        Button btnRadioButtonPraiseInterest = formToolkit.createButton(composite_Praise, "¹«ÒæÍÅÌå", SWT.RADIO);
-        Button btnRadioButtonPraiseFirm = formToolkit.createButton(composite_Praise, "ÆóÒµ", SWT.RADIO);
-        Button btnRadioButtonPraiseUnits = formToolkit.createButton(composite_Praise, "ÊÂÒµµ¥Î»", SWT.RADIO);
-        Button btnRadioButtonPraiseIndividual = formToolkit.createButton(composite_Praise, "¸öÈË", SWT.RADIO);
-        
-        sctnSectionPraise.setClient(composite_Praise); 
-    
-        //------------
+        Button btnRadioButtonPraiseGovern = formToolkit.createButton(composite_Praise, "æ”¿åºœéƒ¨é—¨", SWT.RADIO);
+        Button btnRadioButtonPraiseInterest = formToolkit.createButton(composite_Praise, "å…¬ç›Šå›¢ä½“", SWT.RADIO);
+        Button btnRadioButtonPraiseFirm = formToolkit.createButton(composite_Praise, "ä¼ä¸š", SWT.RADIO);
+        Button btnRadioButtonPraiseUnits = formToolkit.createButton(composite_Praise, "äº‹ä¸šå•ä½", SWT.RADIO);
+        Button btnRadioButtonPraiseIndividual = formToolkit.createButton(composite_Praise, "ä¸ªäºº", SWT.RADIO);
+
+        sctnSectionPraise.setClient(composite_Praise);
+
         Section sctnSectionReason = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
         fd_sctnSectionTheme.right = new FormAttachment(sctnSectionReason, 0, SWT.RIGHT);
         FormData fd_sctnSectionReason = new FormData();
@@ -245,19 +222,19 @@ public class AnalysisWindow extends ApplicationWindow {
         fd_sctnSectionReason.left = new FormAttachment(0);
         sctnSectionReason.setLayoutData(fd_sctnSectionReason);
         formToolkit.paintBordersFor(sctnSectionReason);
-        sctnSectionReason.setText("Å©Ãñ¹¤×ÓÅ®²»ÄÜÁôÔÚ³ÇÊĞ¶ÁÊéµÄÔ­Òò");
-        
+        sctnSectionReason.setText("å†œæ°‘å·¥å­å¥³ä¸èƒ½ç•™åœ¨åŸå¸‚è¯»ä¹¦çš„åŸå› ");
+
         Composite composite_Reason = formToolkit.createComposite(sctnSectionReason);
         composite_Reason.setLayout(new GridLayout());
-        Button btnRadioButtonReasonRegister = formToolkit.createButton(composite_Reason, "ÎŞ±¾µØ»§¼®ÄÑÈë¹«Á¢Ñ§Ğ£", SWT.RADIO);
-        Button btnRadioButtonReasonFee = formToolkit.createButton(composite_Reason, "Ë½Á¢Ñ§Ğ£Ñ§·Ñ¸ß", SWT.RADIO);
-        Button btnRadioButtonReasonQuality = formToolkit.createButton(composite_Reason, "Ë½Á¢Ñ§Ğ£½ÌÑ§ÖÊÁ¿Ã»±£ÕÏ", SWT.RADIO);
-        Button btnRadioButtonReasonCancel = formToolkit.createButton(composite_Reason, "Ô½À´Ô½¶àµÄĞ¡ĞÍË½Á¢Ñ§Ğ£±»¹ú¼ÒÈ¡Ïû°ìÑ§×Ê¸ñ", SWT.RADIO);
-        Button btnRadioButtonReasonElse = formToolkit.createButton(composite_Reason, "ÆäËû", SWT.RADIO);
-        
-        sctnSectionReason.setClient(composite_Reason); 
-        
-        //----------
+        Button btnRadioButtonReasonRegister = formToolkit.createButton(composite_Reason, "æ— æœ¬åœ°æˆ·ç±éš¾å…¥å…¬ç«‹å­¦æ ¡", SWT.RADIO);
+        Button btnRadioButtonReasonFee = formToolkit.createButton(composite_Reason, "ç§ç«‹å­¦æ ¡å­¦è´¹é«˜", SWT.RADIO);
+        Button btnRadioButtonReasonQuality = formToolkit.createButton(composite_Reason, "ç§ç«‹å­¦æ ¡æ•™å­¦è´¨é‡æ²¡ä¿éšœ", SWT.RADIO);
+        Button btnRadioButtonReasonCancel = formToolkit.createButton(composite_Reason, "è¶Šæ¥è¶Šå¤šçš„å°å‹ç§ç«‹å­¦æ ¡è¢«å›½å®¶å–æ¶ˆåŠå­¦èµ„æ ¼",
+                SWT.RADIO);
+        Button btnRadioButtonReasonElse = formToolkit.createButton(composite_Reason, "å…¶ä»–", SWT.RADIO);
+
+        sctnSectionReason.setClient(composite_Reason);
+
         Composite composite = new Composite(container, SWT.NONE);
         fd_sctnSectionSource.right = new FormAttachment(composite, -4);
         fd_sctnSecionNType.right = new FormAttachment(composite, -4);
@@ -269,16 +246,14 @@ public class AnalysisWindow extends ApplicationWindow {
         composite.setLayoutData(fd_composite);
         formToolkit.adapt(composite);
         formToolkit.paintBordersFor(composite);
-        
+
         Map<String, Integer> map = new HashMap<>();
-        map.put("ÄĞ", 7);
-        map.put("Å®", 3);
+        map.put("ç”·", 7);
+        map.put("å¥³", 3);
         PieChart pieChart = new PieChart(map);
-        pieChart.setTile("²âÊÔ¹¤×÷");
+        pieChart.setTile("æµ‹è¯•å·¥ä½œ");
         ChartComposite chartComposite = new ChartComposite(composite, SWT.NONE, pieChart.createChart(), true);
         chartComposite.setBounds(53, 10, 360, 267);
-
-    
 
         return container;
     }
