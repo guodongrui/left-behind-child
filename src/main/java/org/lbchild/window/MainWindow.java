@@ -19,6 +19,7 @@ import org.lbchild.util.Base64Content;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
+import org.lbchild.xml.XMLWriter;
 import org.lbchild.controller.AnalyzeAction;
 import org.lbchild.res.management.SWTResourceManager;
 
@@ -509,17 +510,28 @@ public class MainWindow extends ApplicationWindow {
 
             @Override
             public void widgetSelected(SelectionEvent e) {
+                String newsMarks = "";
+                int pFlag = 0;
                 for (ArrayList<Button> markGroupType : btnMarks) {
                     for (Button btn : markGroupType) {
                         if (btn.getSelection()) {
-                            System.out.println("select is: " + btn.getText());
-                            btn.setSelection(false);
-                            markGroupType.get(0).setSelection(true);
+                            if (pFlag == 0) {
+                                newsMarks += btn.getText();
+                                pFlag = 1;
+                            } else {
+                                newsMarks += "|" + btn.getText();
+                                btn.setSelection(false);
+                                markGroupType.get(0).setSelection(true);
+                            }
                         }
                     }
                 }
-                int i = newsSummaryList.getFocusIndex();
-                newsSummaryList.setSelection(i + 1);
+                File file = new File("src/main/resources/newsmarks.xml");
+                XMLWriter out = new XMLWriter(file);
+                
+                int lineId = newsSummaryList.getFocusIndex();
+                newsSummaryList.setSelection(lineId + 1);
+                out.insertXml(newsMarks, lineId);
             }
         });
         btnNewButton.setBounds(432, 586, 54, 20);
@@ -599,7 +611,7 @@ public class MainWindow extends ApplicationWindow {
     @Override
     protected void configureShell(Shell newShell) {
         super.configureShell(newShell);
-        newShell.setText("MainWindow");
+        newShell.setText("TestWindow");
     }
 
     /**
