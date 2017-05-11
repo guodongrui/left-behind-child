@@ -22,14 +22,18 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.jfree.experimental.chart.swt.ChartComposite;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
-
+import org.lbchild.chart.LineChart;
 import org.lbchild.chart.PieChart;
 import org.lbchild.res.management.SWTResourceManager;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.custom.CTabItem;
+import org.jfree.chart.JFreeChart;
 
 public class AnalysisWindow extends ApplicationWindow {
-    private Action oriAction;
-    private Action tenAction;
+
     private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 
     /**
@@ -59,201 +63,522 @@ public class AnalysisWindow extends ApplicationWindow {
     protected Control createContents(Composite parent) {
 
         Composite container = new Composite(parent, SWT.NONE);
-        container.setLayout(new FormLayout());
+        container.setLayout(new FillLayout());
 
-        Section sctnSectionType = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        FormData fd_sctnSectionType = new FormData();
-        fd_sctnSectionType.top = new FormAttachment(0);
-        fd_sctnSectionType.left = new FormAttachment(0);
-        sctnSectionType.setLayoutData(fd_sctnSectionType);
-        formToolkit.paintBordersFor(sctnSectionType);
-        sctnSectionType.setText("报纸类别");
+        CTabFolder tabFolder = new CTabFolder(container, SWT.BORDER);
+        tabFolder.setSelectionBackground(
+                Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT));
+        tabFolder.setLayout(new FillLayout());
 
-        Composite composite_Type = formToolkit.createComposite(sctnSectionType);
-        composite_Type.setLayout(new GridLayout());
-        Button btnRadioButtonTypeCenter = formToolkit.createButton(composite_Type, "中央一级", SWT.RADIO);
-        Button btnRadioButtonTypeProvince = formToolkit.createButton(composite_Type, "省一级", SWT.RADIO);
-        Button btnRadioButtonTypeMarket = formToolkit.createButton(composite_Type, "经营模式市场化", SWT.RADIO);
+        /*
+         * Orientation
+         */
+        Composite compositeOrientation = new Composite(tabFolder, SWT.NONE);
+        compositeOrientation.setLayout(new FillLayout());
 
-        sctnSectionType.setClient(composite_Type);
+        Composite marksOrientationComposite = new Composite(compositeOrientation, SWT.NONE);
+        marksOrientationComposite.setLayout(new FormLayout());
 
-        Section sctnSecionNType = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        fd_sctnSectionType.right = new FormAttachment(sctnSecionNType, 0, SWT.RIGHT);
-        FormData fd_sctnSecionNType = new FormData();
-        fd_sctnSecionNType.top = new FormAttachment(sctnSectionType);
-        fd_sctnSecionNType.left = new FormAttachment(0);
-        sctnSecionNType.setLayoutData(fd_sctnSecionNType);
-        formToolkit.paintBordersFor(sctnSecionNType);
-        sctnSecionNType.setText("新闻类型");
+        Composite orientationPieChartComposite = new Composite(compositeOrientation, SWT.NONE);
+        orientationPieChartComposite.setLayout(new FillLayout());
+        formToolkit.adapt(orientationPieChartComposite);
+        formToolkit.paintBordersFor(orientationPieChartComposite);
 
-        Composite composite_NType = formToolkit.createComposite(sctnSecionNType);
-        composite_NType.setLayout(new GridLayout());
-        Button btnRadioButtonNTypePure = formToolkit.createButton(composite_NType, "纯净新闻", SWT.RADIO);
-        Button btnRadioButtonNTypeFeature = formToolkit.createButton(composite_NType, "特稿与特写", SWT.RADIO);
-        Button btnRadioButtonNTypeComment = formToolkit.createButton(composite_NType, "评论", SWT.RADIO);
-        Button btnRadioButtonNTypeElse = formToolkit.createButton(composite_NType, "其他", SWT.RADIO);
-
-        sctnSecionNType.setClient(composite_NType);
-
-        Section sctnSectionTheme = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        FormData fd_sctnSectionTheme = new FormData();
-        fd_sctnSectionTheme.top = new FormAttachment(sctnSecionNType);
-        fd_sctnSectionTheme.left = new FormAttachment(0);
-        sctnSectionTheme.setLayoutData(fd_sctnSectionTheme);
-        formToolkit.paintBordersFor(sctnSectionTheme);
-        sctnSectionTheme.setText("报道主题");
-
-        Composite composite_Theme = formToolkit.createComposite(sctnSectionTheme);
-        composite_Theme.setLayout(new GridLayout());
-        Button btnRadioButtonThemeHelp = formToolkit.createButton(composite_Theme, "社会各界帮助关爱", SWT.RADIO);
-        Button btnRadioButtonThemeAdvice = formToolkit.createButton(composite_Theme, "社会各界对留守儿童现象提出的建议和看法", SWT.RADIO);
-        Button btnRadioButtonThemePraise = formToolkit.createButton(composite_Theme, "表彰帮助关爱留守儿童的单位或个人", SWT.RADIO);
-        Button btnRadioButtonThemeViolent = formToolkit.createButton(composite_Theme, "留守儿童遭受暴力", SWT.RADIO);
-        Button btnRadioButtonThemeAbuse = formToolkit.createButton(composite_Theme, "留守儿童被性侵、猥亵、强奸或是怀孕、生子等", SWT.RADIO);
-        Button btnRadioButtonThemeCriminal = formToolkit.createButton(composite_Theme, "留守儿童犯罪等", SWT.RADIO);
-        Button btnRadioButtonThemeDeath = formToolkit.createButton(composite_Theme, "留守儿童意外死亡", SWT.RADIO);
-        Button btnRadioButtonThemeEffort = formToolkit.createButton(composite_Theme, "留守儿童努力上进", SWT.RADIO);
-        Button btnRadioButtonThemeRough = formToolkit.createButton(composite_Theme, "打工父母在城市艰难生活", SWT.RADIO);
-        Button btnRadioButtonThemeElse = formToolkit.createButton(composite_Theme, "其他", SWT.RADIO);
-
-        sctnSectionTheme.setClient(composite_Theme);
-
-        Section sctnSectionSource = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        FormData fd_sctnSectionSource = new FormData();
-        fd_sctnSectionSource.left = new FormAttachment(0);
-        fd_sctnSectionSource.top = new FormAttachment(sctnSectionTheme, 1);
-        sctnSectionSource.setLayoutData(fd_sctnSectionSource);
-        formToolkit.paintBordersFor(sctnSectionSource);
-        sctnSectionSource.setText("新闻报道来源");
-
-        Composite composite_Source = formToolkit.createComposite(sctnSectionSource);
-        composite_Source.setLayout(new GridLayout());
-        Button btnRadioButtonSourceReporter = formToolkit.createButton(composite_Source, "记者", SWT.RADIO);
-        Button btnRadioButtonSourceGovern = formToolkit.createButton(composite_Source, "政府", SWT.RADIO);
-        Button btnRadioButtonSourceInterest = formToolkit.createButton(composite_Source, "公益团体", SWT.RADIO);
-        Button btnRadioButtonSourceExpert = formToolkit.createButton(composite_Source, "专家学者", SWT.RADIO);
-        Button btnRadioButtonSourceFirm = formToolkit.createButton(composite_Source, "企业", SWT.RADIO);
-        Button btnRadioButtonSourceUnits = formToolkit.createButton(composite_Source, "事业单位", SWT.RADIO);
-        Button btnRadioButtonSourceLeader = formToolkit.createButton(composite_Source, "政府领导、政协或人大代表", SWT.RADIO);
-        Button btnRadioButtonSourceElse = formToolkit.createButton(composite_Source, "其他", SWT.RADIO);
-
-        sctnSectionSource.setClient(composite_Source);
-
-        Section sctnSectionImage = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        FormData fd_sctnSectionImage = new FormData();
-        fd_sctnSectionImage.right = new FormAttachment(sctnSectionType, 0, SWT.RIGHT);
-        fd_sctnSectionImage.left = new FormAttachment(0);
-        fd_sctnSectionImage.top = new FormAttachment(sctnSectionSource);
-        sctnSectionImage.setLayoutData(fd_sctnSectionImage);
-        formToolkit.paintBordersFor(sctnSectionImage);
-        sctnSectionImage.setText("媒体呈现形象");
-
-        Composite composite_Image = formToolkit.createComposite(sctnSectionImage);
-        composite_Image.setLayout(new GridLayout());
-        Button btnRadioButtonImagePositive = formToolkit.createButton(composite_Image, "积极健康", SWT.RADIO);
-        Button btnRadioButtonImagePoor = formToolkit.createButton(composite_Image, "可伶悲惨", SWT.RADIO);
-        Button btnRadioButtonImageHappiness = formToolkit.createButton(composite_Image, "沫恩幸福", SWT.RADIO);
-        Button btnRadioButtonImageProblem = formToolkit.createButton(composite_Image, "问题儿童", SWT.RADIO);
-        Button btnRadioButtonImageElse = formToolkit.createButton(composite_Image, "其他", SWT.RADIO);
-
-        sctnSectionImage.setClient(composite_Image);
-
-        Section sctnSectionSpecific = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        FormData fd_sctnSectionSpecific = new FormData();
-        fd_sctnSectionSpecific.top = new FormAttachment(sctnSectionImage);
-        fd_sctnSectionSpecific.right = new FormAttachment(sctnSectionType, 0, SWT.RIGHT);
-        fd_sctnSectionSpecific.left = new FormAttachment(0);
-        sctnSectionSpecific.setLayoutData(fd_sctnSectionSpecific);
-        formToolkit.paintBordersFor(sctnSectionSpecific);
-        sctnSectionSpecific.setText("帮助新闻的具体种类");
-
-        Composite composite_Specific = formToolkit.createComposite(sctnSectionSpecific);
-        composite_Specific.setLayout(new GridLayout());
-        Button btnRadioButtonSpecificDonate = formToolkit.createButton(composite_Specific, "单纯一次捐款捐物", SWT.RADIO);
-        Button btnRadioButtonSpecificTravel = formToolkit.createButton(composite_Specific, "旅游活动安排的项目之一", SWT.RADIO);
-        Button btnRadioButtonSpecificFree = formToolkit.createButton(composite_Specific, "免费开放", SWT.RADIO);
-        Button btnRadioButtonSpecificLong = formToolkit.createButton(composite_Specific, "设立长期资助项目", SWT.RADIO);
-        Button btnRadioButtonSpecificElse = formToolkit.createButton(composite_Specific, "其他", SWT.RADIO);
-
-        sctnSectionSpecific.setClient(composite_Specific);
-
-        Section sctnSectionSubject = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        FormData fd_sctnSectionSubject = new FormData();
-        fd_sctnSectionSubject.right = new FormAttachment(sctnSectionType, 0, SWT.RIGHT);
-        fd_sctnSectionSubject.top = new FormAttachment(sctnSectionSpecific);
-        fd_sctnSectionSubject.left = new FormAttachment(0);
-        sctnSectionSubject.setLayoutData(fd_sctnSectionSubject);
-        formToolkit.paintBordersFor(sctnSectionSubject);
-        sctnSectionSubject.setText("帮助类新闻的主体");
-
-        Composite composite_Subject = formToolkit.createComposite(sctnSectionSubject);
-        composite_Subject.setLayout(new GridLayout());
-        Button btnRadioButtonSubjectGovern = formToolkit.createButton(composite_Subject, "政府部门", SWT.RADIO);
-        Button btnRadioButtonSubjectInterest = formToolkit.createButton(composite_Subject, "公益团体", SWT.RADIO);
-        Button btnRadioButtonSubjectFirm = formToolkit.createButton(composite_Subject, "企业", SWT.RADIO);
-        Button btnRadioButtonSubjectUnits = formToolkit.createButton(composite_Subject, "事业单位", SWT.RADIO);
-        Button btnRadioButtonSubjectIndividual = formToolkit.createButton(composite_Subject, "个人", SWT.RADIO);
-
-        sctnSectionSubject.setClient(composite_Subject);
-
-        Section sctnSectionPraise = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        FormData fd_sctnSectionPraise = new FormData();
-        fd_sctnSectionPraise.right = new FormAttachment(sctnSectionType, 0, SWT.RIGHT);
-        fd_sctnSectionPraise.top = new FormAttachment(sctnSectionSubject, 1);
-        fd_sctnSectionPraise.left = new FormAttachment(0);
-        sctnSectionPraise.setLayoutData(fd_sctnSectionPraise);
-        formToolkit.paintBordersFor(sctnSectionPraise);
-        sctnSectionPraise.setText("表彰奖励的新闻主体");
-
-        Composite composite_Praise = formToolkit.createComposite(sctnSectionPraise);
-        composite_Praise.setLayout(new GridLayout());
-        Button btnRadioButtonPraiseGovern = formToolkit.createButton(composite_Praise, "政府部门", SWT.RADIO);
-        Button btnRadioButtonPraiseInterest = formToolkit.createButton(composite_Praise, "公益团体", SWT.RADIO);
-        Button btnRadioButtonPraiseFirm = formToolkit.createButton(composite_Praise, "企业", SWT.RADIO);
-        Button btnRadioButtonPraiseUnits = formToolkit.createButton(composite_Praise, "事业单位", SWT.RADIO);
-        Button btnRadioButtonPraiseIndividual = formToolkit.createButton(composite_Praise, "个人", SWT.RADIO);
-
-        sctnSectionPraise.setClient(composite_Praise);
-
-        Section sctnSectionReason = formToolkit.createSection(container, Section.TWISTIE | Section.TITLE_BAR);
-        fd_sctnSectionTheme.right = new FormAttachment(sctnSectionReason, 0, SWT.RIGHT);
-        FormData fd_sctnSectionReason = new FormData();
-        fd_sctnSectionReason.top = new FormAttachment(sctnSectionPraise, 1);
-        fd_sctnSectionReason.left = new FormAttachment(0);
-        sctnSectionReason.setLayoutData(fd_sctnSectionReason);
-        formToolkit.paintBordersFor(sctnSectionReason);
-        sctnSectionReason.setText("农民工子女不能留在城市读书的原因");
-
-        Composite composite_Reason = formToolkit.createComposite(sctnSectionReason);
-        composite_Reason.setLayout(new GridLayout());
-        Button btnRadioButtonReasonRegister = formToolkit.createButton(composite_Reason, "无本地户籍难入公立学校", SWT.RADIO);
-        Button btnRadioButtonReasonFee = formToolkit.createButton(composite_Reason, "私立学校学费高", SWT.RADIO);
-        Button btnRadioButtonReasonQuality = formToolkit.createButton(composite_Reason, "私立学校教学质量没保障", SWT.RADIO);
-        Button btnRadioButtonReasonCancel = formToolkit.createButton(composite_Reason, "越来越多的小型私立学校被国家取消办学资格",
-                SWT.RADIO);
-        Button btnRadioButtonReasonElse = formToolkit.createButton(composite_Reason, "其他", SWT.RADIO);
-
-        sctnSectionReason.setClient(composite_Reason);
-
-        Composite composite = new Composite(container, SWT.NONE);
-        fd_sctnSectionSource.right = new FormAttachment(composite, -4);
-        fd_sctnSecionNType.right = new FormAttachment(composite, -4);
-        FormData fd_composite = new FormData();
-        fd_composite.bottom = new FormAttachment(100, -22);
-        fd_composite.right = new FormAttachment(sctnSectionReason, 466, SWT.RIGHT);
-        fd_composite.left = new FormAttachment(sctnSectionReason, 4);
-        fd_composite.top = new FormAttachment(0, 5);
-        composite.setLayoutData(fd_composite);
-        formToolkit.adapt(composite);
-        formToolkit.paintBordersFor(composite);
+        CTabItem item_orientation = new CTabItem(tabFolder, SWT.NONE);
+        item_orientation.setText("Orientation");
+        item_orientation.setControl(compositeOrientation);
 
         Map<String, Integer> map = new HashMap<>();
         map.put("男", 7);
         map.put("女", 3);
         PieChart pieChart = new PieChart(map);
-        pieChart.setTile("测试工作");
-        ChartComposite chartComposite = new ChartComposite(composite, SWT.NONE, pieChart.createChart(), true);
-        chartComposite.setBounds(53, 10, 360, 267);
+        pieChart.setTile("标题");
+        ChartComposite chartOrientationComposite = new ChartComposite(orientationPieChartComposite, SWT.NONE,
+                pieChart.createChart(), true);
+        chartOrientationComposite.setBounds(53, 10, 360, 267);
+
+        Section sctnSectionTypeOrientation = formToolkit.createSection(marksOrientationComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionTypeOrientation = new FormData();
+        fd_sctnSectionTypeOrientation.top = new FormAttachment(0);
+        fd_sctnSectionTypeOrientation.left = new FormAttachment(0);
+        sctnSectionTypeOrientation.setLayoutData(fd_sctnSectionTypeOrientation);
+        formToolkit.paintBordersFor(sctnSectionTypeOrientation);
+        sctnSectionTypeOrientation.setText("报纸类别");
+
+        Composite composite_TypeOrientation = formToolkit.createComposite(sctnSectionTypeOrientation);
+        composite_TypeOrientation.setLayout(new GridLayout());
+        Button btnRadioButtonTypeOrientationCenter = formToolkit.createButton(composite_TypeOrientation, "中央一级",
+                SWT.RADIO);
+        Button btnRadioButtonTypeOrientationProvince = formToolkit.createButton(composite_TypeOrientation, "省一级",
+                SWT.RADIO);
+        Button btnRadioButtonTypeOrientationMarket = formToolkit.createButton(composite_TypeOrientation, "经营模式市场化",
+                SWT.RADIO);
+
+        sctnSectionTypeOrientation.setClient(composite_TypeOrientation);
+
+        Section sctnSectionNTypeOrientation = formToolkit.createSection(marksOrientationComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionNTypeOrientation = new FormData();
+        fd_sctnSectionNTypeOrientation.top = new FormAttachment(sctnSectionTypeOrientation);
+        fd_sctnSectionNTypeOrientation.left = new FormAttachment(0);
+        sctnSectionNTypeOrientation.setLayoutData(fd_sctnSectionNTypeOrientation);
+        formToolkit.paintBordersFor(sctnSectionNTypeOrientation);
+        sctnSectionNTypeOrientation.setText("新闻类型");
+
+        Composite composite_NTypeOrientation = formToolkit.createComposite(sctnSectionNTypeOrientation);
+        composite_NTypeOrientation.setLayout(new GridLayout());
+        Button btnRadioButtonNTypeOrientationPure = formToolkit.createButton(composite_NTypeOrientation, "纯净新闻",
+                SWT.RADIO);
+        Button btnRadioButtonNTypeOrientationFeature = formToolkit.createButton(composite_NTypeOrientation, "特稿与特写",
+                SWT.RADIO);
+        Button btnRadioButtonNTypeOrientationComment = formToolkit.createButton(composite_NTypeOrientation, "评论",
+                SWT.RADIO);
+        Button btnRadioButtonNTypeOrientationElse = formToolkit.createButton(composite_NTypeOrientation, "其他",
+                SWT.RADIO);
+
+        sctnSectionNTypeOrientation.setClient(composite_NTypeOrientation);
+
+        Section sctnSectionThemeOrientation = formToolkit.createSection(marksOrientationComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionThemeOrientation = new FormData();
+        fd_sctnSectionThemeOrientation.top = new FormAttachment(sctnSectionNTypeOrientation);
+        fd_sctnSectionThemeOrientation.left = new FormAttachment(0);
+        sctnSectionThemeOrientation.setLayoutData(fd_sctnSectionThemeOrientation);
+        formToolkit.paintBordersFor(sctnSectionThemeOrientation);
+        sctnSectionThemeOrientation.setText("报道主题");
+
+        Composite composite_ThemeOrientation = formToolkit.createComposite(sctnSectionThemeOrientation);
+        composite_ThemeOrientation.setLayout(new GridLayout());
+        Button btnRadioButtonThemeOrientationHelp = formToolkit.createButton(composite_ThemeOrientation, "社会各界帮助关爱",
+                SWT.RADIO);
+        Button btnRadioButtonThemeOrientationAdvice = formToolkit.createButton(composite_ThemeOrientation,
+                "社会各界对留守儿童现象提出的建议和看法", SWT.RADIO);
+        Button btnRadioButtonThemeOrientationPraise = formToolkit.createButton(composite_ThemeOrientation,
+                "表彰帮助关爱留守儿童的单位或个人", SWT.RADIO);
+        Button btnRadioButtonThemeOrientationViolent = formToolkit.createButton(composite_ThemeOrientation, "留守儿童遭受暴力",
+                SWT.RADIO);
+        Button btnRadioButtonThemeOrientationAbuse = formToolkit.createButton(composite_ThemeOrientation,
+                "留守儿童被性侵、猥亵、强奸或是怀孕、生子等", SWT.RADIO);
+        Button btnRadioButtonThemeOrientationCriminal = formToolkit.createButton(composite_ThemeOrientation, "留守儿童犯罪等",
+                SWT.RADIO);
+        Button btnRadioButtonThemeOrientationDeath = formToolkit.createButton(composite_ThemeOrientation, "留守儿童意外死亡",
+                SWT.RADIO);
+        Button btnRadioButtonThemeOrientationEffort = formToolkit.createButton(composite_ThemeOrientation, "留守儿童努力上进",
+                SWT.RADIO);
+        Button btnRadioButtonThemeOrientationRough = formToolkit.createButton(composite_ThemeOrientation, "打工父母在城市艰难生活",
+                SWT.RADIO);
+        Button btnRadioButtonThemeOrientationElse = formToolkit.createButton(composite_ThemeOrientation, "其他",
+                SWT.RADIO);
+
+        sctnSectionThemeOrientation.setClient(composite_ThemeOrientation);
+
+        Section sctnSectionSourceOrientation = formToolkit.createSection(marksOrientationComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionSourceOrientation = new FormData();
+        fd_sctnSectionSourceOrientation.top = new FormAttachment(sctnSectionThemeOrientation, 1);
+        fd_sctnSectionSourceOrientation.left = new FormAttachment(0);
+        sctnSectionSourceOrientation.setLayoutData(fd_sctnSectionSourceOrientation);
+        formToolkit.paintBordersFor(sctnSectionSourceOrientation);
+        sctnSectionSourceOrientation.setText("新闻报道来源");
+
+        Composite composite_SourceOrientation = formToolkit.createComposite(sctnSectionSourceOrientation);
+        composite_SourceOrientation.setLayout(new GridLayout());
+        Button btnRadioButtonSourceOrientationReporter = formToolkit.createButton(composite_SourceOrientation, "记者",
+                SWT.RADIO);
+        Button btnRadioButtonSourceOrientationGovern = formToolkit.createButton(composite_SourceOrientation, "政府",
+                SWT.RADIO);
+        Button btnRadioButtonSourceOrientationInterest = formToolkit.createButton(composite_SourceOrientation, "公益团体",
+                SWT.RADIO);
+        Button btnRadioButtonSourceOrientationExpert = formToolkit.createButton(composite_SourceOrientation, "专家学者",
+                SWT.RADIO);
+        Button btnRadioButtonSourceOrientationFirm = formToolkit.createButton(composite_SourceOrientation, "企业",
+                SWT.RADIO);
+        Button btnRadioButtonSourceOrientationUnits = formToolkit.createButton(composite_SourceOrientation, "事业单位",
+                SWT.RADIO);
+        Button btnRadioButtonSourceOrientationLeader = formToolkit.createButton(composite_SourceOrientation,
+                "政府领导、政协或人大代表", SWT.RADIO);
+        Button btnRadioButtonSourceOrientationElse = formToolkit.createButton(composite_SourceOrientation, "其他",
+                SWT.RADIO);
+
+        sctnSectionSourceOrientation.setClient(composite_SourceOrientation);
+
+        Section sctnSectionImageOrientation = formToolkit.createSection(marksOrientationComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionImageOrientation = new FormData();
+        fd_sctnSectionImageOrientation.top = new FormAttachment(sctnSectionSourceOrientation);
+        fd_sctnSectionImageOrientation.left = new FormAttachment(0);
+        sctnSectionImageOrientation.setLayoutData(fd_sctnSectionImageOrientation);
+        formToolkit.paintBordersFor(sctnSectionImageOrientation);
+        sctnSectionImageOrientation.setText("媒体呈现形象");
+
+        Composite composite_ImageOrientation = formToolkit.createComposite(sctnSectionImageOrientation);
+        composite_ImageOrientation.setLayout(new GridLayout());
+        Button btnRadioButtonImageOrientationPositive = formToolkit.createButton(composite_ImageOrientation, "积极健康",
+                SWT.RADIO);
+        Button btnRadioButtonImageOrientationPoor = formToolkit.createButton(composite_ImageOrientation, "可伶悲惨",
+                SWT.RADIO);
+        Button btnRadioButtonImageOrientationHappiness = formToolkit.createButton(composite_ImageOrientation, "沫恩幸福",
+                SWT.RADIO);
+        Button btnRadioButtonImageOrientationProblem = formToolkit.createButton(composite_ImageOrientation, "问题儿童",
+                SWT.RADIO);
+        Button btnRadioButtonImageOrientationElse = formToolkit.createButton(composite_ImageOrientation, "其他",
+                SWT.RADIO);
+
+        sctnSectionImageOrientation.setClient(composite_ImageOrientation);
+
+        Section sctnSectionSpecificOrientation = formToolkit.createSection(marksOrientationComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionSpecificOrientation = new FormData();
+        fd_sctnSectionSpecificOrientation.top = new FormAttachment(sctnSectionImageOrientation);
+        fd_sctnSectionSpecificOrientation.left = new FormAttachment(0);
+        sctnSectionSpecificOrientation.setLayoutData(fd_sctnSectionSpecificOrientation);
+        formToolkit.paintBordersFor(sctnSectionSpecificOrientation);
+        sctnSectionSpecificOrientation.setText("帮助新闻的具体种类");
+
+        Composite composite_SpecificOrientation = formToolkit.createComposite(sctnSectionSpecificOrientation);
+        composite_SpecificOrientation.setLayout(new GridLayout());
+        Button btnRadioButtonSpecificOrientationDonate = formToolkit.createButton(composite_SpecificOrientation,
+                "单纯一次捐款捐物", SWT.RADIO);
+        Button btnRadioButtonSpecificOrientationTravel = formToolkit.createButton(composite_SpecificOrientation,
+                "旅游活动安排的项目之一", SWT.RADIO);
+        Button btnRadioButtonSpecificOrientationFree = formToolkit.createButton(composite_SpecificOrientation, "免费开放",
+                SWT.RADIO);
+        Button btnRadioButtonSpecificOrientationLong = formToolkit.createButton(composite_SpecificOrientation,
+                "设立长期资助项目", SWT.RADIO);
+        Button btnRadioButtonSpecificOrientationElse = formToolkit.createButton(composite_SpecificOrientation, "其他",
+                SWT.RADIO);
+
+        sctnSectionSpecificOrientation.setClient(composite_SpecificOrientation);
+
+        Section sctnSectionSubjectOrientation = formToolkit.createSection(marksOrientationComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionSubjectOrientation = new FormData();
+        fd_sctnSectionSubjectOrientation.top = new FormAttachment(sctnSectionSpecificOrientation);
+        fd_sctnSectionSubjectOrientation.left = new FormAttachment(0);
+        sctnSectionSubjectOrientation.setLayoutData(fd_sctnSectionSubjectOrientation);
+        formToolkit.paintBordersFor(sctnSectionSubjectOrientation);
+        sctnSectionSubjectOrientation.setText("帮助类新闻的主体");
+
+        Composite composite_SubjectOrientation = formToolkit.createComposite(sctnSectionSubjectOrientation);
+        composite_SubjectOrientation.setLayout(new GridLayout());
+        Button btnRadioButtonSubjectOrientationGovern = formToolkit.createButton(composite_SubjectOrientation, "政府部门",
+                SWT.RADIO);
+        Button btnRadioButtonSubjectOrientationInterest = formToolkit.createButton(composite_SubjectOrientation, "公益团体",
+                SWT.RADIO);
+        Button btnRadioButtonSubjectOrientationFirm = formToolkit.createButton(composite_SubjectOrientation, "企业",
+                SWT.RADIO);
+        Button btnRadioButtonSubjectOrientationUnits = formToolkit.createButton(composite_SubjectOrientation, "事业单位",
+                SWT.RADIO);
+        Button btnRadioButtonSubjectOrientationIndividual = formToolkit.createButton(composite_SubjectOrientation, "个人",
+                SWT.RADIO);
+
+        sctnSectionSubjectOrientation.setClient(composite_SubjectOrientation);
+
+        Section sctnSectionPraiseOrientation = formToolkit.createSection(marksOrientationComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionPraiseOrientation = new FormData();
+        fd_sctnSectionPraiseOrientation.top = new FormAttachment(sctnSectionSubjectOrientation, 1);
+        fd_sctnSectionPraiseOrientation.left = new FormAttachment(0);
+        sctnSectionPraiseOrientation.setLayoutData(fd_sctnSectionPraiseOrientation);
+        formToolkit.paintBordersFor(sctnSectionPraiseOrientation);
+        sctnSectionPraiseOrientation.setText("表彰奖励的新闻主体");
+
+        Composite composite_PraiseOrientation = formToolkit.createComposite(sctnSectionPraiseOrientation);
+        composite_PraiseOrientation.setLayout(new GridLayout());
+        Button btnRadioButtonPraiseOrientationGovern = formToolkit.createButton(composite_PraiseOrientation, "政府部门",
+                SWT.RADIO);
+        Button btnRadioButtonPraiseOrientationInterest = formToolkit.createButton(composite_PraiseOrientation, "公益团体",
+                SWT.RADIO);
+        Button btnRadioButtonPraiseOrientationFirm = formToolkit.createButton(composite_PraiseOrientation, "企业",
+                SWT.RADIO);
+        Button btnRadioButtonPraiseOrientationUnits = formToolkit.createButton(composite_PraiseOrientation, "事业单位",
+                SWT.RADIO);
+        Button btnRadioButtonPraiseOrientationIndividual = formToolkit.createButton(composite_PraiseOrientation, "个人",
+                SWT.RADIO);
+
+        sctnSectionPraiseOrientation.setClient(composite_PraiseOrientation);
+
+        Section sctnSectionReasonOrientation = formToolkit.createSection(marksOrientationComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionReasonOrientation = new FormData();
+        fd_sctnSectionReasonOrientation.top = new FormAttachment(sctnSectionPraiseOrientation, 1);
+        fd_sctnSectionReasonOrientation.left = new FormAttachment(0);
+        sctnSectionReasonOrientation.setLayoutData(fd_sctnSectionReasonOrientation);
+        formToolkit.paintBordersFor(sctnSectionReasonOrientation);
+        sctnSectionReasonOrientation.setText("农民工子女不能留在城市读书的原因");
+
+        Composite composite_ReasonOrientation = formToolkit.createComposite(sctnSectionReasonOrientation);
+        composite_ReasonOrientation.setLayout(new GridLayout());
+        Button btnRadioButtonReasonOrientationRegister = formToolkit.createButton(composite_ReasonOrientation,
+                "无本地户籍难入公立学校", SWT.RADIO);
+        Button btnRadioButtonReasonOrientationFee = formToolkit.createButton(composite_ReasonOrientation, "私立学校学费高",
+                SWT.RADIO);
+        Button btnRadioButtonReasonOrientationQuality = formToolkit.createButton(composite_ReasonOrientation,
+                "私立学校教学质量没保障", SWT.RADIO);
+        Button btnRadioButtonReasonOrientationCancel = formToolkit.createButton(composite_ReasonOrientation,
+                "越来越多的小型私立学校被国家取消办学资格", SWT.RADIO);
+        Button btnRadioButtonReasonOrientationElse = formToolkit.createButton(composite_ReasonOrientation, "其他",
+                SWT.RADIO);
+
+        sctnSectionReasonOrientation.setClient(composite_ReasonOrientation);
+
+        // set all formData right align to Theme
+        fd_sctnSectionTypeOrientation.right = new FormAttachment(sctnSectionThemeOrientation, 0, SWT.RIGHT);
+        fd_sctnSectionNTypeOrientation.right = new FormAttachment(sctnSectionThemeOrientation, 0, SWT.RIGHT);
+        fd_sctnSectionSourceOrientation.right = new FormAttachment(sctnSectionThemeOrientation, 0, SWT.RIGHT);
+        fd_sctnSectionImageOrientation.right = new FormAttachment(sctnSectionThemeOrientation, 0, SWT.RIGHT);
+        fd_sctnSectionSpecificOrientation.right = new FormAttachment(sctnSectionThemeOrientation, 0, SWT.RIGHT);
+        fd_sctnSectionSubjectOrientation.right = new FormAttachment(sctnSectionThemeOrientation, 0, SWT.RIGHT);
+        fd_sctnSectionPraiseOrientation.right = new FormAttachment(sctnSectionThemeOrientation, 0, SWT.RIGHT);
+        fd_sctnSectionReasonOrientation.right = new FormAttachment(sctnSectionThemeOrientation, 0, SWT.RIGHT);
+
+        /*
+         * Tendency
+         */
+        Composite compositeTendency = new Composite(tabFolder, SWT.NONE);
+        compositeTendency.setLayout(new FillLayout());
+
+        Composite marksTendencyComposite = new Composite(compositeTendency, SWT.NONE);
+        marksTendencyComposite.setLayout(new FormLayout());
+
+        Composite tendencyLineChartComposite = new Composite(compositeTendency, SWT.NONE);
+        formToolkit.adapt(tendencyLineChartComposite);
+        formToolkit.paintBordersFor(tendencyLineChartComposite);
+        tendencyLineChartComposite.setLayout(new FillLayout());
+
+        CTabItem item_tendency = new CTabItem(tabFolder, SWT.BORDER);
+        item_tendency.setText("Tendency");
+        item_tendency.setControl(compositeTendency);
+
+        Section sctnSectionTypeTendency = formToolkit.createSection(marksTendencyComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+
+        double[] y1s = { 3, 3, 5, 4, 3, 6, 12, 2, 3, 11 };
+        double[] y2s = { 3, 6, 2, 6, 1, 2, 3, 5, 17, 2 };
+        LineChart lineChart = new LineChart(y1s, y2s);
+        lineChart.setTitle("标题");
+        lineChart.createLineChart(tendencyLineChartComposite);
+
+        FormData fd_sctnSectionTypeTendency = new FormData();
+        fd_sctnSectionTypeTendency.top = new FormAttachment(0);
+        fd_sctnSectionTypeTendency.left = new FormAttachment(0);
+        sctnSectionTypeTendency.setLayoutData(fd_sctnSectionTypeTendency);
+        formToolkit.paintBordersFor(sctnSectionTypeTendency);
+        sctnSectionTypeTendency.setText("报纸类别");
+
+        Composite composite_TypeTendency = formToolkit.createComposite(sctnSectionTypeTendency);
+        composite_TypeTendency.setLayout(new GridLayout());
+        Button btnRadioButtonTypeTendencyCenter = formToolkit.createButton(composite_TypeTendency, "中央一级", SWT.RADIO);
+        Button btnRadioButtonTypeTendencyProvince = formToolkit.createButton(composite_TypeTendency, "省一级", SWT.RADIO);
+        Button btnRadioButtonTypeTendencyMarket = formToolkit.createButton(composite_TypeTendency, "经营模式市场化",
+                SWT.RADIO);
+
+        sctnSectionTypeTendency.setClient(composite_TypeTendency);
+
+        Section sctnSectionNTypeTendency = formToolkit.createSection(marksTendencyComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionNTypeTendency = new FormData();
+        fd_sctnSectionNTypeTendency.top = new FormAttachment(sctnSectionTypeTendency);
+        fd_sctnSectionNTypeTendency.left = new FormAttachment(0);
+        sctnSectionNTypeTendency.setLayoutData(fd_sctnSectionNTypeTendency);
+        formToolkit.paintBordersFor(sctnSectionNTypeTendency);
+        sctnSectionNTypeTendency.setText("新闻类型");
+
+        Composite composite_NTypeTendency = formToolkit.createComposite(sctnSectionNTypeTendency);
+        composite_NTypeTendency.setLayout(new GridLayout());
+        Button btnRadioButtonNTypePureTendency = formToolkit.createButton(composite_NTypeTendency, "纯净新闻", SWT.RADIO);
+        Button btnRadioButtonNTypeFeatureTendency = formToolkit.createButton(composite_NTypeTendency, "特稿与特写",
+                SWT.RADIO);
+        Button btnRadioButtonNTypeCommentTendency = formToolkit.createButton(composite_NTypeTendency, "评论", SWT.RADIO);
+        Button btnRadioButtonNTypeElseTendency = formToolkit.createButton(composite_NTypeTendency, "其他", SWT.RADIO);
+
+        sctnSectionNTypeTendency.setClient(composite_NTypeTendency);
+
+        Section sctnSectionThemeTendency = formToolkit.createSection(marksTendencyComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionThemeTendency = new FormData();
+        fd_sctnSectionThemeTendency.top = new FormAttachment(sctnSectionNTypeTendency);
+        fd_sctnSectionThemeTendency.left = new FormAttachment(0);
+        sctnSectionThemeTendency.setLayoutData(fd_sctnSectionThemeTendency);
+        formToolkit.paintBordersFor(sctnSectionThemeTendency);
+        sctnSectionThemeTendency.setText("报道主题");
+
+        Composite composite_ThemeTendency = formToolkit.createComposite(sctnSectionThemeTendency);
+        composite_ThemeTendency.setLayout(new GridLayout());
+        Button btnRadioButtonThemeTendencyHelp = formToolkit.createButton(composite_ThemeTendency, "社会各界帮助关爱",
+                SWT.RADIO);
+        Button btnRadioButtonThemeTendencyAdvice = formToolkit.createButton(composite_ThemeTendency,
+                "社会各界对留守儿童现象提出的建议和看法", SWT.RADIO);
+        Button btnRadioButtonThemeTendencyPraise = formToolkit.createButton(composite_ThemeTendency, "表彰帮助关爱留守儿童的单位或个人",
+                SWT.RADIO);
+        Button btnRadioButtonThemeTendencyViolent = formToolkit.createButton(composite_ThemeTendency, "留守儿童遭受暴力",
+                SWT.RADIO);
+        Button btnRadioButtonThemeTendencyAbuse = formToolkit.createButton(composite_ThemeTendency,
+                "留守儿童被性侵、猥亵、强奸或是怀孕、生子等", SWT.RADIO);
+        Button btnRadioButtonThemeTendencyCriminal = formToolkit.createButton(composite_ThemeTendency, "留守儿童犯罪等",
+                SWT.RADIO);
+        Button btnRadioButtonThemeTendencyDeath = formToolkit.createButton(composite_ThemeTendency, "留守儿童意外死亡",
+                SWT.RADIO);
+        Button btnRadioButtonThemeTendencyEffort = formToolkit.createButton(composite_ThemeTendency, "留守儿童努力上进",
+                SWT.RADIO);
+        Button btnRadioButtonThemeTendencyRough = formToolkit.createButton(composite_ThemeTendency, "打工父母在城市艰难生活",
+                SWT.RADIO);
+        Button btnRadioButtonThemeTendencyElse = formToolkit.createButton(composite_ThemeTendency, "其他", SWT.RADIO);
+
+        sctnSectionThemeTendency.setClient(composite_ThemeTendency);
+
+        Section sctnSectionSourceTendency = formToolkit.createSection(marksTendencyComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionSourceTendency = new FormData();
+        fd_sctnSectionSourceTendency.top = new FormAttachment(sctnSectionThemeTendency, 1);
+        fd_sctnSectionSourceTendency.left = new FormAttachment(0);
+        sctnSectionSourceTendency.setLayoutData(fd_sctnSectionSourceTendency);
+        formToolkit.paintBordersFor(sctnSectionSourceTendency);
+        sctnSectionSourceTendency.setText("新闻报道来源");
+
+        Composite composite_SourceTendency = formToolkit.createComposite(sctnSectionSourceTendency);
+        composite_SourceTendency.setLayout(new GridLayout());
+        Button btnRadioButtonSourceTendencyReporter = formToolkit.createButton(composite_SourceTendency, "记者",
+                SWT.RADIO);
+        Button btnRadioButtonSourceTendencyGovern = formToolkit.createButton(composite_SourceTendency, "政府", SWT.RADIO);
+        Button btnRadioButtonSourceTendencyInterest = formToolkit.createButton(composite_SourceTendency, "公益团体",
+                SWT.RADIO);
+        Button btnRadioButtonSourceTendencyExpert = formToolkit.createButton(composite_SourceTendency, "专家学者",
+                SWT.RADIO);
+        Button btnRadioButtonSourceTendencyFirm = formToolkit.createButton(composite_SourceTendency, "企业", SWT.RADIO);
+        Button btnRadioButtonSourceTendencyUnits = formToolkit.createButton(composite_SourceTendency, "事业单位",
+                SWT.RADIO);
+        Button btnRadioButtonSourceTendencyLeader = formToolkit.createButton(composite_SourceTendency, "政府领导、政协或人大代表",
+                SWT.RADIO);
+        Button btnRadioButtonSourceTendencyElse = formToolkit.createButton(composite_SourceTendency, "其他", SWT.RADIO);
+
+        sctnSectionSourceTendency.setClient(composite_SourceTendency);
+
+        Section sctnSectionImageTendency = formToolkit.createSection(marksTendencyComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionImageTendency = new FormData();
+        fd_sctnSectionImageTendency.top = new FormAttachment(sctnSectionSourceTendency);
+        fd_sctnSectionImageTendency.left = new FormAttachment(0);
+        sctnSectionImageTendency.setLayoutData(fd_sctnSectionImageTendency);
+        formToolkit.paintBordersFor(sctnSectionImageTendency);
+        sctnSectionImageTendency.setText("媒体呈现形象");
+
+        Composite composite_ImageTendency = formToolkit.createComposite(sctnSectionImageTendency);
+        composite_ImageTendency.setLayout(new GridLayout());
+        Button btnRadioButtonImageTendencyPositive = formToolkit.createButton(composite_ImageTendency, "积极健康",
+                SWT.RADIO);
+        Button btnRadioButtonImageTendencyPoor = formToolkit.createButton(composite_ImageTendency, "可伶悲惨", SWT.RADIO);
+        Button btnRadioButtonImageTendencyHappiness = formToolkit.createButton(composite_ImageTendency, "沫恩幸福",
+                SWT.RADIO);
+        Button btnRadioButtonImageTendencyProblem = formToolkit.createButton(composite_ImageTendency, "问题儿童",
+                SWT.RADIO);
+        Button btnRadioButtonImageTendencyElse = formToolkit.createButton(composite_ImageTendency, "其他", SWT.RADIO);
+
+        sctnSectionImageTendency.setClient(composite_ImageTendency);
+
+        Section sctnSectionSpecificTendency = formToolkit.createSection(marksTendencyComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionSpecificTendency = new FormData();
+        fd_sctnSectionSpecificTendency.top = new FormAttachment(sctnSectionImageTendency);
+        fd_sctnSectionSpecificTendency.left = new FormAttachment(0);
+        sctnSectionSpecificTendency.setLayoutData(fd_sctnSectionSpecificTendency);
+        formToolkit.paintBordersFor(sctnSectionSpecificTendency);
+        sctnSectionSpecificTendency.setText("帮助新闻的具体种类");
+
+        Composite composite_SpecificTendency = formToolkit.createComposite(sctnSectionSpecificTendency);
+        composite_SpecificTendency.setLayout(new GridLayout());
+        Button btnRadioButtonSpecificTendencyDonate = formToolkit.createButton(composite_SpecificTendency, "单纯一次捐款捐物",
+                SWT.RADIO);
+        Button btnRadioButtonSpecificTendencyTravel = formToolkit.createButton(composite_SpecificTendency,
+                "旅游活动安排的项目之一", SWT.RADIO);
+        Button btnRadioButtonSpecificTendencyFree = formToolkit.createButton(composite_SpecificTendency, "免费开放",
+                SWT.RADIO);
+        Button btnRadioButtonSpecificTendencyLong = formToolkit.createButton(composite_SpecificTendency, "设立长期资助项目",
+                SWT.RADIO);
+        Button btnRadioButtonSpecificTendencyElse = formToolkit.createButton(composite_SpecificTendency, "其他",
+                SWT.RADIO);
+
+        sctnSectionSpecificTendency.setClient(composite_SpecificTendency);
+
+        Section sctnSectionSubjectTendency = formToolkit.createSection(marksTendencyComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionSubjectTendency = new FormData();
+        fd_sctnSectionSubjectTendency.top = new FormAttachment(sctnSectionSpecificTendency);
+        fd_sctnSectionSubjectTendency.left = new FormAttachment(0);
+        sctnSectionSubjectTendency.setLayoutData(fd_sctnSectionSubjectTendency);
+        formToolkit.paintBordersFor(sctnSectionSubjectTendency);
+        sctnSectionSubjectTendency.setText("帮助类新闻的主体");
+
+        Composite composite_SubjectTendency = formToolkit.createComposite(sctnSectionSubjectTendency);
+        composite_SubjectTendency.setLayout(new GridLayout());
+        Button btnRadioButtonSubjectTendencyGovern = formToolkit.createButton(composite_SubjectTendency, "政府部门",
+                SWT.RADIO);
+        Button btnRadioButtonSubjectTendencyInterest = formToolkit.createButton(composite_SubjectTendency, "公益团体",
+                SWT.RADIO);
+        Button btnRadioButtonSubjectTendencyFirm = formToolkit.createButton(composite_SubjectTendency, "企业", SWT.RADIO);
+        Button btnRadioButtonSubjectTendencyUnits = formToolkit.createButton(composite_SubjectTendency, "事业单位",
+                SWT.RADIO);
+        Button btnRadioButtonSubjectTendencyIndividual = formToolkit.createButton(composite_SubjectTendency, "个人",
+                SWT.RADIO);
+
+        sctnSectionSubjectTendency.setClient(composite_SubjectTendency);
+
+        Section sctnSectionPraiseTendency = formToolkit.createSection(marksTendencyComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionPraiseTendency = new FormData();
+        fd_sctnSectionPraiseTendency.top = new FormAttachment(sctnSectionSubjectTendency, 1);
+        fd_sctnSectionPraiseTendency.left = new FormAttachment(0);
+        sctnSectionPraiseTendency.setLayoutData(fd_sctnSectionPraiseTendency);
+        formToolkit.paintBordersFor(sctnSectionPraiseTendency);
+        sctnSectionPraiseTendency.setText("表彰奖励的新闻主体");
+
+        Composite composite_PraiseTendency = formToolkit.createComposite(sctnSectionPraiseTendency);
+        composite_PraiseTendency.setLayout(new GridLayout());
+        Button btnRadioButtonPraiseTendencyGovern = formToolkit.createButton(composite_PraiseTendency, "政府部门",
+                SWT.RADIO);
+        Button btnRadioButtonPraiseTendencyInterest = formToolkit.createButton(composite_PraiseTendency, "公益团体",
+                SWT.RADIO);
+        Button btnRadioButtonPraiseTendencyFirm = formToolkit.createButton(composite_PraiseTendency, "企业", SWT.RADIO);
+        Button btnRadioButtonPraiseTendencyUnits = formToolkit.createButton(composite_PraiseTendency, "事业单位",
+                SWT.RADIO);
+        Button btnRadioButtonPraiseTendencyIndividual = formToolkit.createButton(composite_PraiseTendency, "个人",
+                SWT.RADIO);
+
+        sctnSectionPraiseTendency.setClient(composite_PraiseTendency);
+
+        Section sctnSectionReasonTendency = formToolkit.createSection(marksTendencyComposite,
+                Section.TWISTIE | Section.TITLE_BAR);
+        FormData fd_sctnSectionReasonTendency = new FormData();
+        fd_sctnSectionReasonTendency.top = new FormAttachment(sctnSectionPraiseTendency, 1);
+        fd_sctnSectionReasonTendency.left = new FormAttachment(0);
+        sctnSectionReasonTendency.setLayoutData(fd_sctnSectionReasonTendency);
+        formToolkit.paintBordersFor(sctnSectionReasonTendency);
+        sctnSectionReasonTendency.setText("农民工子女不能留在城市读书的原因");
+
+        Composite composite_ReasonTendency = formToolkit.createComposite(sctnSectionReasonTendency);
+        composite_ReasonTendency.setLayout(new GridLayout());
+        Button btnRadioButtonReasonTendencyRegister = formToolkit.createButton(composite_ReasonTendency, "无本地户籍难入公立学校",
+                SWT.RADIO);
+        Button btnRadioButtonReasonTendencyFee = formToolkit.createButton(composite_ReasonTendency, "私立学校学费高",
+                SWT.RADIO);
+        Button btnRadioButtonReasonTendencyQuality = formToolkit.createButton(composite_ReasonTendency, "私立学校教学质量没保障",
+                SWT.RADIO);
+        Button btnRadioButtonReasonTendencyCancel = formToolkit.createButton(composite_ReasonTendency,
+                "越来越多的小型私立学校被国家取消办学资格", SWT.RADIO);
+        Button btnRadioButtonReasonTendencyElse = formToolkit.createButton(composite_ReasonTendency, "其他", SWT.RADIO);
+
+        sctnSectionReasonTendency.setClient(composite_ReasonTendency);
+
+        // set all formData right align to Theme
+        fd_sctnSectionTypeTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
+        fd_sctnSectionNTypeTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
+        fd_sctnSectionSourceTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
+        fd_sctnSectionImageTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
+        fd_sctnSectionSpecificTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
+        fd_sctnSectionSubjectTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
+        fd_sctnSectionPraiseTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
+        fd_sctnSectionReasonTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
 
         return container;
     }
@@ -263,16 +588,6 @@ public class AnalysisWindow extends ApplicationWindow {
      */
     private void createActions() {
         // Create the actions
-        {
-            oriAction = new Action("Orientation") {
-
-            };
-        }
-        {
-            tenAction = new Action("Tendency") {
-
-            };
-        }
     }
 
     /**
@@ -294,8 +609,6 @@ public class AnalysisWindow extends ApplicationWindow {
     @Override
     protected ToolBarManager createToolBarManager(int style) {
         ToolBarManager toolBarManager = new ToolBarManager(style);
-        toolBarManager.add(oriAction);
-        toolBarManager.add(tenAction);
         return toolBarManager;
     }
 
