@@ -11,15 +11,13 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Group;
 
 import org.lbchild.util.Base64Content;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
-import org.lbchild.xml.XMLWriter;
+import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
 import org.lbchild.res.management.SWTResourceManager;
 
@@ -506,34 +504,7 @@ public class MainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        btnNewButton.addSelectionListener(new SelectionAdapter() {
-
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                String newsMarks = "";
-                int pFlag = 0;
-                for (ArrayList<Button> markGroupType : btnMarks) {
-                    for (Button btn : markGroupType) {
-                        if (btn.getSelection()) {
-                            if (pFlag == 0) {
-                                newsMarks += btn.getText();
-                                pFlag = 1;
-                            } else {
-                                newsMarks += "|" + btn.getText();
-                                btn.setSelection(false);
-                                markGroupType.get(0).setSelection(true);
-                            }
-                        }
-                    }
-                }
-                File file = new File("src/main/resources/newsmarks.xml");
-                XMLWriter out = new XMLWriter(file);
-                
-                int lineId = newsSummaryList.getFocusIndex();
-                newsSummaryList.setSelection(lineId + 1);
-                out.insertXml(newsMarks, lineId);
-            }
-        });
+        btnNewButton.addSelectionListener(new AddMarksListener(newsSummaryList, btnMarks));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
 
@@ -611,7 +582,7 @@ public class MainWindow extends ApplicationWindow {
     @Override
     protected void configureShell(Shell newShell) {
         super.configureShell(newShell);
-        newShell.setText("TestWindow");
+        newShell.setText("News");
     }
 
     /**

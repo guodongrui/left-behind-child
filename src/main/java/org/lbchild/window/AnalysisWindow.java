@@ -13,40 +13,58 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 
-import java.util.HashMap;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 
-import org.eclipse.jface.action.Action;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
-import org.jfree.experimental.chart.swt.ChartComposite;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
-import org.lbchild.chart.LineChart;
-import org.lbchild.chart.PieChart;
-import org.lbchild.res.management.SWTResourceManager;
-import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
-import org.jfree.chart.JFreeChart;
+
+import org.lbchild.chart.LineChart;
+import org.lbchild.chart.PieChart;
+import org.lbchild.controller.ExpandCleanMarksListener;
+import org.lbchild.controller.ShowOrientationListener;
+import org.lbchild.controller.ShowSexOrientationListener;
+import org.lbchild.util.CountLabel;
+import org.lbchild.xml.XMLReader;
+
+
 
 public class AnalysisWindow extends ApplicationWindow {
 
     private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
-
+    private ArrayList<Map<String, Integer>> newsmarks;
+    private int[][][] sexOrientationCount;
     /**
      * Create the application window.
      */
     public AnalysisWindow() {
         super(null);
+        initDataset();
         createActions();
         addToolBar(SWT.FLAT | SWT.WRAP);
         addMenuBar();
         addStatusLine();
     }
 
+    void initDataset() {
+        File file = new File("src/main/resources/newsmarks.xml");
+        XMLReader in = new XMLReader(file);
+        ArrayList<Map<String, String>> arr = in.readXml();
+        
+        CountLabel cl = new CountLabel(arr);
+        
+        newsmarks = cl.getLabelCount(); 
+        
+        sexOrientationCount = cl.getLabelSexCount();
+        
+    }
     /**
      * Create contents of the application window.
      * 
@@ -80,25 +98,19 @@ public class AnalysisWindow extends ApplicationWindow {
         marksOrientationComposite.setLayout(new FormLayout());
 
         Composite orientationPieChartComposite = new Composite(compositeOrientation, SWT.NONE);
-        orientationPieChartComposite.setLayout(new FillLayout());
+
         formToolkit.adapt(orientationPieChartComposite);
         formToolkit.paintBordersFor(orientationPieChartComposite);
+        orientationPieChartComposite.setLayout(new FillLayout());
 
         CTabItem item_orientation = new CTabItem(tabFolder, SWT.NONE);
         item_orientation.setText("Orientation");
         item_orientation.setControl(compositeOrientation);
 
-        Map<String, Integer> map = new HashMap<>();
-        map.put("男", 7);
-        map.put("女", 3);
-        PieChart pieChart = new PieChart(map);
-        pieChart.setTile("标题");
-        ChartComposite chartOrientationComposite = new ChartComposite(orientationPieChartComposite, SWT.NONE,
-                pieChart.createChart(), true);
-        chartOrientationComposite.setBounds(53, 10, 360, 267);
-
         Section sctnSectionTypeOrientation = formToolkit.createSection(marksOrientationComposite,
                 Section.TWISTIE | Section.TITLE_BAR);
+        
+
         FormData fd_sctnSectionTypeOrientation = new FormData();
         fd_sctnSectionTypeOrientation.top = new FormAttachment(0);
         fd_sctnSectionTypeOrientation.left = new FormAttachment(0);
@@ -114,7 +126,7 @@ public class AnalysisWindow extends ApplicationWindow {
                 SWT.RADIO);
         Button btnRadioButtonTypeOrientationMarket = formToolkit.createButton(composite_TypeOrientation, "经营模式市场化",
                 SWT.RADIO);
-
+        
         sctnSectionTypeOrientation.setClient(composite_TypeOrientation);
 
         Section sctnSectionNTypeOrientation = formToolkit.createSection(marksOrientationComposite,
@@ -387,11 +399,11 @@ public class AnalysisWindow extends ApplicationWindow {
 
         Composite composite_NTypeTendency = formToolkit.createComposite(sctnSectionNTypeTendency);
         composite_NTypeTendency.setLayout(new GridLayout());
-        Button btnRadioButtonNTypePureTendency = formToolkit.createButton(composite_NTypeTendency, "纯净新闻", SWT.RADIO);
-        Button btnRadioButtonNTypeFeatureTendency = formToolkit.createButton(composite_NTypeTendency, "特稿与特写",
+        Button btnRadioButtonNTypeTendencyPure = formToolkit.createButton(composite_NTypeTendency, "纯净新闻", SWT.RADIO);
+        Button btnRadioButtonNTypeTendencyFeature = formToolkit.createButton(composite_NTypeTendency, "特稿与特写",
                 SWT.RADIO);
-        Button btnRadioButtonNTypeCommentTendency = formToolkit.createButton(composite_NTypeTendency, "评论", SWT.RADIO);
-        Button btnRadioButtonNTypeElseTendency = formToolkit.createButton(composite_NTypeTendency, "其他", SWT.RADIO);
+        Button btnRadioButtonNTypeTendencyComment = formToolkit.createButton(composite_NTypeTendency, "评论", SWT.RADIO);
+        Button btnRadioButtonNTypeTendencyElse = formToolkit.createButton(composite_NTypeTendency, "其他", SWT.RADIO);
 
         sctnSectionNTypeTendency.setClient(composite_NTypeTendency);
 
@@ -580,6 +592,144 @@ public class AnalysisWindow extends ApplicationWindow {
         fd_sctnSectionPraiseTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
         fd_sctnSectionReasonTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
 
+        
+        ArrayList<Button> btnOrientationMarks = new ArrayList<>();
+        btnOrientationMarks.add(btnRadioButtonTypeOrientationCenter);
+        btnOrientationMarks.add(btnRadioButtonTypeOrientationProvince);
+        btnOrientationMarks.add(btnRadioButtonTypeOrientationMarket);
+        btnOrientationMarks.add(btnRadioButtonNTypeOrientationPure);
+        btnOrientationMarks.add(btnRadioButtonNTypeOrientationFeature);
+        btnOrientationMarks.add(btnRadioButtonNTypeOrientationComment);
+        btnOrientationMarks.add(btnRadioButtonNTypeOrientationElse);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationHelp);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationAdvice);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationPraise);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationViolent);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationAbuse);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationCriminal);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationDeath);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationEffort);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationRough);
+        btnOrientationMarks.add(btnRadioButtonThemeOrientationElse);
+        btnOrientationMarks.add(btnRadioButtonSourceOrientationReporter);
+        btnOrientationMarks.add(btnRadioButtonSourceOrientationGovern);
+        btnOrientationMarks.add(btnRadioButtonSourceOrientationInterest);
+        btnOrientationMarks.add(btnRadioButtonSourceOrientationExpert);
+        btnOrientationMarks.add(btnRadioButtonSourceOrientationFirm);
+        btnOrientationMarks.add(btnRadioButtonSourceOrientationUnits);
+        btnOrientationMarks.add(btnRadioButtonSourceOrientationLeader);
+        btnOrientationMarks.add(btnRadioButtonSourceOrientationElse);
+        btnOrientationMarks.add(btnRadioButtonImageOrientationPositive);
+        btnOrientationMarks.add(btnRadioButtonImageOrientationPoor);
+        btnOrientationMarks.add(btnRadioButtonImageOrientationHappiness);
+        btnOrientationMarks.add(btnRadioButtonImageOrientationProblem);
+        btnOrientationMarks.add(btnRadioButtonImageOrientationElse);
+        btnOrientationMarks.add(btnRadioButtonSpecificOrientationDonate);
+        btnOrientationMarks.add(btnRadioButtonSpecificOrientationTravel);
+        btnOrientationMarks.add(btnRadioButtonSpecificOrientationFree);
+        btnOrientationMarks.add(btnRadioButtonSpecificOrientationLong);
+        btnOrientationMarks.add(btnRadioButtonSpecificOrientationElse);
+        btnOrientationMarks.add(btnRadioButtonSubjectOrientationGovern);
+        btnOrientationMarks.add(btnRadioButtonSubjectOrientationInterest);
+        btnOrientationMarks.add(btnRadioButtonSubjectOrientationFirm);
+        btnOrientationMarks.add(btnRadioButtonSubjectOrientationUnits);
+        btnOrientationMarks.add(btnRadioButtonSubjectOrientationIndividual);
+        btnOrientationMarks.add(btnRadioButtonPraiseOrientationGovern);
+        btnOrientationMarks.add(btnRadioButtonPraiseOrientationInterest);
+        btnOrientationMarks.add(btnRadioButtonPraiseOrientationFirm);
+        btnOrientationMarks.add(btnRadioButtonPraiseOrientationUnits);
+        btnOrientationMarks.add(btnRadioButtonPraiseOrientationIndividual);
+        btnOrientationMarks.add(btnRadioButtonReasonOrientationRegister);
+        btnOrientationMarks.add(btnRadioButtonReasonOrientationFee);
+        btnOrientationMarks.add(btnRadioButtonReasonOrientationQuality);
+        btnOrientationMarks.add(btnRadioButtonReasonOrientationCancel);
+        btnOrientationMarks.add(btnRadioButtonReasonOrientationElse);
+
+        ArrayList<Button> btnTendencyMarks = new ArrayList<>();
+        btnTendencyMarks.add(btnRadioButtonTypeTendencyCenter);
+        btnTendencyMarks.add(btnRadioButtonTypeTendencyProvince);
+        btnTendencyMarks.add(btnRadioButtonTypeTendencyMarket);
+        btnTendencyMarks.add(btnRadioButtonNTypeTendencyPure);
+        btnTendencyMarks.add(btnRadioButtonNTypeTendencyFeature);
+        btnTendencyMarks.add(btnRadioButtonNTypeTendencyComment);
+        btnTendencyMarks.add(btnRadioButtonNTypeTendencyElse);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyHelp);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyAdvice);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyPraise);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyViolent);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyAbuse);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyCriminal);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyDeath);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyEffort);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyRough);
+        btnTendencyMarks.add(btnRadioButtonThemeTendencyElse);
+        btnTendencyMarks.add(btnRadioButtonSourceTendencyReporter);
+        btnTendencyMarks.add(btnRadioButtonSourceTendencyGovern);
+        btnTendencyMarks.add(btnRadioButtonSourceTendencyInterest);
+        btnTendencyMarks.add(btnRadioButtonSourceTendencyExpert);
+        btnTendencyMarks.add(btnRadioButtonSourceTendencyFirm);
+        btnTendencyMarks.add(btnRadioButtonSourceTendencyUnits);
+        btnTendencyMarks.add(btnRadioButtonSourceTendencyLeader);
+        btnTendencyMarks.add(btnRadioButtonSourceTendencyElse);
+        btnTendencyMarks.add(btnRadioButtonImageTendencyPositive);
+        btnTendencyMarks.add(btnRadioButtonImageTendencyPoor);
+        btnTendencyMarks.add(btnRadioButtonImageTendencyHappiness);
+        btnTendencyMarks.add(btnRadioButtonImageTendencyProblem);
+        btnTendencyMarks.add(btnRadioButtonImageTendencyElse);
+        btnTendencyMarks.add(btnRadioButtonSpecificTendencyDonate);
+        btnTendencyMarks.add(btnRadioButtonSpecificTendencyTravel);
+        btnTendencyMarks.add(btnRadioButtonSpecificTendencyFree);
+        btnTendencyMarks.add(btnRadioButtonSpecificTendencyLong);
+        btnTendencyMarks.add(btnRadioButtonSpecificTendencyElse);
+        btnTendencyMarks.add(btnRadioButtonSubjectTendencyGovern);
+        btnTendencyMarks.add(btnRadioButtonSubjectTendencyInterest);
+        btnTendencyMarks.add(btnRadioButtonSubjectTendencyFirm);
+        btnTendencyMarks.add(btnRadioButtonSubjectTendencyUnits);
+        btnTendencyMarks.add(btnRadioButtonSubjectTendencyIndividual);
+        btnTendencyMarks.add(btnRadioButtonPraiseTendencyGovern);
+        btnTendencyMarks.add(btnRadioButtonPraiseTendencyInterest);
+        btnTendencyMarks.add(btnRadioButtonPraiseTendencyFirm);
+        btnTendencyMarks.add(btnRadioButtonPraiseTendencyUnits);
+        btnTendencyMarks.add(btnRadioButtonPraiseTendencyIndividual);
+        btnTendencyMarks.add(btnRadioButtonReasonTendencyRegister);
+        btnTendencyMarks.add(btnRadioButtonReasonTendencyFee);
+        btnTendencyMarks.add(btnRadioButtonReasonTendencyQuality);
+        btnTendencyMarks.add(btnRadioButtonReasonTendencyCancel);
+        btnTendencyMarks.add(btnRadioButtonReasonTendencyElse);
+        
+        ExpandCleanMarksListener cleanMarksListener = new ExpandCleanMarksListener(btnOrientationMarks);
+        sctnSectionTypeOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionTypeOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 0, orientationPieChartComposite));
+        sctnSectionNTypeOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionNTypeOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 1, orientationPieChartComposite));
+        sctnSectionThemeOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionThemeOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 2, orientationPieChartComposite));
+        sctnSectionSourceOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionSourceOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 3, orientationPieChartComposite));
+        sctnSectionImageOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionImageOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 4, orientationPieChartComposite));
+        sctnSectionSpecificOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionSpecificOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 5, orientationPieChartComposite));
+        sctnSectionSubjectOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionSubjectOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 6, orientationPieChartComposite));
+        sctnSectionPraiseOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionPraiseOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 7, orientationPieChartComposite));
+        sctnSectionReasonOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionReasonOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 8, orientationPieChartComposite));
+        
+        sctnSectionTypeTendency.addExpansionListener(cleanMarksListener);
+        sctnSectionNTypeTendency.addExpansionListener(cleanMarksListener);
+        sctnSectionThemeTendency.addExpansionListener(cleanMarksListener);
+        sctnSectionSourceTendency.addExpansionListener(cleanMarksListener);
+        sctnSectionImageTendency.addExpansionListener(cleanMarksListener);
+        sctnSectionSpecificTendency.addExpansionListener(cleanMarksListener);
+        sctnSectionPraiseTendency.addExpansionListener(cleanMarksListener);
+        sctnSectionReasonTendency.addExpansionListener(cleanMarksListener);
+        
+        ShowSexOrientationListener sexOrientationListener = new ShowSexOrientationListener(sexOrientationCount, orientationPieChartComposite);
+        for (Button b: btnOrientationMarks) {
+            b.addSelectionListener(sexOrientationListener);
+        }
         return container;
     }
 
