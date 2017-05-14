@@ -1,4 +1,4 @@
-package xmlRead;
+package org.lbchild.xml;
 
 import java.io.BufferedWriter;
 import java.io.File;
