@@ -1,9 +1,11 @@
-﻿package org.lbchild.xml;
+package org.lbchild.xml;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.List;
+
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
@@ -29,6 +31,13 @@ public class XMLWriter {
             // 获得根结点
             Element arrayOfNewsData = document.getRootElement();
 
+            List<Element>  list = arrayOfNewsData.elements("NewsData"); 
+            for (Element e : list) {
+                if (Integer.parseInt(e.element("LineId").getText()) == lineId) {
+                    return;
+                }
+            } 
+            
             // 创建结点NewsData
             Element newsData = arrayOfNewsData.addElement("NewsData");
 
@@ -65,7 +74,7 @@ public class XMLWriter {
             // 插入
             File file = new File("testutf8.xml");
             XMLWriter out = new XMLWriter(file);
-            out.insertXml("标签", "1996", 1);
+            out.insertXml("标签", "1996", i + 1);
         }
     }
 }
