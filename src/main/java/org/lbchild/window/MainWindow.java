@@ -68,8 +68,18 @@ public class MainWindow extends ApplicationWindow {
             for (int i = 0; i < n; ++i) {
                 NewsItem newsItem = new NewsItem();
                 newsItem.setDate(list.get(i).get("Date"));
-                String encodedContent = list.get(i).get("EncodedContent");
-                String content = Base64Content.decode(encodedContent).replaceAll("</?html>|</?body>|</?P>", "");
+                String encodedContent = list.get(i).get("EncodedContent"); 
+                String content = null;
+                
+                if (encodedContent != null) {
+                    content = Base64Content.decode(encodedContent).replaceAll("</?html>|</?body>|</?P>", "");
+                    
+                   
+                } else {
+                    content = list.get(i).get("TrueUrl");
+                    if (content == null)
+                        content = list.get(i).get("Url");
+                }
                 newsItem.setContent(content);
                 newsItem.setDeleted(Boolean.parseBoolean(list.get(i).get("IsDeleted")));
                 newsItem.setLocation(list.get(i).get("Location"));
@@ -504,7 +514,7 @@ public class MainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        btnNewButton.addSelectionListener(new AddMarksListener(newsSummaryList, btnMarks));
+        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
 
