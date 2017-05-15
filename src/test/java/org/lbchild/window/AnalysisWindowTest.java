@@ -18,6 +18,7 @@ public class AnalysisWindowTest {
 	private static SWTBot bot;
 	private static AnalysisWindow analysis;
 	private static SWTFormsBot formsBot;
+
 	@BeforeClass
 	public static void setupApp() {
 		new Thread(new Runnable() {
@@ -38,28 +39,29 @@ public class AnalysisWindowTest {
 			e.printStackTrace();
 		}
 		bot = new SWTBot();
-		formsBot=new SWTFormsBot();
+		formsBot = new SWTFormsBot();
 	}
+
 	@Test
-    public void test() {
+	public void test() {
 		SWTBotPreferences.PLAYBACK_DELAY = 200;
-		
-		//Matcher<Section> matcher=org.hamcrest.Matchers;
+
+		// Matcher<Section> matcher=org.hamcrest.Matchers;
 
 		getSection("报纸类别");
-		
+
 		bot.radio("中央一级").click();
 		bot.radio("省一级").click();
 		bot.radio("经营模式市场化").click();
 		getSection("报纸类别");
-		
+
 		getSection("新闻类型");
 		bot.radio("纯净新闻").click();
 		bot.radio("特稿与特写").click();
 		bot.radio("评论").click();
 		bot.radio("其他").click();
 		getSection("新闻类型");
-		
+
 		getSection("报道主题");
 		bot.radio("社会各界帮助关爱").click();
 		bot.radio("社会各界对留守儿童现象提出的建议和看法").click();
@@ -72,7 +74,7 @@ public class AnalysisWindowTest {
 		bot.radio("打工父母在城市艰难生活").click();
 		bot.radio("其他").click();
 		getSection("报道主题");
-	
+
 		getSection("新闻报道来源");
 		bot.radio("记者").click();
 		bot.radio("政府").click();
@@ -83,22 +85,21 @@ public class AnalysisWindowTest {
 		bot.radio("政府领导、政协或人大代表").click();
 		bot.radio("其他").click();
 		getSection("新闻报道来源");
-		
-		
+
 		bot.cTabItem("Tendency").activate();
 		getSection("报纸类别");
 		bot.radio("中央一级").click();
 		bot.radio("省一级").click();
 		bot.radio("经营模式市场化").click();
 		getSection("报纸类别");
-		
+
 		getSection("新闻类型");
 		bot.radio("纯净新闻").click();
 		bot.radio("特稿与特写").click();
 		bot.radio("评论").click();
 		bot.radio("其他").click();
 		getSection("新闻类型");
-		
+
 		getSection("报道主题");
 		bot.radio("社会各界帮助关爱").click();
 		bot.radio("社会各界对留守儿童现象提出的建议和看法").click();
@@ -111,7 +112,7 @@ public class AnalysisWindowTest {
 		bot.radio("打工父母在城市艰难生活").click();
 		bot.radio("其他").click();
 		getSection("报道主题");
-		
+
 		getSection("新闻报道来源");
 		bot.radio("记者").click();
 		bot.radio("政府").click();
@@ -123,30 +124,28 @@ public class AnalysisWindowTest {
 		bot.radio("其他").click();
 		getSection("新闻报道来源");
 	}
-	public static Section getSection(final String name) { 
-		  return UIThreadRunnable.syncExec(new Result<Section>() { 
-		 
-		   public Section run() { 
-		    List<? extends Section> sectionList = bot.widgets(WidgetMatcherFactory.widgetOfType(Section.class)); 
-		    for (Section s : sectionList) { 
-		     if (name.equals(s.getText())) { 
-		    	 if(!s.isExpanded())
-		    	 {
-		    		 s.setExpanded(true);
-		    		 
-		    		
-		    	 }
-		    	 else {
-					s.setExpanded(false);
+
+	public static Section getSection(final String name) {
+		return UIThreadRunnable.syncExec(new Result<Section>() {
+
+			public Section run() {
+				List<? extends Section> sectionList = bot.widgets(WidgetMatcherFactory.widgetOfType(Section.class));
+				for (Section s : sectionList) {
+					if (name.equals(s.getText())) {
+						if (!s.isExpanded()) {
+							s.setExpanded(true);
+
+						} else {
+							s.setExpanded(false);
+						}
+
+					}
 				}
-		     
-		     } 
-		    } 
-		    return null; 
-		   } 
-		    
-		  }); 
-		   
-		 } 
-		 
+				return null;
+			}
+
+		});
+
+	}
+
 }
