@@ -69,12 +69,50 @@ public class XMLWriter {
         }
     }
 
+    public void updateXml(int lineId, String delete) {
+        try {
+            // 获取读取xml的对象
+            SAXReader sr = new SAXReader();
+
+            // 创建XML文档树
+            Document document = sr.read(file);
+
+            // 获得根结点
+            Element arrayOfNewsData = document.getRootElement();
+
+            //Element newsData = arrayOfNewsData.element("NewsData");
+
+            List<Element>  list = arrayOfNewsData.elements("NewsData"); 
+            list.get(lineId).element("IsDeleted").setText(delete);;
+//            // 获得IsDeleted结点
+//            Element isDeleted = newsData.element("IsDeleted");
+//            isDeleted.setText(delete);
+
+            try {
+                OutputFormat format = OutputFormat.createPrettyPrint();
+                format.setEncoding("utf-8");
+                format.setLineSeparator("\r\n");
+                format.setIndent(true);
+                format.setIndent("    ");
+                FileOutputStream fos = new FileOutputStream(file);
+                BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"));
+                org.dom4j.io.XMLWriter output = new org.dom4j.io.XMLWriter(bw1, format);
+                output.write(document);
+                bw1.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String[] args) throws Exception {
         for (int i = 0; i <= 1000; i++) {
             // 插入
-            File file = new File("testutf8.xml");
+            File file = new File("src/main/resources/nanfangdaily2.xml");
             XMLWriter out = new XMLWriter(file);
-            out.insertXml("标签", "1996", i + 1);
+            out.updateXml(1, "true");
         }
     }
 }

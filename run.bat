@@ -18,4 +18,10 @@ goto end
  javac -d target\classes -cp lib\*;src\test\java;src\main\java src\test\java\org\lbchild\util\Base64ContentTest.java -encoding utf-8
  java -cp target\classes;lib\*; org.junit.runner.JUnitCore org.lbchild.util.Base64ContentTest
 
+ javac -d target\classes -cp lib\*;src\test\java;src\main\java src\test\java\org\lbchild\window\MainWindowTest.java -encoding utf-8
+ java -cp target\classes;lib\*; org.junit.runner.JUnitCore org.lbchild.window.MainWindowTest
+
+ javac -d target\classes -cp lib\*;src\test\java;src\main\java src\test\java\org\lbchild\window\AnalysisWindowTest.java -encoding utf-8
+ java -cp target\classes;lib\*; org.junit.runner.JUnitCore org.lbchild.window.AnalysisWindowTest
+
 :end
