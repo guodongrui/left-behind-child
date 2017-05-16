@@ -31,6 +31,7 @@ import org.lbchild.chart.PieChart;
 import org.lbchild.controller.ExpandCleanMarksListener;
 import org.lbchild.controller.ShowOrientationListener;
 import org.lbchild.controller.ShowSexOrientationListener;
+import org.lbchild.controller.ShowSexTendencyListener;
 import org.lbchild.util.CountLabel;
 import org.lbchild.xml.XMLReader;
 
@@ -41,6 +42,7 @@ public class AnalysisWindow extends ApplicationWindow {
     private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
     private ArrayList<Map<String, Integer>> newsmarks;
     private int[][][] sexOrientationCount;
+    private double[][][][] sexTendencyCount;
     /**
      * Create the application window.
      */
@@ -63,6 +65,8 @@ public class AnalysisWindow extends ApplicationWindow {
         newsmarks = cl.getLabelCount(); 
         
         sexOrientationCount = cl.getLabelSexCount();
+        
+        sexTendencyCount = cl.getLabelDateCount();
         
     }
     /**
@@ -366,11 +370,7 @@ public class AnalysisWindow extends ApplicationWindow {
         Section sctnSectionTypeTendency = formToolkit.createSection(marksTendencyComposite,
                 Section.TWISTIE | Section.TITLE_BAR);
 
-        double[] y1s = { 3, 3, 5, 4, 3, 6, 12, 2, 3, 11 };
-        double[] y2s = { 3, 6, 2, 6, 1, 2, 3, 5, 17, 2 };
-        LineChart lineChart = new LineChart(y1s, y2s);
-        lineChart.setTitle("标题");
-        lineChart.createLineChart(tendencyLineChartComposite);
+       
 
         FormData fd_sctnSectionTypeTendency = new FormData();
         fd_sctnSectionTypeTendency.top = new FormAttachment(0);
@@ -697,39 +697,46 @@ public class AnalysisWindow extends ApplicationWindow {
         btnTendencyMarks.add(btnRadioButtonReasonTendencyCancel);
         btnTendencyMarks.add(btnRadioButtonReasonTendencyElse);
         
-        ExpandCleanMarksListener cleanMarksListener = new ExpandCleanMarksListener(btnOrientationMarks);
-        sctnSectionTypeOrientation.addExpansionListener(cleanMarksListener);
+        ExpandCleanMarksListener cleanMarksOrientationListener = new ExpandCleanMarksListener(btnOrientationMarks);
+        sctnSectionTypeOrientation.addExpansionListener(cleanMarksOrientationListener);
         sctnSectionTypeOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 0, orientationPieChartComposite));
-        sctnSectionNTypeOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionNTypeOrientation.addExpansionListener(cleanMarksOrientationListener);
         sctnSectionNTypeOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 1, orientationPieChartComposite));
-        sctnSectionThemeOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionThemeOrientation.addExpansionListener(cleanMarksOrientationListener);
         sctnSectionThemeOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 2, orientationPieChartComposite));
-        sctnSectionSourceOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionSourceOrientation.addExpansionListener(cleanMarksOrientationListener);
         sctnSectionSourceOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 3, orientationPieChartComposite));
-        sctnSectionImageOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionImageOrientation.addExpansionListener(cleanMarksOrientationListener);
         sctnSectionImageOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 4, orientationPieChartComposite));
-        sctnSectionSpecificOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionSpecificOrientation.addExpansionListener(cleanMarksOrientationListener);
         sctnSectionSpecificOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 5, orientationPieChartComposite));
-        sctnSectionSubjectOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionSubjectOrientation.addExpansionListener(cleanMarksOrientationListener);
         sctnSectionSubjectOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 6, orientationPieChartComposite));
-        sctnSectionPraiseOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionPraiseOrientation.addExpansionListener(cleanMarksOrientationListener);
         sctnSectionPraiseOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 7, orientationPieChartComposite));
-        sctnSectionReasonOrientation.addExpansionListener(cleanMarksListener);
+        sctnSectionReasonOrientation.addExpansionListener(cleanMarksOrientationListener);
         sctnSectionReasonOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 8, orientationPieChartComposite));
         
-        sctnSectionTypeTendency.addExpansionListener(cleanMarksListener);
-        sctnSectionNTypeTendency.addExpansionListener(cleanMarksListener);
-        sctnSectionThemeTendency.addExpansionListener(cleanMarksListener);
-        sctnSectionSourceTendency.addExpansionListener(cleanMarksListener);
-        sctnSectionImageTendency.addExpansionListener(cleanMarksListener);
-        sctnSectionSpecificTendency.addExpansionListener(cleanMarksListener);
-        sctnSectionPraiseTendency.addExpansionListener(cleanMarksListener);
-        sctnSectionReasonTendency.addExpansionListener(cleanMarksListener);
+        ExpandCleanMarksListener cleanMarksTendencyListener = new ExpandCleanMarksListener(btnTendencyMarks);
+        sctnSectionTypeTendency.addExpansionListener(cleanMarksTendencyListener);
+        sctnSectionNTypeTendency.addExpansionListener(cleanMarksTendencyListener);
+        sctnSectionThemeTendency.addExpansionListener(cleanMarksTendencyListener);
+        sctnSectionSourceTendency.addExpansionListener(cleanMarksTendencyListener);
+        sctnSectionImageTendency.addExpansionListener(cleanMarksTendencyListener);
+        sctnSectionSpecificTendency.addExpansionListener(cleanMarksTendencyListener);
+        sctnSectionPraiseTendency.addExpansionListener(cleanMarksTendencyListener);
+        sctnSectionReasonTendency.addExpansionListener(cleanMarksTendencyListener);
         
         ShowSexOrientationListener sexOrientationListener = new ShowSexOrientationListener(sexOrientationCount, orientationPieChartComposite);
         for (Button b: btnOrientationMarks) {
             b.addSelectionListener(sexOrientationListener);
         }
+        
+        ShowSexTendencyListener sexTendencyListener = new ShowSexTendencyListener(sexTendencyCount, tendencyLineChartComposite);
+        for (Button b: btnTendencyMarks) {
+            b.addSelectionListener(sexTendencyListener);
+        }
+        
         return container;
     }
 

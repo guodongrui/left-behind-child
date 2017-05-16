@@ -19,6 +19,7 @@ import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
+import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.res.management.SWTResourceManager;
 
 import org.eclipse.swt.widgets.Text;
@@ -56,6 +57,9 @@ public class MainWindow extends ApplicationWindow {
         addStatusLine();
     }
 
+    /**
+     * 
+     */
     private void initNewsList() {
 
         try {
@@ -68,8 +72,19 @@ public class MainWindow extends ApplicationWindow {
             for (int i = 0; i < n; ++i) {
                 NewsItem newsItem = new NewsItem();
                 newsItem.setDate(list.get(i).get("Date"));
-                String encodedContent = list.get(i).get("EncodedContent");
-                String content = Base64Content.decode(encodedContent).replaceAll("</?html>|</?body>|</?P>", "");
+                newsItem.setTitle(list.get(i).get("Title"));
+                String encodedContent = list.get(i).get("EncodedContent"); 
+                String content = null;
+                
+                if (encodedContent != null) {
+                    content = Base64Content.decode(encodedContent).replaceAll("</?html>|</?body>|</?P>", "");
+                    
+                   
+                } else {
+                    content = list.get(i).get("TrueUrl");
+                    if (content == null)
+                        content = list.get(i).get("Url");
+                }
                 newsItem.setContent(content);
                 newsItem.setDeleted(Boolean.parseBoolean(list.get(i).get("IsDeleted")));
                 newsItem.setLocation(list.get(i).get("Location"));
@@ -101,6 +116,7 @@ public class MainWindow extends ApplicationWindow {
         final List newsSummaryList = new List(container, SWT.BORDER | SWT.V_SCROLL);
         newsSummaryList.setBounds(0, 0, 478, 613);
         newsSummaryList.setItems(newsList.getNewsSummaryList());
+        newsSummaryList.addSelectionListener(new ReadMoreListener(newsList));
 
         Group group_AddMarks = new Group(scrolledComposite, SWT.NONE);
 
@@ -504,7 +520,7 @@ public class MainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        btnNewButton.addSelectionListener(new AddMarksListener(newsSummaryList, btnMarks));
+        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
 

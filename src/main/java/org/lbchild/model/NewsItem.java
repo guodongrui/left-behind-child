@@ -8,6 +8,7 @@ public class NewsItem {
     private boolean isDeleted;
     private String Location;
     private String newsLink;
+    private String title;
 
     public String getDate() {
         return date;
@@ -55,6 +56,14 @@ public class NewsItem {
 
     public void setNewsLink(String newsLink) {
         this.newsLink = newsLink;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

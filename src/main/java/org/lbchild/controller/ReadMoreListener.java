@@ -2,13 +2,18 @@ package org.lbchild.controller;
 
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.widgets.List;
+import org.lbchild.model.NewsList;
 import org.lbchild.window.ReadMoreWindow;
 
 public class ReadMoreListener implements SelectionListener {
 
-    public ReadMoreListener() {
+    private NewsList newsList;
+    
+    public ReadMoreListener(NewsList newsList) {
         // TODO Auto-generated constructor stub
         super();
+        this.newsList = newsList;
     }
 
     @Override
@@ -18,9 +23,10 @@ public class ReadMoreListener implements SelectionListener {
     }
 
     @Override
-    public void widgetSelected(SelectionEvent arg0) {
+    public void widgetSelected(SelectionEvent e) {
         // TODO Auto-generated method stub
-        ReadMoreWindow readmoreWindow = new ReadMoreWindow();
+        List list = (List)e.widget;
+        ReadMoreWindow readmoreWindow = new ReadMoreWindow(newsList, list.getSelectionIndex());
         readmoreWindow.open();
         
     }

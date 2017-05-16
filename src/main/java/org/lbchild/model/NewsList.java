@@ -21,7 +21,12 @@ public class NewsList {
         int n = newsList.size();
         String[] ret = new String[n];
         for (int i = 0; i < n; ++i) {
-            ret[i] = new String(newsList.get(i).getContent().substring(0, 20));
+            String s = newsList.get(i).getContent();
+            if (s.length() < 20) {
+                ret[i] = new String(s);
+            } else {
+                ret[i] = new String(s.substring(0, 20));
+            }
         }
         return ret;
     }
