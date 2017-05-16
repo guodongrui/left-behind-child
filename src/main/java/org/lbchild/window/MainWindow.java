@@ -19,7 +19,6 @@ import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
-import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.res.management.SWTResourceManager;
 
 import org.eclipse.swt.widgets.Text;
@@ -57,9 +56,6 @@ public class MainWindow extends ApplicationWindow {
         addStatusLine();
     }
 
-    /**
-     * 
-     */
     private void initNewsList() {
 
         try {
@@ -72,7 +68,6 @@ public class MainWindow extends ApplicationWindow {
             for (int i = 0; i < n; ++i) {
                 NewsItem newsItem = new NewsItem();
                 newsItem.setDate(list.get(i).get("Date"));
-                newsItem.setTitle(list.get(i).get("Title"));
                 String encodedContent = list.get(i).get("EncodedContent"); 
                 String content = null;
                 
@@ -116,7 +111,6 @@ public class MainWindow extends ApplicationWindow {
         final List newsSummaryList = new List(container, SWT.BORDER | SWT.V_SCROLL);
         newsSummaryList.setBounds(0, 0, 478, 613);
         newsSummaryList.setItems(newsList.getNewsSummaryList());
-        newsSummaryList.addSelectionListener(new ReadMoreListener(newsList));
 
         Group group_AddMarks = new Group(scrolledComposite, SWT.NONE);
 

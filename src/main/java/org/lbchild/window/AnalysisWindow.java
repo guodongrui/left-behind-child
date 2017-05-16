@@ -38,11 +38,14 @@ import org.lbchild.xml.XMLReader;
 
 
 public class AnalysisWindow extends ApplicationWindow {
-
+    
     private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
     private ArrayList<Map<String, Integer>> newsmarks;
     private int[][][] sexOrientationCount;
     private double[][][][] sexTendencyCount;
+
+    Section sctnSectionTypeOrientation;
+
     /**
      * Create the application window.
      */
@@ -54,7 +57,10 @@ public class AnalysisWindow extends ApplicationWindow {
         addMenuBar();
         addStatusLine();
     }
-
+    public Section getSection() {
+    	return sctnSectionTypeOrientation;
+		
+	}
     void initDataset() {
         File file = new File("src/main/resources/newsmarks.xml");
         XMLReader in = new XMLReader(file);
@@ -111,7 +117,7 @@ public class AnalysisWindow extends ApplicationWindow {
         item_orientation.setText("Orientation");
         item_orientation.setControl(compositeOrientation);
 
-        Section sctnSectionTypeOrientation = formToolkit.createSection(marksOrientationComposite,
+       sctnSectionTypeOrientation = formToolkit.createSection(marksOrientationComposite,
                 Section.TWISTIE | Section.TITLE_BAR);
         
 
@@ -191,6 +197,7 @@ public class AnalysisWindow extends ApplicationWindow {
 
         Section sctnSectionSourceOrientation = formToolkit.createSection(marksOrientationComposite,
                 Section.TWISTIE | Section.TITLE_BAR);
+       
         FormData fd_sctnSectionSourceOrientation = new FormData();
         fd_sctnSectionSourceOrientation.top = new FormAttachment(sctnSectionThemeOrientation, 1);
         fd_sctnSectionSourceOrientation.left = new FormAttachment(0);

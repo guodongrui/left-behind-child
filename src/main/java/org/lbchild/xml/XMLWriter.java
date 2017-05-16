@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package org.lbchild.xml;
 
 import java.io.BufferedWriter;
