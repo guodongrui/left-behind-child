@@ -578,7 +578,7 @@ public class MainWindow extends ApplicationWindow {
      */
     public static void main(String args[]) {
         try {
-            MainWindow window = new MainWindow();
+            TestWindow window = new TestWindow();
             window.setBlockOnOpen(true);
             window.open();
             Display.getCurrent().dispose();
