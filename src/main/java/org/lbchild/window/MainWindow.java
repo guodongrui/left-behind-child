@@ -17,29 +17,20 @@ import org.lbchild.util.Base64Content;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
-import org.lbchild.xml.XMLWriter;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
 import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.res.management.SWTResourceManager;
-import org.lbchild.url.UrlAnalyzer;
+//import org.lbchild.url.UrlAnalyzer;
 import org.eclipse.swt.widgets.Text;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -64,9 +55,9 @@ public class MainWindow extends ApplicationWindow {
 
     private static java.util.List<Integer> deleteIndex;
 
-    private UrlAnalyzer urlAnalyzer = new UrlAnalyzer();
+    //private UrlAnalyzer urlAnalyzer = new UrlAnalyzer();
     
-    private java.util.List<String> encodedContentList = new ArrayList<>();
+    //private java.util.List<String> encodedContentList = new ArrayList<>();
 
     /**
      * Create the application window.
@@ -82,29 +73,29 @@ public class MainWindow extends ApplicationWindow {
         addStatusLine();
     }
 
-    private void sichuan() {
-        try {
-            File file = new File("src/main/resources/sichuan2.xml");
-            XMLReader in = new XMLReader(file);
-            ArrayList<Map<String, String>> list = in.readXml();
-
-            int n = list.size();
-            ArrayList<NewsItem> li = new ArrayList<>();
-            for (int i = 0; i < n; ++i) {
-                NewsItem newsItem = new NewsItem();
-                String trueUrl = list.get(i).get("TrueUrl");
-                String newsContent = urlAnalyzer.acceptUrl(trueUrl);
-                System.out.println(newsContent);
-                
-                String encodedContent = Base64Content.encode(newsContent);
-                encodedContentList.add(encodedContent);
-            }
-
-            new XMLWriter(file).updateSiChuanEncodedContent(encodedContentList);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private void sichuan() {
+//        try {
+//            File file = new File("src/main/resources/sichuan2.xml");
+//            XMLReader in = new XMLReader(file);
+//            ArrayList<Map<String, String>> list = in.readXml();
+//
+//            int n = list.size();
+//            ArrayList<NewsItem> li = new ArrayList<>();
+//            for (int i = 0; i < n; ++i) {
+//                NewsItem newsItem = new NewsItem();
+//                String trueUrl = list.get(i).get("TrueUrl");
+//                String newsContent = urlAnalyzer.acceptUrl(trueUrl);
+//                System.out.println(newsContent);
+//                
+//                String encodedContent = Base64Content.encode(newsContent);
+//                encodedContentList.add(encodedContent);
+//            }
+//
+//            new XMLWriter(file).updateSiChuanEncodedContent(encodedContentList);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private void initNewsList() {
 
