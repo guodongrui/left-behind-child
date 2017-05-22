@@ -2,12 +2,8 @@ package org.lbchild.window;
 
 import java.util.ArrayList;
 
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.swt.graphics.Point;
+
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Text;
@@ -16,12 +12,8 @@ import org.lbchild.model.NewsList;
 import org.lbchild.res.management.SWTResourceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
 
@@ -43,9 +35,6 @@ public class AddMarksDialog {
     ArrayList<ArrayList<Button>> btnMarks;
 
     private int lineId;
-    private NewsList newsList;
-
-    private Shell parentShell;
 
     /**
      * Create the dialog.
@@ -53,7 +42,6 @@ public class AddMarksDialog {
      * @param parentShell
      */
     public AddMarksDialog(Shell parentShell, NewsList newsList, int lineId) {
-        this.parentShell = parentShell;
         shell = new Shell(parentShell, SWT.CLOSE | SWT.BORDER | SWT.TITLE);
         shell.setSize(629, 813);
         // shell.setSize(738, 870);
@@ -70,7 +58,6 @@ public class AddMarksDialog {
                 shell.setVisible(false);
             }
         });
-        this.newsList = newsList;
         this.lineId = lineId;
 
         Composite container = new Composite(shell, SWT.NONE);

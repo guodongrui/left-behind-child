@@ -9,23 +9,16 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.lbchild.controller.AddMarksAction;
 import org.lbchild.controller.DeleteAction;
 import org.lbchild.model.NewsList;
 
-import java.awt.GridBagLayout;
 
-import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.Text;
 import org.lbchild.res.management.SWTResourceManager;
-import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.widgets.Label;
 
 public class ReadMoreWindow extends ApplicationWindow {
     private DeleteAction deleteToolItem;

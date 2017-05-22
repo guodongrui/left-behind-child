@@ -1,17 +1,14 @@
 package org.lbchild.window;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.swtbot.eclipse.finder.matchers.WidgetMatcherFactory;
-import org.eclipse.swtbot.forms.finder.SWTFormsBot;
 import org.eclipse.swtbot.swt.finder.SWTBot;
 import org.eclipse.swtbot.swt.finder.finders.UIThreadRunnable;
 import org.eclipse.swtbot.swt.finder.results.Result;
 import org.eclipse.swtbot.swt.finder.utils.SWTBotPreferences;
 import org.eclipse.ui.forms.widgets.Section;
-import org.hamcrest.Matcher;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.experimental.chart.swt.ChartComposite;
@@ -19,16 +16,12 @@ import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.lbchild.chart.LineChart;
 import org.swtchart.Chart;
 import org.swtchart.ISeries;
-import org.swtchart.ISeriesSet;
-import org.jfree.chart.JFreeChart;
 
 public class AnalysisWindowTest {
 	private static SWTBot bot;
 	private static AnalysisWindow analysis;
-	private static SWTFormsBot formsBot;
 
 	@BeforeClass
 	public static void setupApp() {
@@ -50,7 +43,6 @@ public class AnalysisWindowTest {
 			e.printStackTrace();
 		}
 		bot = new SWTBot();
-		formsBot = new SWTFormsBot();
 	}
 
 	@Test

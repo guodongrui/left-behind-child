@@ -26,8 +26,6 @@ import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
 
-import org.lbchild.chart.LineChart;
-import org.lbchild.chart.PieChart;
 import org.lbchild.controller.ExpandCleanMarksListener;
 import org.lbchild.controller.ShowOrientationListener;
 import org.lbchild.controller.ShowSexOrientationListener;
@@ -35,16 +33,13 @@ import org.lbchild.controller.ShowSexTendencyListener;
 import org.lbchild.util.CountLabel;
 import org.lbchild.xml.XMLReader;
 
-
-
 public class AnalysisWindow extends ApplicationWindow {
-    
+
     private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
     private ArrayList<Map<String, Integer>> newsmarks;
     private int[][][] sexOrientationCount;
     private double[][][][] sexTendencyCount;
-
-    Section sctnSectionTypeOrientation;
+    private String fileName = "src/main/resources/newsmarks.xml";
 
     /**
      * Create the application window.
@@ -57,24 +52,33 @@ public class AnalysisWindow extends ApplicationWindow {
         addMenuBar();
         addStatusLine();
     }
-    public Section getSection() {
-    	return sctnSectionTypeOrientation;
-		
-	}
+
+    // 测试使用
+    public AnalysisWindow(String fileName) {
+        super(null);
+        this.fileName = fileName;
+        initDataset();
+        createActions();
+        addToolBar(SWT.FLAT | SWT.WRAP);
+        addMenuBar();
+        addStatusLine();
+    }
+
     void initDataset() {
-        File file = new File("src/main/resources/newsmarks.xml");
+        File file = new File(fileName);
         XMLReader in = new XMLReader(file);
         ArrayList<Map<String, String>> arr = in.readXml();
-        
+
         CountLabel cl = new CountLabel(arr);
-        
-        newsmarks = cl.getLabelCount(); 
-        
+
+        newsmarks = cl.getLabelCount();
+
         sexOrientationCount = cl.getLabelSexCount();
-        
+
         sexTendencyCount = cl.getLabelDateCount();
-        
+
     }
+
     /**
      * Create contents of the application window.
      * 
@@ -117,9 +121,8 @@ public class AnalysisWindow extends ApplicationWindow {
         item_orientation.setText("Orientation");
         item_orientation.setControl(compositeOrientation);
 
-       sctnSectionTypeOrientation = formToolkit.createSection(marksOrientationComposite,
+        Section sctnSectionTypeOrientation = formToolkit.createSection(marksOrientationComposite,
                 Section.TWISTIE | Section.TITLE_BAR);
-        
 
         FormData fd_sctnSectionTypeOrientation = new FormData();
         fd_sctnSectionTypeOrientation.top = new FormAttachment(0);
@@ -136,7 +139,7 @@ public class AnalysisWindow extends ApplicationWindow {
                 SWT.RADIO);
         Button btnRadioButtonTypeOrientationMarket = formToolkit.createButton(composite_TypeOrientation, "经营模式市场化",
                 SWT.RADIO);
-        
+
         sctnSectionTypeOrientation.setClient(composite_TypeOrientation);
 
         Section sctnSectionNTypeOrientation = formToolkit.createSection(marksOrientationComposite,
@@ -197,7 +200,7 @@ public class AnalysisWindow extends ApplicationWindow {
 
         Section sctnSectionSourceOrientation = formToolkit.createSection(marksOrientationComposite,
                 Section.TWISTIE | Section.TITLE_BAR);
-       
+
         FormData fd_sctnSectionSourceOrientation = new FormData();
         fd_sctnSectionSourceOrientation.top = new FormAttachment(sctnSectionThemeOrientation, 1);
         fd_sctnSectionSourceOrientation.left = new FormAttachment(0);
@@ -376,8 +379,6 @@ public class AnalysisWindow extends ApplicationWindow {
 
         Section sctnSectionTypeTendency = formToolkit.createSection(marksTendencyComposite,
                 Section.TWISTIE | Section.TITLE_BAR);
-
-       
 
         FormData fd_sctnSectionTypeTendency = new FormData();
         fd_sctnSectionTypeTendency.top = new FormAttachment(0);
@@ -599,7 +600,6 @@ public class AnalysisWindow extends ApplicationWindow {
         fd_sctnSectionPraiseTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
         fd_sctnSectionReasonTendency.right = new FormAttachment(sctnSectionThemeTendency, 0, SWT.RIGHT);
 
-        
         ArrayList<Button> btnOrientationMarks = new ArrayList<>();
         btnOrientationMarks.add(btnRadioButtonTypeOrientationCenter);
         btnOrientationMarks.add(btnRadioButtonTypeOrientationProvince);
@@ -703,27 +703,36 @@ public class AnalysisWindow extends ApplicationWindow {
         btnTendencyMarks.add(btnRadioButtonReasonTendencyQuality);
         btnTendencyMarks.add(btnRadioButtonReasonTendencyCancel);
         btnTendencyMarks.add(btnRadioButtonReasonTendencyElse);
-        
+
         ExpandCleanMarksListener cleanMarksOrientationListener = new ExpandCleanMarksListener(btnOrientationMarks);
         sctnSectionTypeOrientation.addExpansionListener(cleanMarksOrientationListener);
-        sctnSectionTypeOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 0, orientationPieChartComposite));
+        sctnSectionTypeOrientation
+                .addExpansionListener(new ShowOrientationListener(newsmarks, 0, orientationPieChartComposite));
         sctnSectionNTypeOrientation.addExpansionListener(cleanMarksOrientationListener);
-        sctnSectionNTypeOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 1, orientationPieChartComposite));
+        sctnSectionNTypeOrientation
+                .addExpansionListener(new ShowOrientationListener(newsmarks, 1, orientationPieChartComposite));
         sctnSectionThemeOrientation.addExpansionListener(cleanMarksOrientationListener);
-        sctnSectionThemeOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 2, orientationPieChartComposite));
+        sctnSectionThemeOrientation
+                .addExpansionListener(new ShowOrientationListener(newsmarks, 2, orientationPieChartComposite));
         sctnSectionSourceOrientation.addExpansionListener(cleanMarksOrientationListener);
-        sctnSectionSourceOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 3, orientationPieChartComposite));
+        sctnSectionSourceOrientation
+                .addExpansionListener(new ShowOrientationListener(newsmarks, 3, orientationPieChartComposite));
         sctnSectionImageOrientation.addExpansionListener(cleanMarksOrientationListener);
-        sctnSectionImageOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 4, orientationPieChartComposite));
+        sctnSectionImageOrientation
+                .addExpansionListener(new ShowOrientationListener(newsmarks, 4, orientationPieChartComposite));
         sctnSectionSpecificOrientation.addExpansionListener(cleanMarksOrientationListener);
-        sctnSectionSpecificOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 5, orientationPieChartComposite));
+        sctnSectionSpecificOrientation
+                .addExpansionListener(new ShowOrientationListener(newsmarks, 5, orientationPieChartComposite));
         sctnSectionSubjectOrientation.addExpansionListener(cleanMarksOrientationListener);
-        sctnSectionSubjectOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 6, orientationPieChartComposite));
+        sctnSectionSubjectOrientation
+                .addExpansionListener(new ShowOrientationListener(newsmarks, 6, orientationPieChartComposite));
         sctnSectionPraiseOrientation.addExpansionListener(cleanMarksOrientationListener);
-        sctnSectionPraiseOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 7, orientationPieChartComposite));
+        sctnSectionPraiseOrientation
+                .addExpansionListener(new ShowOrientationListener(newsmarks, 7, orientationPieChartComposite));
         sctnSectionReasonOrientation.addExpansionListener(cleanMarksOrientationListener);
-        sctnSectionReasonOrientation.addExpansionListener(new ShowOrientationListener(newsmarks, 8, orientationPieChartComposite));
-        
+        sctnSectionReasonOrientation
+                .addExpansionListener(new ShowOrientationListener(newsmarks, 8, orientationPieChartComposite));
+
         ExpandCleanMarksListener cleanMarksTendencyListener = new ExpandCleanMarksListener(btnTendencyMarks);
         sctnSectionTypeTendency.addExpansionListener(cleanMarksTendencyListener);
         sctnSectionNTypeTendency.addExpansionListener(cleanMarksTendencyListener);
@@ -733,17 +742,19 @@ public class AnalysisWindow extends ApplicationWindow {
         sctnSectionSpecificTendency.addExpansionListener(cleanMarksTendencyListener);
         sctnSectionPraiseTendency.addExpansionListener(cleanMarksTendencyListener);
         sctnSectionReasonTendency.addExpansionListener(cleanMarksTendencyListener);
-        
-        ShowSexOrientationListener sexOrientationListener = new ShowSexOrientationListener(sexOrientationCount, orientationPieChartComposite);
-        for (Button b: btnOrientationMarks) {
+
+        ShowSexOrientationListener sexOrientationListener = new ShowSexOrientationListener(sexOrientationCount,
+                orientationPieChartComposite);
+        for (Button b : btnOrientationMarks) {
             b.addSelectionListener(sexOrientationListener);
         }
-        
-        ShowSexTendencyListener sexTendencyListener = new ShowSexTendencyListener(sexTendencyCount, tendencyLineChartComposite);
-        for (Button b: btnTendencyMarks) {
+
+        ShowSexTendencyListener sexTendencyListener = new ShowSexTendencyListener(sexTendencyCount,
+                tendencyLineChartComposite);
+        for (Button b : btnTendencyMarks) {
             b.addSelectionListener(sexTendencyListener);
         }
-        
+
         return container;
     }
 

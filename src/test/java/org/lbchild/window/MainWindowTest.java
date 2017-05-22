@@ -1,18 +1,13 @@
 package org.lbchild.window;
 
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
+
 import org.eclipse.swtbot.swt.finder.SWTBot;
-import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
 import org.eclipse.swtbot.swt.finder.utils.SWTBotPreferences;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotButton;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotList;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotRadio;
-import org.eclipse.swtbot.swt.finder.widgets.SWTBotText;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.lbchild.window.MainWindow;
 
 public class MainWindowTest {
