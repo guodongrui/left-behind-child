@@ -1,5 +1,7 @@
 package org.lbchild.window;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.swtbot.eclipse.finder.matchers.WidgetMatcherFactory;
@@ -10,9 +12,18 @@ import org.eclipse.swtbot.swt.finder.results.Result;
 import org.eclipse.swtbot.swt.finder.utils.SWTBotPreferences;
 import org.eclipse.ui.forms.widgets.Section;
 import org.hamcrest.Matcher;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.experimental.chart.swt.ChartComposite;
+import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.lbchild.chart.LineChart;
+import org.swtchart.Chart;
+import org.swtchart.ISeries;
+import org.swtchart.ISeriesSet;
+import org.jfree.chart.JFreeChart;
 
 public class AnalysisWindowTest {
 	private static SWTBot bot;
@@ -23,7 +34,7 @@ public class AnalysisWindowTest {
 	public static void setupApp() {
 		new Thread(new Runnable() {
 			public void run() {
-				analysis = new AnalysisWindow();
+				analysis = new AnalysisWindow("src/test/resources/testNewsMark.xml");
 				analysis.setBlockOnOpen(true);
 				analysis.open();
 			}
@@ -44,14 +55,16 @@ public class AnalysisWindowTest {
 
 	@Test
 	public void test() {
-		SWTBotPreferences.PLAYBACK_DELAY = 200;
+		SWTBotPreferences.PLAYBACK_DELAY = 0;
 
 		// Matcher<Section> matcher=org.hamcrest.Matchers;
 
 		getSection("报纸类别");
-
+        
 		bot.radio("中央一级").click();
+		testJFreeChart(5,1) ;
 		bot.radio("省一级").click();
+		testJFreeChart(3,2) ;
 		bot.radio("经营模式市场化").click();
 		getSection("报纸类别");
 
@@ -86,10 +99,23 @@ public class AnalysisWindowTest {
 		bot.radio("其他").click();
 		getSection("新闻报道来源");
 
+	}
+
+	@Test
+	public void test2() {
+		
 		bot.cTabItem("Tendency").activate();
+
 		getSection("报纸类别");
+
 		bot.radio("中央一级").click();
+		double man1[] = { 0, 3, 0, 0, 2, 0, 0, 0, 0, 0 };
+		double girl1[] = { 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 };
+		testChart(man1, girl1);
 		bot.radio("省一级").click();
+		double man2[] = { 0, 1, 0, 0, 2, 0, 0, 0, 0, 0 };
+		double girl2[] = { 0, 0, 0, 0, 2, 0, 0, 0, 0, 0 };
+		testChart(man2, girl2);
 		bot.radio("经营模式市场化").click();
 		getSection("报纸类别");
 
@@ -125,6 +151,19 @@ public class AnalysisWindowTest {
 		getSection("新闻报道来源");
 	}
 
+	private void testChart(double[] man, double[] girl) {
+		ISeries seriesMan = getLineChart().getSeriesSet().getSeries("男");
+		assert (Arrays.equals(seriesMan.getYSeries(), man));
+		ISeries seriesGirl = getLineChart().getSeriesSet().getSeries("女");
+		assert (Arrays.equals(seriesGirl.getYSeries(), girl));
+
+	}
+	private void testJFreeChart(int man,int girl) {
+		PiePlot piePlot=(PiePlot)getJFreeChart().getPlot();
+		assertEquals (piePlot.getDataset().getValue(0),girl);
+		assertEquals(piePlot.getDataset().getValue(1), man);
+	
+	}
 	public static Section getSection(final String name) {
 		return UIThreadRunnable.syncExec(new Result<Section>() {
 
@@ -146,6 +185,25 @@ public class AnalysisWindowTest {
 
 		});
 
+	}
+
+	public static Chart getLineChart() {
+		return UIThreadRunnable.syncExec(new Result<Chart>() {
+			public Chart run() {
+				Chart chart = bot.widget(WidgetMatcherFactory.widgetOfType(Chart.class));
+                
+				return chart;
+			}
+		});
+	}
+	public static JFreeChart getJFreeChart() {
+		return UIThreadRunnable.syncExec(new Result<JFreeChart>() {
+			public JFreeChart run() {
+				ChartComposite chartComposite = bot.widget(WidgetMatcherFactory.widgetOfType(ChartComposite.class));
+               
+				return chartComposite.getChart();
+			}
+		});
 	}
 
 }
