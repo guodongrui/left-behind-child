@@ -26,10 +26,9 @@ public class ReadMoreListener implements SelectionListener {
     public void widgetSelected(SelectionEvent e) {
         // TODO Auto-generated method stub
         List list = (List)e.widget;
-        ReadMoreWindow readmoreWindow = new ReadMoreWindow(newsList, list.getSelectionIndex());
+        int id = list.getSelectionIndex();
+        ReadMoreWindow readmoreWindow = new ReadMoreWindow(newsList, id);
         readmoreWindow.open();
         
     }
-    
-
 }

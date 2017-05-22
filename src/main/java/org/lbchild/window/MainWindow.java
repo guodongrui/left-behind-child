@@ -17,16 +17,29 @@ import org.lbchild.util.Base64Content;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
+import org.lbchild.xml.XMLWriter;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
 import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.res.management.SWTResourceManager;
-
+import org.lbchild.url.UrlAnalyzer;
 import org.eclipse.swt.widgets.Text;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -45,11 +58,23 @@ public class MainWindow extends ApplicationWindow {
     private Text text_Sex;
     private NewsList newsList;
 
+    private static MainWindow mainWindow;
+
+    private List newsSummaryList;
+
+    private static java.util.List<Integer> deleteIndex;
+
+    private UrlAnalyzer urlAnalyzer = new UrlAnalyzer();
+    
+    private java.util.List<String> encodedContentList = new ArrayList<>();
+
     /**
      * Create the application window.
      */
     public MainWindow() {
         super(null);
+        mainWindow = this;
+        //sichuan();
         initNewsList();
         createActions();
         addToolBar(SWT.FLAT | SWT.WRAP);
@@ -57,10 +82,34 @@ public class MainWindow extends ApplicationWindow {
         addStatusLine();
     }
 
+    private void sichuan() {
+        try {
+            File file = new File("src/main/resources/sichuan2.xml");
+            XMLReader in = new XMLReader(file);
+            ArrayList<Map<String, String>> list = in.readXml();
+
+            int n = list.size();
+            ArrayList<NewsItem> li = new ArrayList<>();
+            for (int i = 0; i < n; ++i) {
+                NewsItem newsItem = new NewsItem();
+                String trueUrl = list.get(i).get("TrueUrl");
+                String newsContent = urlAnalyzer.acceptUrl(trueUrl);
+                System.out.println(newsContent);
+                
+                String encodedContent = Base64Content.encode(newsContent);
+                encodedContentList.add(encodedContent);
+            }
+
+            new XMLWriter(file).updateSiChuanEncodedContent(encodedContentList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void initNewsList() {
 
         try {
-            File file = new File("src/main/resources/nanfangdaily.xml");
+            File file = new File("src/main/resources/nanfangdaily2.xml");
             XMLReader in = new XMLReader(file);
             ArrayList<Map<String, String>> list = in.readXml();
 
@@ -70,13 +119,12 @@ public class MainWindow extends ApplicationWindow {
                 NewsItem newsItem = new NewsItem();
                 newsItem.setDate(list.get(i).get("Date"));
                 newsItem.setTitle(list.get(i).get("Title"));
-                String encodedContent = list.get(i).get("EncodedContent"); 
+                String encodedContent = list.get(i).get("EncodedContent");
                 String content = null;
-                
+
                 if (encodedContent != null) {
                     content = Base64Content.decode(encodedContent).replaceAll("</?html>|</?body>|</?P>", "");
-                    
-                   
+
                 } else {
                     content = list.get(i).get("TrueUrl");
                     if (content == null)
@@ -85,7 +133,12 @@ public class MainWindow extends ApplicationWindow {
                 newsItem.setContent(content);
                 newsItem.setDeleted(Boolean.parseBoolean(list.get(i).get("IsDeleted")));
                 newsItem.setLocation(list.get(i).get("Location"));
-                li.add(newsItem);
+
+                if (newsItem.isDeleted()) {
+                    continue;
+                } else {
+                    li.add(newsItem);
+                }
             }
 
             newsList = new NewsList(li);
@@ -110,7 +163,7 @@ public class MainWindow extends ApplicationWindow {
         scrolledComposite.setExpandHorizontal(true);
         scrolledComposite.setExpandVertical(true);
 
-        final List newsSummaryList = new List(container, SWT.BORDER | SWT.V_SCROLL);
+        newsSummaryList = new List(container, SWT.BORDER | SWT.V_SCROLL);
         newsSummaryList.setBounds(0, 0, 478, 613);
         newsSummaryList.setItems(newsList.getNewsSummaryList());
         newsSummaryList.addSelectionListener(new ReadMoreListener(newsList));
@@ -578,7 +631,7 @@ public class MainWindow extends ApplicationWindow {
      */
     public static void main(String args[]) {
         try {
-            TestWindow window = new TestWindow();
+            MainWindow window = new MainWindow();
             window.setBlockOnOpen(true);
             window.open();
             Display.getCurrent().dispose();
@@ -604,5 +657,56 @@ public class MainWindow extends ApplicationWindow {
     @Override
     protected Point getInitialSize() {
         return new Point(1009, 734);
+    }
+
+    public static MainWindow getMainWindow() {
+        return mainWindow;
+    }
+
+    public List getNewsSummaryList() {
+        return newsSummaryList;
+    }
+
+    public static java.util.List<Integer> getDeleteInstance() {
+        // if (deleteIndex == null) {
+        // deleteIndex = new ArrayList<>();
+        // } else {
+        deleteIndex = readFile();
+        System.out.println(deleteIndex);
+        // }
+        return deleteIndex;
+    }
+
+    public static java.util.List<Integer> readFile() {
+        File file = new File("src/main/resources/delete-index.txt");
+        java.util.List<Integer> ret = new ArrayList<>();
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(file));
+            String lineStr = in.readLine();
+
+            if (lineStr != null) {
+                String[] deleteIndexStr = lineStr.split(" ");
+                for (String s : deleteIndexStr) {
+                    ret.add(Integer.valueOf(s));
+                }
+            }
+            in.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+    public static void writeFile() {
+        try {
+            FileWriter out = new FileWriter(new File("src/main/resources/delete-index.txt"));
+            for (int i = 0; i < deleteIndex.size(); i++) {
+                out.write(deleteIndex.get(i) + " ");
+            }
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
