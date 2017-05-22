@@ -56,6 +56,7 @@ public class ReadMoreWindow extends ApplicationWindow {
         Composite container = new Composite(parent, SWT.NONE);
         container.setFont(SWTResourceManager.getFont("Microsoft YaHei UI", 15, SWT.NORMAL));
         container.setLayout(new GridLayout(1, true));
+        
         {
             Composite composite_title = new Composite(container, SWT.NONE);
             composite_title.setLayout(new FillLayout(SWT.HORIZONTAL));
@@ -68,7 +69,7 @@ public class ReadMoreWindow extends ApplicationWindow {
                 title.setEditable(false);
                 title.setRedraw(true);
             }
-            title.setText(newsList.getNewsItem(lineId).getTitle());
+            title.setText(newsList.getNewsItem(getLineId()).getTitle());
         }
         {
             Composite composite_date = new Composite(container, SWT.NONE);
@@ -81,7 +82,7 @@ public class ReadMoreWindow extends ApplicationWindow {
                 date.setEditable(false);
                 date.setRedraw(true);
             }
-            date.setText("日期: " + newsList.getNewsItem(lineId).getDate());
+            date.setText("日期: " + newsList.getNewsItem(getLineId()).getDate());
         }
         {
             Composite composite_content = new Composite(container, SWT.NONE);
@@ -93,7 +94,8 @@ public class ReadMoreWindow extends ApplicationWindow {
                 content = new Text(composite_content, SWT.BORDER | SWT.WRAP);
                 content.setEditable(false);
             }
-            String newsContent = newsList.getNewsItem(lineId).getContent();
+            
+            String newsContent = newsList.getNewsItem(getLineId()).getContent();
             if (content != null) {
                 content.setText(newsContent);
             }
@@ -107,7 +109,7 @@ public class ReadMoreWindow extends ApplicationWindow {
     private void createActions() {
         // Create the actions
         {
-            deleteToolItem = new DeleteAction();
+            deleteToolItem = new DeleteAction(newsList);
             deleteToolItem.setText("Delete");
         }
         {

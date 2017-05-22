@@ -1,5 +1,4 @@
 import org.eclipse.swt.widgets.Display;
-
 import org.lbchild.window.MainWindow;
 
 public class Main {

@@ -9,7 +9,7 @@ public class NewsItem {
     private String Location;
     private String newsLink;
     private String title;
-
+    
     public String getDate() {
         return date;
     }

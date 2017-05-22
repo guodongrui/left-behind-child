@@ -10,6 +10,8 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.lbchild.model.NewsList;
+import org.lbchild.util.Base64Content;
 
 public class XMLWriter {
 
@@ -31,28 +33,29 @@ public class XMLWriter {
             // 获得根结点
             Element arrayOfNewsData = document.getRootElement();
 
-            List<Element>  list = arrayOfNewsData.elements("NewsData"); 
+            List<Element> list = arrayOfNewsData.elements("NewsData");
             for (Element e : list) {
                 if (Integer.parseInt(e.element("LineId").getText()) == lineId) {
+                    e.element("NewsMarks").setText(newsMarks);
                     return;
                 }
-            } 
-            
+            }
+
             // 创建结点NewsData
             Element newsData = arrayOfNewsData.addElement("NewsData");
 
             // 创建NewsData结点下的NewsMark子结点
             Element newsMark = newsData.addElement("NewsMarks");
             newsMark.setText(newsMarks);
-            
-            //创建NewsData结点下的Date子结点
+
+            // 创建NewsData结点下的Date子结点
             Element newsDate = newsData.addElement("Date");
             newsDate.setText(date);
 
             // 创建NewsData结点下的LineId子结点
             Element idElement = newsData.addElement("LineId");
             idElement.setText(String.valueOf(lineId));
-            
+
             OutputFormat format = OutputFormat.createPrettyPrint();
             format.setEncoding("utf-8");
             format.setLineSeparator("\r\n");
@@ -80,13 +83,8 @@ public class XMLWriter {
             // 获得根结点
             Element arrayOfNewsData = document.getRootElement();
 
-            //Element newsData = arrayOfNewsData.element("NewsData");
-
-            List<Element>  list = arrayOfNewsData.elements("NewsData"); 
-            list.get(lineId).element("IsDeleted").setText(delete);;
-//            // 获得IsDeleted结点
-//            Element isDeleted = newsData.element("IsDeleted");
-//            isDeleted.setText(delete);
+            List<Element> list = arrayOfNewsData.elements("NewsData");
+            list.get(lineId).element("IsDeleted").setText(delete);
 
             try {
                 OutputFormat format = OutputFormat.createPrettyPrint();
@@ -106,13 +104,39 @@ public class XMLWriter {
             e.printStackTrace();
         }
     }
-    
-    public static void main(String[] args) throws Exception {
-        for (int i = 0; i <= 1000; i++) {
-            // 插入
-            File file = new File("src/main/resources/nanfangdaily2.xml");
-            XMLWriter out = new XMLWriter(file);
-            out.updateXml(1, "true");
+
+    public void updateSiChuanEncodedContent(List<String> encodedContentList) {
+        try {
+            // 获取读取xml的对象
+            SAXReader sr = new SAXReader();
+
+            // 创建XML文档树
+            Document document = sr.read(file);
+
+            // 获得根结点
+            Element arrayOfNewsData = document.getRootElement();
+
+            List<Element> list = arrayOfNewsData.elements("NewsData");
+            for (int i = 0; i < list.size(); i++) {
+                list.get(i).element("EncodedContent").setText(encodedContentList.get(i));
+            }
+
+            try {
+                OutputFormat format = OutputFormat.createPrettyPrint();
+                format.setEncoding("utf-8");
+                format.setLineSeparator("\r\n");
+                format.setIndent(true);
+                format.setIndent("    ");
+                FileOutputStream fos = new FileOutputStream(file);
+                BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"));
+                org.dom4j.io.XMLWriter output = new org.dom4j.io.XMLWriter(bw1, format);
+                output.write(document);
+                bw1.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
