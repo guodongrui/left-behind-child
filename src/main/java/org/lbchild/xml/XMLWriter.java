@@ -105,7 +105,7 @@ public class XMLWriter {
         }
     }
 
-    public void updateSiChuanEncodedContent(List<String> encodedContentList) {
+    public void updateEncodedContent(String encodedContent, int selectionId) {
         try {
             // 获取读取xml的对象
             SAXReader sr = new SAXReader();
@@ -117,9 +117,7 @@ public class XMLWriter {
             Element arrayOfNewsData = document.getRootElement();
 
             List<Element> list = arrayOfNewsData.elements("NewsData");
-            for (int i = 0; i < list.size(); i++) {
-                list.get(i).element("EncodedContent").setText(encodedContentList.get(i));
-            }
+            list.get(selectionId).element("EncodedContent").setText(encodedContent);
 
             try {
                 OutputFormat format = OutputFormat.createPrettyPrint();
