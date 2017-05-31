@@ -13,3 +13,10 @@ hs_err_pid*
 
 # Backup file for vim
 *~
+
+/target/
+
+# Eclipse file
+.settings/
+.project
+.classpath
