@@ -37,6 +37,7 @@ public class XMLWriter {
             for (Element e : list) {
                 if (Integer.parseInt(e.element("LineId").getText()) == lineId) {
                     e.element("NewsMarks").setText(newsMarks);
+                    writeIntoXml(file, document);
                     return;
                 }
             }
@@ -56,16 +57,7 @@ public class XMLWriter {
             Element idElement = newsData.addElement("LineId");
             idElement.setText(String.valueOf(lineId));
 
-            OutputFormat format = OutputFormat.createPrettyPrint();
-            format.setEncoding("utf-8");
-            format.setLineSeparator("\r\n");
-            format.setIndent(true);
-            format.setIndent("    ");
-            FileOutputStream fos = new FileOutputStream(file);
-            BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"));
-            org.dom4j.io.XMLWriter output = new org.dom4j.io.XMLWriter(bw1, format);
-            output.write(document);
-            bw1.close();
+            writeIntoXml(file, document);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,26 +78,13 @@ public class XMLWriter {
             List<Element> list = arrayOfNewsData.elements("NewsData");
             list.get(lineId).element("IsDeleted").setText(delete);
 
-            try {
-                OutputFormat format = OutputFormat.createPrettyPrint();
-                format.setEncoding("utf-8");
-                format.setLineSeparator("\r\n");
-                format.setIndent(true);
-                format.setIndent("    ");
-                FileOutputStream fos = new FileOutputStream(file);
-                BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"));
-                org.dom4j.io.XMLWriter output = new org.dom4j.io.XMLWriter(bw1, format);
-                output.write(document);
-                bw1.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            writeIntoXml(file, document);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void updateSiChuanEncodedContent(List<String> encodedContentList) {
+    public void updateEncodedContent(String encodedContent, int selectionId) {
         try {
             // 获取读取xml的对象
             SAXReader sr = new SAXReader();
@@ -117,26 +96,28 @@ public class XMLWriter {
             Element arrayOfNewsData = document.getRootElement();
 
             List<Element> list = arrayOfNewsData.elements("NewsData");
-            for (int i = 0; i < list.size(); i++) {
-                list.get(i).element("EncodedContent").setText(encodedContentList.get(i));
-            }
+            list.get(selectionId).element("EncodedContent").setText(encodedContent);
 
-            try {
-                OutputFormat format = OutputFormat.createPrettyPrint();
-                format.setEncoding("utf-8");
-                format.setLineSeparator("\r\n");
-                format.setIndent(true);
-                format.setIndent("    ");
-                FileOutputStream fos = new FileOutputStream(file);
-                BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"));
-                org.dom4j.io.XMLWriter output = new org.dom4j.io.XMLWriter(bw1, format);
-                output.write(document);
-                bw1.close();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            writeIntoXml(file, document);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    private void writeIntoXml(File file, Document document) {
+        try {
+            OutputFormat format = OutputFormat.createPrettyPrint();
+            format.setEncoding("utf-8");
+            format.setLineSeparator("\r\n");
+            format.setIndent(true);
+            format.setIndent("    ");
+            FileOutputStream fos = new FileOutputStream(file);
+            BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"));
+            org.dom4j.io.XMLWriter output = new org.dom4j.io.XMLWriter(bw1, format);
+            output.write(document);
+            bw1.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }

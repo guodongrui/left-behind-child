@@ -28,9 +28,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Map;
-
 
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -55,9 +58,11 @@ public class MainWindow extends ApplicationWindow {
 
     private static java.util.List<Integer> deleteIndex;
 
-    //private UrlAnalyzer urlAnalyzer = new UrlAnalyzer();
+
+    public static int sichuanLength;
     
-    //private java.util.List<String> encodedContentList = new ArrayList<>();
+    public static int nanfangLength;
+
 
     /**
      * Create the application window.
@@ -65,7 +70,6 @@ public class MainWindow extends ApplicationWindow {
     public MainWindow() {
         super(null);
         mainWindow = this;
-        //sichuan();
         initNewsList();
         createActions();
         addToolBar(SWT.FLAT | SWT.WRAP);
@@ -73,38 +77,30 @@ public class MainWindow extends ApplicationWindow {
         addStatusLine();
     }
 
-//    private void sichuan() {
-//        try {
-//            File file = new File("src/main/resources/sichuan2.xml");
-//            XMLReader in = new XMLReader(file);
-//            ArrayList<Map<String, String>> list = in.readXml();
-//
-//            int n = list.size();
-//            ArrayList<NewsItem> li = new ArrayList<>();
-//            for (int i = 0; i < n; ++i) {
-//                NewsItem newsItem = new NewsItem();
-//                String trueUrl = list.get(i).get("TrueUrl");
-//                String newsContent = urlAnalyzer.acceptUrl(trueUrl);
-//                System.out.println(newsContent);
-//                
-//                String encodedContent = Base64Content.encode(newsContent);
-//                encodedContentList.add(encodedContent);
-//            }
-//
-//            new XMLWriter(file).updateSiChuanEncodedContent(encodedContentList);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     private void initNewsList() {
 
         try {
-            File file = new File("src/main/resources/nanfangdaily2.xml");
-            XMLReader in = new XMLReader(file);
-            ArrayList<Map<String, String>> list = in.readXml();
+            File file1 = new File("src/main/resources/sichuan2.xml");
+            File file2 = new File("src/main/resources/nanfangdaily2.xml");
+            File file3 = new File("src/main/resources/guangming2.xml");
+
+            XMLReader in1 = new XMLReader(file1);
+            XMLReader in2 = new XMLReader(file2);
+            XMLReader in3 = new XMLReader(file3);
+
+            ArrayList<Map<String, String>> list1 = in1.readXml();
+            sichuanLength = list1.size();
+            ArrayList<Map<String, String>> list2 = in2.readXml();
+            nanfangLength = list2.size();
+            ArrayList<Map<String, String>> list3 = in3.readXml();
+
+            ArrayList<Map<String, String>> list = new ArrayList<>();
+            list.addAll(list1);
+            list.addAll(list2);
+            list.addAll(list3);
 
             int n = list.size();
+            System.out.println(n);
             ArrayList<NewsItem> li = new ArrayList<>();
             for (int i = 0; i < n; ++i) {
                 NewsItem newsItem = new NewsItem();
