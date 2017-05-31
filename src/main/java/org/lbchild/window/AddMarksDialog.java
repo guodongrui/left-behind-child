@@ -2,12 +2,8 @@ package org.lbchild.window;
 
 import java.util.ArrayList;
 
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.swt.graphics.Point;
+
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Text;
@@ -15,15 +11,16 @@ import org.lbchild.controller.AddMarksReadMoreWindowListener;
 import org.lbchild.model.NewsList;
 import org.lbchild.res.management.SWTResourceManager;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class AddMarksDialog {
 
@@ -43,9 +40,6 @@ public class AddMarksDialog {
     ArrayList<ArrayList<Button>> btnMarks;
 
     private int lineId;
-    private NewsList newsList;
-
-    private Shell parentShell;
 
     /**
      * Create the dialog.
@@ -53,37 +47,36 @@ public class AddMarksDialog {
      * @param parentShell
      */
     public AddMarksDialog(Shell parentShell, NewsList newsList, int lineId) {
-        this.parentShell = parentShell;
         shell = new Shell(parentShell, SWT.CLOSE | SWT.BORDER | SWT.TITLE);
-        shell.setSize(629, 813);
-        // shell.setSize(738, 870);
-        // GridLayout layout = new GridLayout();
-        // layout.numColumns = 1;
         FillLayout layout = new FillLayout();
         shell.setLayout(layout);
-        // shell.setText(resAddressBook.getString("Search_dialog_title"));
         shell.addShellListener(new ShellAdapter() {
             @Override
             public void shellClosed(ShellEvent e) {
-                // don't dispose of the shell, just hide it for later use
+                // hide shell for later use
                 e.doit = false;
                 shell.setVisible(false);
             }
         });
-        this.newsList = newsList;
         this.lineId = lineId;
-
-        Composite container = new Composite(shell, SWT.NONE);
-        container.setLayout(new FillLayout());
-
-        Composite composite = new Composite(container, SWT.NONE);
-        composite.setLayout(new FillLayout());
+       
+        
+        ScrolledComposite scrolledComposite = new ScrolledComposite(shell, SWT.H_SCROLL|SWT.V_SCROLL|SWT.BORDER);
+        scrolledComposite.setExpandHorizontal(true);
+        scrolledComposite.setExpandVertical(true); 
+        
+        Composite composite = new Composite(scrolledComposite, SWT.BORDER);
+        composite.setLayout(new GridLayout(2, false));
         Composite composite_1 = new Composite(composite, SWT.NONE);
-        composite_1.setBounds(5, 5, 288, 776);
         composite_1.setLayout(new GridLayout(1, false));
+        composite_1.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
 
         Composite composite_4 = new Composite(composite_1, SWT.NONE);
         composite_4.setLayout(new GridLayout(1, false));
+        GridData gd_composite_4 = new GridData(SWT.FILL, SWT.FILL, true, true);
+        gd_composite_4.widthHint = 296;
+        composite_4.setLayoutData(gd_composite_4);
 
         text_Type = new Text(composite_4, SWT.READ_ONLY);
         text_Type.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -105,6 +98,7 @@ public class AddMarksDialog {
 
         Composite composite_5 = new Composite(composite_1, SWT.NONE);
         composite_5.setLayout(new GridLayout(1, false));
+        composite_5.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         text_Theme = new Text(composite_5, SWT.READ_ONLY);
         text_Theme.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -154,6 +148,7 @@ public class AddMarksDialog {
 
         Composite composite_6 = new Composite(composite_1, SWT.NONE);
         composite_6.setLayout(new GridLayout(1, false));
+        composite_6.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         text_Source = new Text(composite_6, SWT.READ_ONLY);
         text_Source.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -195,6 +190,7 @@ public class AddMarksDialog {
 
         Composite composite_7 = new Composite(composite_1, SWT.NONE);
         composite_7.setLayout(new GridLayout(1, false));
+        composite_7.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         text_Sex = new Text(composite_7, SWT.READ_ONLY);
         text_Sex.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -212,6 +208,7 @@ public class AddMarksDialog {
 
         Composite composite_8 = new Composite(composite_1, SWT.NONE);
         composite_8.setLayout(new GridLayout(1, false));
+        composite_8.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         text_Reason = new Text(composite_8, SWT.READ_ONLY);
         text_Reason.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -240,14 +237,22 @@ public class AddMarksDialog {
         btnReason.add(btnRadioButtonReasonElse);
 
         Composite composite_2 = new Composite(composite, SWT.NONE);
+        GridData gd_composite_2 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
+        gd_composite_2.widthHint = 162;
+        composite_2.setLayoutData(gd_composite_2);
         composite_2.setBounds(298, 5, 212, 688);
-        composite_2.setLayout(new GridLayout(2, false));
+        composite_2.setLayout(new GridLayout(1, false));
+        GridData gd_composite_1 = new GridData(SWT.FILL, SWT.FILL, true, true);
+        gd_composite_1.widthHint = 309;
+        composite_1.setLayoutData(gd_composite_1);
         // scrolledComposite.setContent(composite);
         // scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT,
         // SWT.DEFAULT));
 
         Composite composite_3 = new Composite(composite_2, SWT.NONE);
         composite_3.setLayout(new GridLayout(1, false));
+        composite_3.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
 
         text_NType = new Text(composite_3, SWT.READ_ONLY);
         text_NType.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -274,6 +279,7 @@ public class AddMarksDialog {
 
         Composite composite_9 = new Composite(composite_2, SWT.NONE);
         composite_9.setLayout(new GridLayout(1, false));
+        composite_9.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         text_Image = new Text(composite_9, SWT.READ_ONLY);
         text_Image.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -304,6 +310,7 @@ public class AddMarksDialog {
 
         Composite composite_10 = new Composite(composite_2, SWT.NONE);
         composite_10.setLayout(new GridLayout(1, false));
+        composite_10.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         text_Subject = new Text(composite_10, SWT.READ_ONLY);
         text_Subject.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -334,6 +341,7 @@ public class AddMarksDialog {
 
         Composite composite_11 = new Composite(composite_2, SWT.NONE);
         composite_11.setLayout(new GridLayout(1, false));
+        composite_11.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         text_Specific = new Text(composite_11, SWT.READ_ONLY);
         text_Specific.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -364,6 +372,7 @@ public class AddMarksDialog {
 
         Composite composite_12 = new Composite(composite_2, SWT.NONE);
         composite_12.setLayout(new GridLayout(1, false));
+        composite_12.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
         text_Praise = new Text(composite_12, SWT.READ_ONLY);
         text_Praise.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -407,11 +416,18 @@ public class AddMarksDialog {
         }
 
         Button btnNext = new Button(composite_2, SWT.NONE);
+        btnNext.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
         btnNext.setText("Next");
         AddMarksReadMoreWindowListener addmarksListener = new AddMarksReadMoreWindowListener(newsList, btnMarks);
         btnNext.addSelectionListener(addmarksListener);
 
-        shell.pack();
+       
+        scrolledComposite.setContent(composite);
+        scrolledComposite.setMinWidth(500);
+        scrolledComposite.setMinHeight(820); 
+        shell.setSize(530, 593);
+
+        //shell.pack();
     }
 
     public void open() {

@@ -34,7 +34,7 @@ public class ShowSexOrientationListener implements SelectionListener {
         int titlePos = CountLabel.countTitlePos(section.getText());
         int marksPos = CountLabel.countLabelPos(titlePos, b.getText());
         
-        Map<String, Integer> map = new HashMap();
+        Map<String, Integer> map = new HashMap<>();
         
         map.put("男", sexOrientation[titlePos][marksPos][0]);
         map.put("女", sexOrientation[titlePos][marksPos][1]);

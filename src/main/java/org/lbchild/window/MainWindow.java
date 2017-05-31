@@ -17,20 +17,15 @@ import org.lbchild.util.Base64Content;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
-import org.lbchild.xml.XMLWriter;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
 import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.res.management.SWTResourceManager;
-import org.lbchild.url.UrlAnalyzer;
+//import org.lbchild.url.UrlAnalyzer;
 import org.eclipse.swt.widgets.Text;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -39,6 +34,7 @@ import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Map;
+
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.custom.ScrolledComposite;
 
@@ -62,9 +58,11 @@ public class MainWindow extends ApplicationWindow {
 
     private static java.util.List<Integer> deleteIndex;
 
+
     public static int sichuanLength;
     
     public static int nanfangLength;
+
 
     /**
      * Create the application window.
