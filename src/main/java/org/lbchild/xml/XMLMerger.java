@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -14,16 +15,27 @@ import org.dom4j.io.SAXReader;
 
 public class XMLMerger {
 
-    private File file1;
+    public static List<File> directoryList = new ArrayList<>();
 
-    private File file2;
+    private String path;
+    
+    private String userName;
+    
+    private static final String NEWSMARKS = "/newsmarks.xml";
 
-    public XMLMerger(File file1, File file2) {
-        this.file1 = file1;
-        this.file2 = file2;
+    public XMLMerger(String path, String userName) {
+        this.setPath(path);
+        this.setUserName(userName);
+        File file = new File(path);
+        File[] tempList = file.listFiles();
+        for (int i = 0; i < tempList.length; i++) {
+            if (tempList[i].isDirectory()) {
+                directoryList.add(tempList[i]);
+            }
+        }
     }
 
-    public void mergeXml() {
+    public void mergeXml(File file1, File file2) {
 
         try {
             // 获取读取xml的对象
@@ -76,12 +88,11 @@ public class XMLMerger {
                     Element idElement = newsData.addElement("ID");
                     idElement.setText(list2.get(j).element("ID").getText());
 
-                    writeIntoXml(file1, document1);
                     j++;
                 }
                 if (list2.get(j).element("ID").getText().compareTo(list1.get(i).element("ID").getText()) == 0) {
                     list1.get(i).element("NewsMarks").setText(list2.get(j).element("NewsMarks").getText());
-                    writeIntoXml(file1, document1);
+
                     i++;
                     j++;
                 }
@@ -102,10 +113,9 @@ public class XMLMerger {
                 Element idElement = newsData.addElement("ID");
                 idElement.setText(list2.get(j).element("ID").getText());
 
-                writeIntoXml(file1, document1);
                 j++;
             }
-
+            writeIntoXml(file1, document1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -128,10 +138,29 @@ public class XMLMerger {
         }
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    
     public static void main(String[] args) {
-        File file1 = new File("newsmarks.xml");
-        File file2 = new File("newsmarks2.xml");
-        new XMLMerger(file1, file2).mergeXml();
+        XMLMerger xmlMerger = new XMLMerger("src/main/resources/", "user2");
+        for (int i = 0; i < directoryList.size(); i++) {
+            xmlMerger.mergeXml(
+                    new File(xmlMerger.getPath() + "/" + xmlMerger.getUserName() + NEWSMARKS), 
+                    new File(xmlMerger.getPath() + directoryList.get(i).getName() + NEWSMARKS));
+        }
     }
 
 }
