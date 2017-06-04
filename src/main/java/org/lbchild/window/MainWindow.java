@@ -20,6 +20,7 @@ import org.lbchild.xml.XMLReader;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
 import org.lbchild.controller.ReadMoreListener;
+import org.lbchild.controller.RecycleAction;
 import org.lbchild.res.management.SWTResourceManager;
 //import org.lbchild.url.UrlAnalyzer;
 import org.eclipse.swt.widgets.Text;
@@ -40,6 +41,7 @@ import org.eclipse.swt.custom.ScrolledComposite;
 
 public class MainWindow extends ApplicationWindow {
     private AnalyzeAction analyzeAction;
+    private RecycleAction recycleAction;
     private Text text_Type;
     private Text text_Theme;
     private Text text_Source;
@@ -575,7 +577,7 @@ public class MainWindow extends ApplicationWindow {
 
         // Create the actions
         analyzeAction = new AnalyzeAction("Analysis");
-
+        recycleAction = new RecycleAction("Recycle");
     }
 
     /**
