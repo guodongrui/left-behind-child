@@ -2,6 +2,7 @@ package org.lbchild.model;
 
 public class NewsItem {
 
+    private String id;
     private String date;
     private String content;
     private String newsMarks;
@@ -10,6 +11,14 @@ public class NewsItem {
     private String newsLink;
     private String title;
     private String id;
+    
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     
     public String getDate() {
         return date;

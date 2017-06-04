@@ -2,7 +2,6 @@ package org.lbchild.controller;
 
 import java.util.ArrayList;
 import java.util.Map;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -16,6 +15,8 @@ import org.eclipse.ui.forms.events.IExpansionListener;
 import org.eclipse.ui.forms.widgets.Section;
 import org.jfree.experimental.chart.swt.ChartComposite;
 import org.lbchild.chart.PieChart;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ShowOrientationListener implements IExpansionListener {
 
@@ -35,6 +36,8 @@ public class ShowOrientationListener implements IExpansionListener {
 
         Section s = (Section) e.getSource();
 
+        Logger logger = LoggerFactory.getLogger(ShowOrientationListener.class);
+        
         if (s.isExpanded()) {
             PieChart pieChart = new PieChart(newsmarks.get(index));
             pieChart.setTile(s.getText() + "分析");
@@ -48,6 +51,9 @@ public class ShowOrientationListener implements IExpansionListener {
 
             orientation.layout(true, true);
         }
+        
+        logger.info("ShowOrientationListener");
+        
     }
 
     @Override
