@@ -58,8 +58,7 @@ public class AddMarksReadMoreWindowListener implements SelectionListener {
         int lineId = newsSummaryList.getFocusIndex();
         newsSummaryList.setSelection(lineId + 1);
         */
-        out.insertXml(newsMarks, newsList.getNewsItem(win.getLineId()).getDate().split("-")[0], win.getLineId());
-        
+
         
         win.setLineId(win.getLineId() + 1);
         win.setTitle(newsList.getNewsItem(win.getLineId()).getTitle());
@@ -68,6 +67,8 @@ public class AddMarksReadMoreWindowListener implements SelectionListener {
         if (newsContent != null) {
             win.setContent(newsContent);
         }
+        
+        out.insertXml(newsMarks, newsList.getNewsItem(win.getLineId()).getDate().split("-")[0], newsList.getNewsItem(win.getLineId()).getId());
         
 //        ReadMoreWindow window = new ReadMoreWindow(newsList, lineId);
 //        setLineId(lineId+1);

@@ -56,7 +56,7 @@ public class AddMarksListener implements SelectionListener {
 
         int lineId = newsSummaryList.getFocusIndex();
         newsSummaryList.setSelection(lineId + 1);
-        out.insertXml(newsMarks, newsList.getNewsItem(lineId).getDate().split("-")[0], lineId);
+        out.insertXml(newsMarks, newsList.getNewsItem(lineId).getDate().split("-")[0], newsList.getNewsItem(lineId).getId());
         
     }
 

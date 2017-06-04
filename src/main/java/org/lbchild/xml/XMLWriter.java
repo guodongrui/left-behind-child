@@ -21,7 +21,7 @@ public class XMLWriter {
         this.file = file;
     }
 
-    public void insertXml(String newsMarks, String date, int lineId) {
+    public void insertXml(String newsMarks, String date, String id) {
 
         try {
             // 获取读取xml的对象
@@ -35,7 +35,7 @@ public class XMLWriter {
 
             List<Element> list = arrayOfNewsData.elements("NewsData");
             for (Element e : list) {
-                if (Integer.parseInt(e.element("LineId").getText()) == lineId) {
+                if (e.element("ID").getText().equals(id)) {
                     e.element("NewsMarks").setText(newsMarks);
                     writeIntoXml(file, document);
                     return;
@@ -54,8 +54,8 @@ public class XMLWriter {
             newsDate.setText(date);
 
             // 创建NewsData结点下的LineId子结点
-            Element idElement = newsData.addElement("LineId");
-            idElement.setText(String.valueOf(lineId));
+            Element idElement = newsData.addElement("ID");
+            idElement.setText(id);
 
             writeIntoXml(file, document);
 

@@ -120,7 +120,8 @@ public class MainWindow extends ApplicationWindow {
                 newsItem.setContent(content);
                 newsItem.setDeleted(Boolean.parseBoolean(list.get(i).get("IsDeleted")));
                 newsItem.setLocation(list.get(i).get("Location"));
-
+                newsItem.setId(list.get(i).get("ID"));
+                
                 if (newsItem.isDeleted()) {
                     continue;
                 } else {
