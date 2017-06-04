@@ -17,21 +17,18 @@ import org.lbchild.util.Base64Content;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
 import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.res.management.SWTResourceManager;
-//import org.lbchild.url.UrlAnalyzer;
 import org.eclipse.swt.widgets.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -57,12 +54,11 @@ public class MainWindow extends ApplicationWindow {
     private List newsSummaryList;
 
     private static java.util.List<Integer> deleteIndex;
-
-
-    public static int sichuanLength;
     
-    public static int nanfangLength;
-
+    public static enum Newspaper { GUANGMING, NANFANG, SICHUAN }
+    public static int[] newsSourceFileLength = new int[Newspaper.values().length];
+    
+    private static Logger logger = LoggerFactory.getLogger(MainWindow.class);
 
     /**
      * Create the application window.
@@ -78,29 +74,25 @@ public class MainWindow extends ApplicationWindow {
     }
 
     private void initNewsList() {
-
-        try {
-            File file1 = new File("src/main/resources/sichuan2.xml");
-            File file2 = new File("src/main/resources/nanfangdaily2.xml");
-            File file3 = new File("src/main/resources/guangming2.xml");
-
-            XMLReader in1 = new XMLReader(file1);
-            XMLReader in2 = new XMLReader(file2);
-            XMLReader in3 = new XMLReader(file3);
-
-            ArrayList<Map<String, String>> list1 = in1.readXml();
-            sichuanLength = list1.size();
-            ArrayList<Map<String, String>> list2 = in2.readXml();
-            nanfangLength = list2.size();
-            ArrayList<Map<String, String>> list3 = in3.readXml();
-
+        try {            
+            File newsSourcefile[] = new File[3]; 
+            newsSourcefile[Newspaper.GUANGMING.ordinal()] = new File("src/main/resources/guangming2.xml");
+            newsSourcefile[Newspaper.NANFANG.ordinal()] = new File("src/main/resources/nanfangdaily2.xml");
+            newsSourcefile[Newspaper.SICHUAN.ordinal()] = new File("src/main/resources/sichuan2.xml");
+            
             ArrayList<Map<String, String>> list = new ArrayList<>();
-            list.addAll(list1);
-            list.addAll(list2);
-            list.addAll(list3);
+            for (Newspaper newspaper: Newspaper.values()) {
+                int num = newspaper.ordinal();
+                
+                // 将各新闻文件新闻总条数存储到 newsSourceFileLength 里
+                ArrayList<Map<String, String>> temp = new XMLReader(newsSourcefile[num]).readXml();
+                newsSourceFileLength[num] = temp.size(); 
+                list.addAll(temp);
+            }
 
+            logger.info("finishing reading news from file");
+            
             int n = list.size();
-            System.out.println(n);
             ArrayList<NewsItem> li = new ArrayList<>();
             for (int i = 0; i < n; ++i) {
                 NewsItem newsItem = new NewsItem();
@@ -130,7 +122,9 @@ public class MainWindow extends ApplicationWindow {
             }
 
             newsList = new NewsList(li);
-
+            
+            logger.info("finishing initializing newsList");
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -656,12 +650,7 @@ public class MainWindow extends ApplicationWindow {
     }
 
     public static java.util.List<Integer> getDeleteInstance() {
-        // if (deleteIndex == null) {
-        // deleteIndex = new ArrayList<>();
-        // } else {
         deleteIndex = readFile();
-        System.out.println(deleteIndex);
-        // }
         return deleteIndex;
     }
 
@@ -679,7 +668,8 @@ public class MainWindow extends ApplicationWindow {
                 }
             }
             in.close();
-
+            
+            logger.info("finishing reading delte-index.txt");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -693,6 +683,8 @@ public class MainWindow extends ApplicationWindow {
                 out.write(deleteIndex.get(i) + " ");
             }
             out.close();
+            
+            logger.info("finishing writing delte-index.txt");
         } catch (Exception e) {
             e.printStackTrace();
         }

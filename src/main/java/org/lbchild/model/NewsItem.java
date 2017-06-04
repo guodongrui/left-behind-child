@@ -75,4 +75,5 @@ public class NewsItem {
         this.id = id;
     }
 
+
 }

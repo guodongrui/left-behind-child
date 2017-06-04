@@ -10,8 +10,6 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
-import org.lbchild.model.NewsList;
-import org.lbchild.util.Base64Content;
 
 public class XMLWriter {
 

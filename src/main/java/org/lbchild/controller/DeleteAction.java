@@ -25,8 +25,6 @@ public class DeleteAction extends Action {
 
     private File file;
 
-    private int i = 0;
-
     public DeleteAction(NewsList newsList) {
         super();
         file = new File("src/main/resources/nanfangdaily2.xml");
@@ -67,6 +65,8 @@ public class DeleteAction extends Action {
             newsList.deleteIndex(selectionId);
             deleteIndex.clear();
             
+            
+            // 删除后显示下一条新闻
             ReadMoreWindow.getReadMoreWindow().setLineId(ReadMoreWindow.getReadMoreWindow().getLineId());
             ReadMoreWindow.getReadMoreWindow()
                     .setTitle(newsList.getNewsItem(ReadMoreWindow.getReadMoreWindow().getLineId()).getTitle());
