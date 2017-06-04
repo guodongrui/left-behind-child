@@ -45,17 +45,7 @@ public class DeleteAction extends Action {
                     sum++;
                 }
             }
-            System.out.println(sum);
-//            i = ReadMoreWindow.getReadMoreWindow().getLineId() + NewsList.countDeleted;
-//
-//            MainWindow.getMainWindow().getNewsSummaryList().remove(selectionId);
-//            if (selectionId < i) {
-//                new XMLWriter(file).updateXml(selectionId + NewsList.jj, "true");
-//                NewsList.jj++;
-//            } else {
-//                new XMLWriter(file).updateXml(i, "true");
-//            }
-//            NewsList.countDeleted++;
+
             MainWindow.getMainWindow().getNewsSummaryList().remove(selectionId);
             new XMLWriter(file).updateXml(selectionId + sum, "true");
             

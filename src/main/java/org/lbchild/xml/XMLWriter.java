@@ -54,7 +54,6 @@ public class XMLWriter {
             // 创建NewsData结点下的LineId子结点
             Element idElement = newsData.addElement("ID");
             idElement.setText(id);
-
             writeIntoXml(file, document);
 
         } catch (Exception e) {
