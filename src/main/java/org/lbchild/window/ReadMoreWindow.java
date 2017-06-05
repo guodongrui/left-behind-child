@@ -19,7 +19,6 @@ import org.lbchild.model.NewsList;
 
 import org.eclipse.swt.widgets.Text;
 import org.lbchild.res.management.SWTResourceManager;
-import org.lbchild.url.UrlAnalyzer;
 import org.lbchild.url.UrlContentDownloader;
 
 public class ReadMoreWindow extends ApplicationWindow {

@@ -4,7 +4,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.List;
 import org.lbchild.model.NewsList;
-import org.lbchild.url.UrlContentDownloader;
 import org.lbchild.window.ReadMoreWindow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

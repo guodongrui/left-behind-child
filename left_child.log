@@ -412,3 +412,225 @@ INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2476
 INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2476 content which from url
 INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2485
 INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2476into file
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - create src/main/resources/guodongrui directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 1
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is w
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main Main - status: 0
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 1
+INFO main Main - status: 1
+INFO main Main - status: 1
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main Main - status: 1
+INFO main Main - create src/main/resources/guodongrui directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is “”
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/“” directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList

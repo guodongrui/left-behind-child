@@ -34,7 +34,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.custom.ScrolledComposite;
 
 public class MainWindow extends ApplicationWindow {
-	private AnalyzeAction analyzeAction;
+    private AnalyzeAction analyzeAction;
     private Text text_Type;
     private Text text_Theme;
     private Text text_Source;
@@ -52,10 +52,12 @@ public class MainWindow extends ApplicationWindow {
     private List newsSummaryList;
     private java.util.List<Integer> deleteIndex;
 
-    
-    public static enum Newspaper { GUANGMING, NANFANG, SICHUAN }
+    public static enum Newspaper {
+        GUANGMING, NANFANG, SICHUAN
+    }
+
     public static int[] newsSourceFileLength = new int[Newspaper.values().length];
-    
+
     private static Logger logger = LoggerFactory.getLogger(MainWindow.class);
 
     /**
@@ -72,19 +74,19 @@ public class MainWindow extends ApplicationWindow {
     }
 
     private void initNewsList() {
-        try {            
-            File newsSourcefile[] = new File[3]; 
+        try {
+            File newsSourcefile[] = new File[3];
             newsSourcefile[Newspaper.GUANGMING.ordinal()] = new File("src/main/resources/guangming2.xml");
             newsSourcefile[Newspaper.NANFANG.ordinal()] = new File("src/main/resources/nanfangdaily2.xml");
             newsSourcefile[Newspaper.SICHUAN.ordinal()] = new File("src/main/resources/sichuan2.xml");
-            
+
             ArrayList<Map<String, String>> list = new ArrayList<>();
-            for (Newspaper newspaper: Newspaper.values()) {
+            for (Newspaper newspaper : Newspaper.values()) {
                 int num = newspaper.ordinal();
-                
+
                 // 将各新闻文件新闻总条数存储到 newsSourceFileLength 里
                 ArrayList<Map<String, String>> temp = new XMLReader(newsSourcefile[num]).readXml();
-                newsSourceFileLength[num] = temp.size(); 
+                newsSourceFileLength[num] = temp.size();
                 list.addAll(temp);
             }
 
@@ -112,19 +114,19 @@ public class MainWindow extends ApplicationWindow {
                 newsItem.setDeleted(Boolean.parseBoolean(list.get(i).get("IsDeleted")));
                 newsItem.setLocation(list.get(i).get("Location"));
                 newsItem.setId(list.get(i).get("ID"));
-                
+
                 if (newsItem.isDeleted()) {
                     deleteIndex.add(i);
-                    logger.info("deleteIndex is" + deleteIndex.toString());
+                    logger.info("deleteIndex is " + deleteIndex.toString());
                 } else {
                     li.add(newsItem);
                 }
             }
 
             newsList = new NewsList(li);
-            
+
             logger.info("finishing initializing newsList");
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -552,8 +554,8 @@ public class MainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        String path="src/main/resources/newsmarks.xml";
-        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks,path));
+        String path = "src/main/resources/newsmarks.xml";
+        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
 
@@ -648,6 +650,5 @@ public class MainWindow extends ApplicationWindow {
     public List getNewsSummaryList() {
         return newsSummaryList;
     }
-
 
 }

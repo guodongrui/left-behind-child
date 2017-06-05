@@ -29,7 +29,7 @@ import org.lbchild.util.Base64Content;
 import org.lbchild.xml.XMLReader;
 
 public class TrainWindow extends ApplicationWindow {
-	
+
     private Text text_Type;
     private Text text_Theme;
     private Text text_Source;
@@ -41,42 +41,44 @@ public class TrainWindow extends ApplicationWindow {
     private Text text_Praise;
     private Text text_Sex;
     private NewsList newsList;
-	/**
-	 * Create the application window.
-	 */
-	public TrainWindow() {
-		super(null);
-		init();
-		createActions();
-		addToolBar(SWT.FLAT | SWT.WRAP);
-		addMenuBar();
-		addStatusLine();
-	}
-	public void init() {
-    	newsList = new NewsList();
-    	readFile("src/main/resources/guangming.xml");
-    	readFile("src/main/resources/nanfangdaily.xml");
-    	readFile("src/main/resources/sichuan.xml");
-	}
+
+    /**
+     * Create the application window.
+     */
+    public TrainWindow() {
+        super(null);
+        init();
+        createActions();
+        addToolBar(SWT.FLAT | SWT.WRAP);
+        addMenuBar();
+        addStatusLine();
+    }
+
+    public void init() {
+        newsList = new NewsList();
+        readFile("src/main/resources/guangming.xml");
+        readFile("src/main/resources/nanfangdaily.xml");
+        readFile("src/main/resources/sichuan.xml");
+    }
+
     private void readFile(String path) {
-    	try {
+        try {
             File file = new File(path);
             XMLReader in = new XMLReader(file);
             ArrayList<Map<String, String>> list = in.readXml();
 
-            int size=list.size();
+            int size = list.size();
             ArrayList<NewsItem> li = new ArrayList<>();
-            for (int i = 0; i < (10<size? 10:size); ++i) {
+            for (int i = 0; i < (10 < size ? 10 : size); ++i) {
                 NewsItem newsItem = new NewsItem();
                 newsItem.setDate(list.get(i).get("Date"));
                 newsItem.setTitle(list.get(i).get("Title"));
-                String encodedContent = list.get(i).get("EncodedContent"); 
+                String encodedContent = list.get(i).get("EncodedContent");
                 String content = null;
-                
+
                 if (encodedContent != null) {
                     content = Base64Content.decode(encodedContent).replaceAll("</?html>|</?body>|</?P>", "");
-                    
-                   
+
                 } else {
                     content = list.get(i).get("TrueUrl");
                     if (content == null)
@@ -86,22 +88,22 @@ public class TrainWindow extends ApplicationWindow {
                 newsItem.setDeleted(Boolean.parseBoolean(list.get(i).get("IsDeleted")));
                 newsItem.setLocation(list.get(i).get("Location"));
                 li.add(newsItem);
-                
+
             }
 
             newsList.addNewList(li);
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-		
-	}
 
-	/**
-	 * Create contents of the application window.
-	 * @param parent
-	 */
+    }
+
+    /**
+     * Create contents of the application window.
+     * 
+     * @param parent
+     */
     @Override
     protected Control createContents(Composite parent) {
         Composite container = new Composite(parent, SWT.NONE);
@@ -519,8 +521,8 @@ public class TrainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        String path="src/main/resources/Test1.xml";
-        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks,path));
+        String path = "src/main/resources/Test1.xml";
+        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
 
@@ -530,76 +532,80 @@ public class TrainWindow extends ApplicationWindow {
         return container;
     }
 
-	/**
-	 * Create the actions.
-	 */
-	private void createActions() {
-          
-	    
-	}
+    /**
+     * Create the actions.
+     */
+    private void createActions() {
 
-	/**
-	 * Create the menu manager.
-	 * @return the menu manager
-	 */
-	@Override
-	protected MenuManager createMenuManager() {
-		MenuManager menuManager = new MenuManager("menu");
-		return menuManager;
-	}
+    }
 
-	/**
-	 * Create the toolbar manager.
-	 * @return the toolbar manager
-	 */
-	@Override
-	protected ToolBarManager createToolBarManager(int style) {
-		 ToolBarManager toolBarManager = new ToolBarManager(style);
-	       
-	        return toolBarManager;
-	}
+    /**
+     * Create the menu manager.
+     * 
+     * @return the menu manager
+     */
+    @Override
+    protected MenuManager createMenuManager() {
+        MenuManager menuManager = new MenuManager("menu");
+        return menuManager;
+    }
 
-	/**
-	 * Create the status line manager.
-	 * @return the status line manager
-	 */
-	@Override
-	protected StatusLineManager createStatusLineManager() {
-		StatusLineManager statusLineManager = new StatusLineManager();
-		return statusLineManager;
-	}
+    /**
+     * Create the toolbar manager.
+     * 
+     * @return the toolbar manager
+     */
+    @Override
+    protected ToolBarManager createToolBarManager(int style) {
+        ToolBarManager toolBarManager = new ToolBarManager(style);
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 */
-	public static void main(String args[]) {
-		try {
-			TrainWindow window = new TrainWindow();
-			window.setBlockOnOpen(true);
-			window.open();
-			Display.getCurrent().dispose();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        return toolBarManager;
+    }
 
-	/**
-	 * Configure the shell.
-	 * @param newShell
-	 */
-	@Override
-	protected void configureShell(Shell newShell) {
-		super.configureShell(newShell);
+    /**
+     * Create the status line manager.
+     * 
+     * @return the status line manager
+     */
+    @Override
+    protected StatusLineManager createStatusLineManager() {
+        StatusLineManager statusLineManager = new StatusLineManager();
+        return statusLineManager;
+    }
+
+    /**
+     * Launch the application.
+     * 
+     * @param args
+     */
+    public static void main(String args[]) {
+        try {
+            TrainWindow window = new TrainWindow();
+            window.setBlockOnOpen(true);
+            window.open();
+            Display.getCurrent().dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Configure the shell.
+     * 
+     * @param newShell
+     */
+    @Override
+    protected void configureShell(Shell newShell) {
+        super.configureShell(newShell);
         newShell.setText("News");
-	}
+    }
 
-	/**
-	 * Return the initial size of the window.
-	 */
-	@Override
-	protected Point getInitialSize() {
-		return new Point(1009, 734);
-	}
+    /**
+     * Return the initial size of the window.
+     */
+    @Override
+    protected Point getInitialSize() {
+        return new Point(1009, 734);
+    }
 
 }

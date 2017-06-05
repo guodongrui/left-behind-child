@@ -3,13 +3,11 @@ package org.lbchild.controller;
 import java.io.File;
 import java.util.ArrayList;
 
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.List;
 import org.lbchild.model.NewsList;
-import org.lbchild.model.NewsSummaryList;
 import org.lbchild.xml.XMLWriter;
 
 public class AddMarksListener implements SelectionListener {

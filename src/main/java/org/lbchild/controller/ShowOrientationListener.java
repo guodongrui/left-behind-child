@@ -3,11 +3,6 @@ package org.lbchild.controller;
 import java.util.ArrayList;
 import java.util.Map;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.events.ExpansionEvent;
@@ -32,7 +27,6 @@ public class ShowOrientationListener implements IExpansionListener {
 
     @Override
     public void expansionStateChanged(ExpansionEvent e) {
-        // TODO Auto-generated method stub
 
         Section s = (Section) e.getSource();
 
@@ -58,7 +52,6 @@ public class ShowOrientationListener implements IExpansionListener {
 
     @Override
     public void expansionStateChanging(ExpansionEvent arg0) {
-        // TODO Auto-generated method stub
 
     }
 
