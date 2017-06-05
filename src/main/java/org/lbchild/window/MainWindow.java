@@ -34,7 +34,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.custom.ScrolledComposite;
 
 public class MainWindow extends ApplicationWindow {
-    private AnalyzeAction analyzeAction;
+	private AnalyzeAction analyzeAction;
     private Text text_Type;
     private Text text_Theme;
     private Text text_Source;
@@ -552,7 +552,8 @@ public class MainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks));
+        String path="src/main/resources/newsmarks.xml";
+        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks,path));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
 
