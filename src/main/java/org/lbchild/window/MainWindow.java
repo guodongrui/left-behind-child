@@ -12,7 +12,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Group;
-
 import org.lbchild.util.Base64Content;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;

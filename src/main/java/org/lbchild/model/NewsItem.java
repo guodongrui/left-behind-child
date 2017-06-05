@@ -9,7 +9,6 @@ public class NewsItem {
     private String Location;
     private String newsLink;
     private String title;
-    private String id;
     
     public String getDate() {
         return date;
@@ -66,14 +65,4 @@ public class NewsItem {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-
 }
