@@ -1,13 +1,5 @@
 package org.lbchild.controller;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
@@ -15,7 +7,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.lbchild.model.NewsList;
 import org.lbchild.window.MainWindow;
 import org.lbchild.window.ReadMoreWindow;
-import org.lbchild.xml.XMLWriter;
+import org.lbchild.xml.XMLSelectionIdWriter;
 
 public class DeleteAction extends Action {
 
@@ -23,11 +15,8 @@ public class DeleteAction extends Action {
 
     private NewsList newsList;
 
-    private File file;
-
     public DeleteAction(NewsList newsList) {
         super();
-        file = new File("src/main/resources/nanfangdaily2.xml");
         this.newsList = newsList;
     }
 
@@ -37,27 +26,14 @@ public class DeleteAction extends Action {
         int rc = msgbox.open();
         if (rc == SWT.YES) {
             selectionId = ReadMoreWindow.getReadMoreWindow().getLineId();
-            int sum = 0;
-            List<Integer> deleteIndex = MainWindow.getDeleteInstance();
-            for (int index = 0; index < deleteIndex.size(); index++) {
-                int d_id = deleteIndex.get(index);
-                if (selectionId + sum >= d_id && sum <= d_id) {
-                    sum++;
-                }
-            }
 
             MainWindow.getMainWindow().getNewsSummaryList().remove(selectionId);
-            new XMLWriter(file).updateXml(selectionId + sum, "true");
-            
-            deleteIndex.add(selectionId + sum);
-            Collections.sort(deleteIndex);
-            MainWindow.writeFile();
+            new XMLSelectionIdWriter().updateXml(selectionId, "true");
             newsList.deleteIndex(selectionId);
-            deleteIndex.clear();
-            
             
             // 删除后显示下一条新闻
-            ReadMoreWindow.getReadMoreWindow().setLineId(ReadMoreWindow.getReadMoreWindow().getLineId());
+            ReadMoreWindow.getReadMoreWindow().setLineId(ReadMoreWindow.getReadMoreWindow().getLineId() % (newsList.getNewsList().size()));
+            MainWindow.getMainWindow().getNewsSummaryList().setSelection(ReadMoreWindow.getReadMoreWindow().getLineId());
             ReadMoreWindow.getReadMoreWindow()
                     .setTitle(newsList.getNewsItem(ReadMoreWindow.getReadMoreWindow().getLineId()).getTitle());
             ReadMoreWindow.getReadMoreWindow()

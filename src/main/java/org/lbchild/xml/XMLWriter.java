@@ -13,8 +13,9 @@ import org.dom4j.io.SAXReader;
 
 public class XMLWriter {
 
-    private File file;
+    protected File file;
 
+    public XMLWriter() {}
     public XMLWriter(File file) {
         this.file = file;
     }

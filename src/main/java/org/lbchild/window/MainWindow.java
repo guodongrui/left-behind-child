@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Group;
 
 import org.lbchild.util.Base64Content;
+import org.lbchild.util.DeleteIndex;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
@@ -25,10 +26,7 @@ import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.res.management.SWTResourceManager;
 import org.eclipse.swt.widgets.Text;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -52,8 +50,8 @@ public class MainWindow extends ApplicationWindow {
     private static MainWindow mainWindow;
 
     private List newsSummaryList;
+    private java.util.List<Integer> deleteIndex;
 
-    private static java.util.List<Integer> deleteIndex;
     
     public static enum Newspaper { GUANGMING, NANFANG, SICHUAN }
     public static int[] newsSourceFileLength = new int[Newspaper.values().length];
@@ -91,9 +89,10 @@ public class MainWindow extends ApplicationWindow {
             }
 
             logger.info("finishing reading news from file");
-            
+
             int n = list.size();
             ArrayList<NewsItem> li = new ArrayList<>();
+            deleteIndex = DeleteIndex.getInstance();
             for (int i = 0; i < n; ++i) {
                 NewsItem newsItem = new NewsItem();
                 newsItem.setDate(list.get(i).get("Date"));
@@ -115,7 +114,8 @@ public class MainWindow extends ApplicationWindow {
                 newsItem.setId(list.get(i).get("ID"));
                 
                 if (newsItem.isDeleted()) {
-                    continue;
+                    deleteIndex.add(i);
+                    logger.info("deleteIndex is" + deleteIndex.toString());
                 } else {
                     li.add(newsItem);
                 }
@@ -648,44 +648,5 @@ public class MainWindow extends ApplicationWindow {
         return newsSummaryList;
     }
 
-    public static java.util.List<Integer> getDeleteInstance() {
-        deleteIndex = readFile();
-        return deleteIndex;
-    }
 
-    public static java.util.List<Integer> readFile() {
-        File file = new File("src/main/resources/delete-index.txt");
-        java.util.List<Integer> ret = new ArrayList<>();
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(file));
-            String lineStr = in.readLine();
-
-            if (lineStr != null) {
-                String[] deleteIndexStr = lineStr.split(" ");
-                for (String s : deleteIndexStr) {
-                    ret.add(Integer.valueOf(s));
-                }
-            }
-            in.close();
-            
-            logger.info("finishing reading delte-index.txt");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ret;
-    }
-
-    public static void writeFile() {
-        try {
-            FileWriter out = new FileWriter(new File("src/main/resources/delete-index.txt"));
-            for (int i = 0; i < deleteIndex.size(); i++) {
-                out.write(deleteIndex.get(i) + " ");
-            }
-            out.close();
-            
-            logger.info("finishing writing delte-index.txt");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

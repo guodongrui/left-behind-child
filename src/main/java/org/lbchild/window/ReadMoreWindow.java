@@ -19,6 +19,8 @@ import org.lbchild.model.NewsList;
 
 import org.eclipse.swt.widgets.Text;
 import org.lbchild.res.management.SWTResourceManager;
+import org.lbchild.url.UrlAnalyzer;
+import org.lbchild.url.UrlContentDownloader;
 
 public class ReadMoreWindow extends ApplicationWindow {
     private DeleteAction deleteToolItem;
@@ -69,7 +71,7 @@ public class ReadMoreWindow extends ApplicationWindow {
                 title.setEditable(false);
                 title.setRedraw(true);
             }
-            title.setText(newsList.getNewsItem(getLineId()).getTitle());
+            setTitle(newsList.getNewsItem(getLineId()).getTitle());
         }
         {
             Composite composite_date = new Composite(container, SWT.NONE);
@@ -82,7 +84,7 @@ public class ReadMoreWindow extends ApplicationWindow {
                 date.setEditable(false);
                 date.setRedraw(true);
             }
-            date.setText("日期: " + newsList.getNewsItem(getLineId()).getDate());
+            setDate("日期: " + newsList.getNewsItem(getLineId()).getDate());
         }
         {
             Composite composite_content = new Composite(container, SWT.NONE);
@@ -97,7 +99,7 @@ public class ReadMoreWindow extends ApplicationWindow {
             
             String newsContent = newsList.getNewsItem(getLineId()).getContent();
             if (content != null) {
-                content.setText(newsContent);
+                setContent(newsContent);
             }
         }
         return container;
@@ -187,12 +189,17 @@ public class ReadMoreWindow extends ApplicationWindow {
 
 
     public void setDate(String date) {
-        this.date.setText(date);;
+        this.date.setText(date);
     }
 
 
     public void setContent(String content) {
-        this.content.setText(content);;
+        if (content.startsWith("http:")) {
+            UrlContentDownloader.writeEncodedContent(newsList, lineId);
+            this.content.setText(newsList.getNewsList().get(lineId).getContent());
+        } else {
+            this.content.setText(content);
+        }
     }
 
     public static ReadMoreWindow getReadMoreWindow() {
