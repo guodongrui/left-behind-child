@@ -5,7 +5,12 @@ import java.util.List;
 
 public class NewsList {
     ArrayList<NewsItem> newsList;
-
+    public NewsList() {
+		newsList=new ArrayList<>();
+	}
+    public void addNewList(ArrayList<NewsItem> newsList) {
+		this.newsList.addAll(newsList);
+	}
     public ArrayList<NewsItem> getNewsList() {
         return newsList;
     }
@@ -13,7 +18,7 @@ public class NewsList {
     public NewsList(ArrayList<NewsItem> newsList) {
         this.newsList = newsList;
     }
-
+    
     public NewsItem getNewsItem(int lineId) {
         return newsList.get(lineId);
     }

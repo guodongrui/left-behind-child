@@ -17,11 +17,12 @@ public class AddMarksListener implements SelectionListener {
     private List newsSummaryList;
     private ArrayList<ArrayList<Button>> btnMarks;
     private NewsList newsList;
-
-    public AddMarksListener(NewsList newsList, List newsSummaryList, ArrayList<ArrayList<Button>> btnMarks) {
+    private String path;
+    public AddMarksListener(NewsList newsList, List newsSummaryList, ArrayList<ArrayList<Button>> btnMarks,String path) {
         this.newsSummaryList = newsSummaryList;
         this.btnMarks = btnMarks;
         this.newsList = newsList;
+        this.path=path;
     }
 
     @Override
@@ -51,7 +52,7 @@ public class AddMarksListener implements SelectionListener {
             }
         }
         
-        File file = new File("src/main/resources/newsmarks.xml");
+        File file = new File(path);
         XMLWriter out = new XMLWriter(file);
 
         int lineId = newsSummaryList.getFocusIndex();
