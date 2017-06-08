@@ -18,6 +18,8 @@ public class ShowOrientationListener implements IExpansionListener {
     private Composite orientation;
     private ArrayList<Map<String, Integer>> newsmarks;
     private int index;
+    private static Logger logger = LoggerFactory.getLogger(ShowOrientationListener.class);
+
 
     public ShowOrientationListener(ArrayList<Map<String, Integer>> newsmarks, int i, Composite orientation) {
         this.orientation = orientation;
@@ -29,8 +31,6 @@ public class ShowOrientationListener implements IExpansionListener {
     public void expansionStateChanged(ExpansionEvent e) {
 
         Section s = (Section) e.getSource();
-
-        Logger logger = LoggerFactory.getLogger(ShowOrientationListener.class);
         
         if (s.isExpanded()) {
             PieChart pieChart = new PieChart(newsmarks.get(index));
@@ -46,7 +46,7 @@ public class ShowOrientationListener implements IExpansionListener {
             orientation.layout(true, true);
         }
         
-        logger.info("ShowOrientationListener");
+        logger.info("expansion event");
         
     }
 

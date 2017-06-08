@@ -30,6 +30,7 @@ import org.lbchild.controller.ExpandCleanMarksListener;
 import org.lbchild.controller.ShowOrientationListener;
 import org.lbchild.controller.ShowSexOrientationListener;
 import org.lbchild.controller.ShowSexTendencyListener;
+import org.lbchild.model.User;
 import org.lbchild.util.CountLabel;
 import org.lbchild.xml.XMLReader;
 
@@ -39,7 +40,7 @@ public class AnalysisWindow extends ApplicationWindow {
     private ArrayList<Map<String, Integer>> newsmarks;
     private int[][][] sexOrientationCount;
     private double[][][][] sexTendencyCount;
-    private String fileName = "src/main/resources/newsmarks.xml";
+    private String fileName = "src/main/resources/" + User.getInstance().getUserName() + "/newsmarks.xml";
 
     /**
      * Create the application window.

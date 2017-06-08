@@ -17,16 +17,21 @@ import org.lbchild.util.Base64Content;
 import org.lbchild.util.DeleteIndex;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
+import org.lbchild.model.User;
 import org.lbchild.xml.XMLReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
+import org.lbchild.controller.MergeAction;
 import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.res.management.SWTResourceManager;
 import org.eclipse.swt.widgets.Text;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -34,7 +39,6 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.custom.ScrolledComposite;
 
 public class MainWindow extends ApplicationWindow {
-    private AnalyzeAction analyzeAction;
     private Text text_Type;
     private Text text_Theme;
     private Text text_Source;
@@ -51,6 +55,8 @@ public class MainWindow extends ApplicationWindow {
 
     private List newsSummaryList;
     private java.util.List<Integer> deleteIndex;
+    private AnalyzeAction analyzeAction;
+    private MergeAction mergeAction;
 
     public static enum Newspaper {
         GUANGMING, NANFANG, SICHUAN
@@ -66,6 +72,7 @@ public class MainWindow extends ApplicationWindow {
     public MainWindow() {
         super(null);
         mainWindow = this;
+        login(mainWindow.getShell());
         initNewsList();
         createActions();
         addToolBar(SWT.FLAT | SWT.WRAP);
@@ -554,7 +561,7 @@ public class MainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        String path = "src/main/resources/newsmarks.xml";
+        String path = "src/main/resources/" + User.getInstance().getUserName() + "/newsmarks.xml";
         btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
@@ -569,9 +576,9 @@ public class MainWindow extends ApplicationWindow {
      * Create the actions.
      */
     private void createActions() {
-
         // Create the actions
         analyzeAction = new AnalyzeAction("Analysis");
+        mergeAction = new MergeAction("Merge");
     }
 
     /**
@@ -594,6 +601,8 @@ public class MainWindow extends ApplicationWindow {
     protected ToolBarManager createToolBarManager(int style) {
         ToolBarManager toolBarManager = new ToolBarManager(style);
         toolBarManager.add(analyzeAction);
+        if (User.getInstance().getUserName().equals("admin"))
+            toolBarManager.add(mergeAction);
         return toolBarManager;
     }
 
@@ -614,13 +623,40 @@ public class MainWindow extends ApplicationWindow {
      * @param args
      */
     public static void main(String args[]) {
-        try {
-            MainWindow window = new MainWindow();
-            window.setBlockOnOpen(true);
-            window.open();
-            Display.getCurrent().dispose();
-        } catch (Exception e) {
-            e.printStackTrace();
+        MainWindow window = new MainWindow();
+        window.setBlockOnOpen(true);
+        window.open();
+        Display.getCurrent().dispose();
+    }
+
+    public void login(Shell shell) {
+        int status = LoginDialog.LOGIN_ID;
+        User user = User.getInstance();
+        if (user.getUserName() == null || user.getUserName().equals("")) {
+            LoginDialog dialog = new LoginDialog(shell);
+            status = dialog.open(); // 对话框取消时，status 变为 LOGOUT_ID
+            logger.info("status: " + status);
+        }
+        if (status == LoginDialog.LOGIN_ID) {
+            String dirName = "src/main/resources/" + user.getUserName();
+            File dir = new File(dirName);
+            if (dir.exists()) {
+            } else {
+                dir.mkdir();
+            }
+            String newsMark = "/newsmarks.xml";
+            try {
+                PrintWriter initNewsMarksOutput = new PrintWriter(new FileWriter(dirName + newsMark));
+                initNewsMarksOutput.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n" + "<ArrayOfNewsData>\n"
+                        + "</ArrayOfNewsData>");
+                initNewsMarksOutput.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            logger.info("create " + dirName + " directory");
+        } else {
+            System.exit(0);
         }
     }
 

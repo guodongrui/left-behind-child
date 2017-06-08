@@ -12,16 +12,19 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class XMLMerger {
 
     public static List<File> directoryList = new ArrayList<>();
 
     private String path;
-    
+
     private String userName;
-    
+
     private static final String NEWSMARKS = "/newsmarks.xml";
+    private static Logger logger = LoggerFactory.getLogger(XMLMerger.class);
 
     public XMLMerger(String path, String userName) {
         this.setPath(path);
@@ -33,6 +36,7 @@ public class XMLMerger {
                 directoryList.add(tempList[i]);
             }
         }
+        logger.info("directory list number: " + directoryList.size());
     }
 
     public void mergeXml(File file1, File file2) {
@@ -49,11 +53,11 @@ public class XMLMerger {
             Element arrayOfNewsData1 = document1.getRootElement();
             Element arrayOfNewsData2 = document2.getRootElement();
 
-            List<Element> list1 = arrayOfNewsData1.elements("NewsData");
-            List<Element> list2 = arrayOfNewsData2.elements("NewsData");
+            List<Element> listMaster = arrayOfNewsData1.elements("NewsData");
+            List<Element> listBranch = arrayOfNewsData2.elements("NewsData");
 
-            Element[] nodeArrayToSort1 = list1.toArray(new Element[0]);
-            Element[] nodeArrayToSort2 = list2.toArray(new Element[0]);
+            Element[] nodeArrayToSort1 = listMaster.toArray(new Element[0]);
+            Element[] nodeArrayToSort2 = listBranch.toArray(new Element[0]);
 
             class NodeComparator implements Comparator<Element> {
                 @Override
@@ -64,56 +68,60 @@ public class XMLMerger {
 
             Arrays.sort(nodeArrayToSort1, new NodeComparator());
             Arrays.sort(nodeArrayToSort2, new NodeComparator());
-            list1 = Arrays.asList(nodeArrayToSort1);
-            list2 = Arrays.asList(nodeArrayToSort2);
+            listMaster = Arrays.asList(nodeArrayToSort1);
+            listBranch = Arrays.asList(nodeArrayToSort2);
 
-            int i = 0;
-            int j = 0;
-            while (i < list1.size() && j < list2.size()) {
-                if (list2.get(j).element("ID").getText().compareTo(list1.get(i).element("ID").getText()) > 0) {
-                    i++;
-                }
-                if (list2.get(j).element("ID").getText().compareTo(list1.get(i).element("ID").getText()) < 0) {
+            logger.info("master size: " + nodeArrayToSort1.length + ", branch size: " + nodeArrayToSort2.length);
+
+            int masterIndex = 0;
+            int branchIndex = 0;
+            while (masterIndex < listMaster.size() && branchIndex < listBranch.size()) {
+                if (listBranch.get(branchIndex).element("ID").getText()
+                        .compareTo(listMaster.get(masterIndex).element("ID").getText()) > 0) {
+                    masterIndex++;
+                } else if (listBranch.get(branchIndex).element("ID").getText()
+                        .compareTo(listMaster.get(masterIndex).element("ID").getText()) < 0) {
+                    
                     Element newsData = arrayOfNewsData1.addElement("NewsData");
 
                     // 创建NewsData结点下的NewsMark子结点
                     Element newsMark = newsData.addElement("NewsMarks");
-                    newsMark.setText(list2.get(j).element("NewsMarks").getText());
+                    newsMark.setText(listBranch.get(branchIndex).element("NewsMarks").getText());
 
                     // 创建NewsData结点下的Date子结点
                     Element newsDate = newsData.addElement("Date");
-                    newsDate.setText(list2.get(j).element("Date").getText());
+                    newsDate.setText(listBranch.get(branchIndex).element("Date").getText());
 
                     // 创建NewsData结点下的LineId子结点
                     Element idElement = newsData.addElement("ID");
-                    idElement.setText(list2.get(j).element("ID").getText());
+                    idElement.setText(listBranch.get(branchIndex).element("ID").getText());
 
-                    j++;
-                }
-                if (list2.get(j).element("ID").getText().compareTo(list1.get(i).element("ID").getText()) == 0) {
-                    list1.get(i).element("NewsMarks").setText(list2.get(j).element("NewsMarks").getText());
+                    branchIndex++;
+                } else {
+                    listMaster.get(masterIndex).element("NewsMarks")
+                            .setText(listBranch.get(branchIndex).element("NewsMarks").getText());
 
-                    i++;
-                    j++;
+                    masterIndex++;
+                    branchIndex++;
                 }
             }
 
-            while (j < list2.size()) {
+            while (branchIndex < listBranch.size()) {
                 Element newsData = arrayOfNewsData1.addElement("NewsData");
 
                 // 创建NewsData结点下的NewsMark子结点
                 Element newsMark = newsData.addElement("NewsMarks");
-                newsMark.setText(list2.get(j).element("NewsMarks").getText());
+                newsMark.setText(listBranch.get(branchIndex).element("NewsMarks").getText());
 
                 // 创建NewsData结点下的Date子结点
                 Element newsDate = newsData.addElement("Date");
-                newsDate.setText(list2.get(j).element("Date").getText());
+                newsDate.setText(listBranch.get(branchIndex).element("Date").getText());
 
                 // 创建NewsData结点下的LineId子结点
                 Element idElement = newsData.addElement("ID");
-                idElement.setText(list2.get(j).element("ID").getText());
+                idElement.setText(listBranch.get(branchIndex).element("ID").getText());
 
-                j++;
+                branchIndex++;
             }
             writeIntoXml(file1, document1);
         } catch (Exception e) {
@@ -153,14 +161,17 @@ public class XMLMerger {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    
+
+    public void mergeAll() {
+        for (int i = 0; i < directoryList.size(); i++) {
+            mergeXml(new File(path + "/" + userName + NEWSMARKS),
+                    new File(path + "/" + directoryList.get(i).getName() + NEWSMARKS));
+        }
+    }
+
     public static void main(String[] args) {
         XMLMerger xmlMerger = new XMLMerger("src/main/resources/", "user2");
-        for (int i = 0; i < directoryList.size(); i++) {
-            xmlMerger.mergeXml(
-                    new File(xmlMerger.getPath() + "/" + xmlMerger.getUserName() + NEWSMARKS), 
-                    new File(xmlMerger.getPath() + directoryList.get(i).getName() + NEWSMARKS));
-        }
+        xmlMerger.mergeAll();
     }
 
 }
