@@ -25,8 +25,8 @@ public class LabelCompare {
         ArrayList<String> labelList2 = new ArrayList<>();
         for (int i = 0; i < user1List.size(); i++) {
 
-            String user1Name = user1path.replace("src/main/resources/", "").replace("/*", "");
-            String user2Name = user2path.replace("src/main/resources/", "").replace("/*", "");
+            String user1Name = user1path.replace("src/main/resources/", "").replaceAll("/.*", "");
+            String user2Name = user2path.replace("src/main/resources/", "").replaceAll("/.*", "");
             logger.info("compare user1: " + user1Name + ", compare user2: " + user2Name);
             
             String user1marks = Crypt.decryptContent(user1List.get(i).get("NewsMarks"), user1Name);
