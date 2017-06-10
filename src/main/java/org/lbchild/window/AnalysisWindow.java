@@ -75,7 +75,6 @@ public class AnalysisWindow extends ApplicationWindow {
         newsmarks = cl.getLabelCount();
 
         sexOrientationCount = cl.getLabelSexCount();
-
         sexTendencyCount = cl.getLabelDateCount();
 
     }

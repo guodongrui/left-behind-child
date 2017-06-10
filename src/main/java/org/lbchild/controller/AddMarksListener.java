@@ -8,7 +8,10 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.List;
 import org.lbchild.model.NewsList;
+import org.lbchild.xml.NewXMLFile;
 import org.lbchild.xml.XMLWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AddMarksListener implements SelectionListener {
 
@@ -16,6 +19,8 @@ public class AddMarksListener implements SelectionListener {
     private ArrayList<ArrayList<Button>> btnMarks;
     private NewsList newsList;
     private String path;
+    private Logger logger = LoggerFactory.getLogger(AddMarksListener.class);
+    
     public AddMarksListener(NewsList newsList, List newsSummaryList, ArrayList<ArrayList<Button>> btnMarks,String path) {
         this.newsSummaryList = newsSummaryList;
         this.btnMarks = btnMarks;
@@ -30,7 +35,9 @@ public class AddMarksListener implements SelectionListener {
 
     @Override
     public void widgetSelected(SelectionEvent e) {
-
+        
+        logger.info("add marks listener");
+        
         String newsMarks = "";
         int pFlag = 0;  // 若为1打印"|"
         for (ArrayList<Button> markGroupType : btnMarks) {
@@ -49,12 +56,15 @@ public class AddMarksListener implements SelectionListener {
                 }
             }
         }
+        logger.info("finish adding news marks");
         
         File file = new File(path);
+        new NewXMLFile(file);
+        logger.info("write to file path: " + path);
         XMLWriter out = new XMLWriter(file);
 
         int lineId = newsSummaryList.getFocusIndex();
-        newsSummaryList.setSelection(lineId + 1);
+        newsSummaryList.setSelection((lineId + 1) % newsSummaryList.getItems().length);
         out.insertXml(newsMarks, newsList.getNewsItem(lineId).getDate().split("-")[0], newsList.getNewsItem(lineId).getId());
         
     }

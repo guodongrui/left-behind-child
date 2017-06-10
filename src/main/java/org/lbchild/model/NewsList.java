@@ -3,8 +3,13 @@ package org.lbchild.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class NewsList {
     ArrayList<NewsItem> newsList;
+    private Logger logger = LoggerFactory.getLogger(NewsList.class);
     public NewsList() {
 		newsList=new ArrayList<>();
 	}
@@ -35,7 +40,11 @@ public class NewsList {
         return list.toArray(new String[list.size()]);
     }
 
-    public void deleteIndex(int index) {
-        newsList.remove(index);
+    public NewsItem deleteIndex(int index) {
+        return newsList.remove(index);
+    }
+    
+    public void add(int index, NewsItem newsItem) {
+        newsList.add(index, newsItem);
     }
 }

@@ -14,17 +14,20 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Group;
 
 import org.lbchild.util.Base64Content;
-import org.lbchild.util.DeleteIndex;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
+import org.lbchild.model.TrashNewsList;
 import org.lbchild.model.User;
 import org.lbchild.xml.XMLReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
+import org.lbchild.controller.LogoutAction;
 import org.lbchild.controller.MergeAction;
+import org.lbchild.controller.OpenTrashAction;
 import org.lbchild.controller.ReadMoreListener;
+import org.lbchild.controller.TrainAction;
 import org.lbchild.res.management.SWTResourceManager;
 import org.eclipse.swt.widgets.Text;
 
@@ -54,9 +57,14 @@ public class MainWindow extends ApplicationWindow {
     private static MainWindow mainWindow;
 
     private List newsSummaryList;
-    private java.util.List<Integer> deleteIndex;
     private AnalyzeAction analyzeAction;
+    private OpenTrashAction openTrashAction;
+    private TrainAction trainAction;
     private MergeAction mergeAction;
+
+    
+    private TrashNewsList trashNewsList;
+    private LogoutAction logoutAction;
 
     public static enum Newspaper {
         GUANGMING, NANFANG, SICHUAN
@@ -101,7 +109,7 @@ public class MainWindow extends ApplicationWindow {
 
             int n = list.size();
             ArrayList<NewsItem> li = new ArrayList<>();
-            deleteIndex = DeleteIndex.getInstance();
+            trashNewsList = TrashNewsList.getInstance();
             for (int i = 0; i < n; ++i) {
                 NewsItem newsItem = new NewsItem();
                 newsItem.setDate(list.get(i).get("Date"));
@@ -123,8 +131,7 @@ public class MainWindow extends ApplicationWindow {
                 newsItem.setId(list.get(i).get("ID"));
 
                 if (newsItem.isDeleted()) {
-                    deleteIndex.add(i);
-                    logger.info("deleteIndex is " + deleteIndex.toString());
+                    trashNewsList.add(i, newsItem);
                 } else {
                     li.add(newsItem);
                 }
@@ -147,6 +154,8 @@ public class MainWindow extends ApplicationWindow {
     @Override
     protected Control createContents(Composite parent) {
         Composite container = new Composite(parent, SWT.NONE);
+        
+        String path = "src/main/resources/" + User.getInstance().getUserName() + "/newsmarks.xml";
 
         ScrolledComposite scrolledComposite = new ScrolledComposite(container,
                 SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -157,7 +166,8 @@ public class MainWindow extends ApplicationWindow {
         newsSummaryList = new List(container, SWT.BORDER | SWT.V_SCROLL);
         newsSummaryList.setBounds(0, 0, 478, 613);
         newsSummaryList.setItems(newsList.getNewsSummaryList());
-        newsSummaryList.addSelectionListener(new ReadMoreListener(newsList));
+        newsSummaryList.setSelection(0);
+        newsSummaryList.addSelectionListener(new ReadMoreListener(newsList, path));
 
         Group group_AddMarks = new Group(scrolledComposite, SWT.NONE);
 
@@ -561,7 +571,6 @@ public class MainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        String path = "src/main/resources/" + User.getInstance().getUserName() + "/newsmarks.xml";
         btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
@@ -578,7 +587,10 @@ public class MainWindow extends ApplicationWindow {
     private void createActions() {
         // Create the actions
         analyzeAction = new AnalyzeAction("Analysis");
+        openTrashAction = new OpenTrashAction("Trash", newsList);
+        trainAction = new TrainAction("Train", newsList);
         mergeAction = new MergeAction("Merge");
+        logoutAction = new LogoutAction("Logout");
     }
 
     /**
@@ -601,8 +613,11 @@ public class MainWindow extends ApplicationWindow {
     protected ToolBarManager createToolBarManager(int style) {
         ToolBarManager toolBarManager = new ToolBarManager(style);
         toolBarManager.add(analyzeAction);
+        toolBarManager.add(openTrashAction);
+        toolBarManager.add(trainAction);
         if (User.getInstance().getUserName().equals("admin"))
             toolBarManager.add(mergeAction);
+        toolBarManager.add(logoutAction);
         return toolBarManager;
     }
 
@@ -626,7 +641,9 @@ public class MainWindow extends ApplicationWindow {
         MainWindow window = new MainWindow();
         window.setBlockOnOpen(true);
         window.open();
-        Display.getCurrent().dispose();
+        if (Display.getCurrent() != null) {
+            Display.getCurrent().dispose();
+        }
     }
 
     public void login(Shell shell) {

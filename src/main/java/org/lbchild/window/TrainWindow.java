@@ -20,10 +20,11 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.lbchild.controller.AddMarksListener;
-
+import org.lbchild.controller.FinishTrainingListener;
 import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
+import org.lbchild.model.User;
 import org.lbchild.res.management.SWTResourceManager;
 import org.lbchild.util.Base64Content;
 import org.lbchild.xml.XMLReader;
@@ -41,12 +42,16 @@ public class TrainWindow extends ApplicationWindow {
     private Text text_Praise;
     private Text text_Sex;
     private NewsList newsList;
-
+    private List newsSummaryList;
+    private FinishTrainingListener listener; 
+    private static TrainWindow trainWindow;
+    
     /**
      * Create the application window.
      */
     public TrainWindow() {
         super(null);
+        trainWindow = this;
         init();
         createActions();
         addToolBar(SWT.FLAT | SWT.WRAP);
@@ -69,7 +74,7 @@ public class TrainWindow extends ApplicationWindow {
 
             int size = list.size();
             ArrayList<NewsItem> li = new ArrayList<>();
-            for (int i = 0; i < (10 < size ? 10 : size); ++i) {
+            for (int i = 0; i < (3 < size ? 3 : size); ++i) {
                 NewsItem newsItem = new NewsItem();
                 newsItem.setDate(list.get(i).get("Date"));
                 newsItem.setTitle(list.get(i).get("Title"));
@@ -87,6 +92,7 @@ public class TrainWindow extends ApplicationWindow {
                 newsItem.setContent(content);
                 newsItem.setDeleted(Boolean.parseBoolean(list.get(i).get("IsDeleted")));
                 newsItem.setLocation(list.get(i).get("Location"));
+                newsItem.setId(list.get(i).get("ID"));
                 li.add(newsItem);
 
             }
@@ -107,6 +113,7 @@ public class TrainWindow extends ApplicationWindow {
     @Override
     protected Control createContents(Composite parent) {
         Composite container = new Composite(parent, SWT.NONE);
+        String path = "src/main/resources/" + User.getInstance().getUserName() + "/training.xml";
 
         ScrolledComposite scrolledComposite = new ScrolledComposite(container,
                 SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -114,10 +121,11 @@ public class TrainWindow extends ApplicationWindow {
         scrolledComposite.setExpandHorizontal(true);
         scrolledComposite.setExpandVertical(true);
 
-        final List newsSummaryList = new List(container, SWT.BORDER | SWT.V_SCROLL);
+        newsSummaryList = new List(container, SWT.BORDER | SWT.V_SCROLL);
         newsSummaryList.setBounds(0, 0, 478, 613);
         newsSummaryList.setItems(newsList.getNewsSummaryList());
-        newsSummaryList.addSelectionListener(new ReadMoreListener(newsList));
+        newsSummaryList.setSelection(0);
+        newsSummaryList.addSelectionListener(new ReadMoreListener(newsList, path));
 
         Group group_AddMarks = new Group(scrolledComposite, SWT.NONE);
 
@@ -521,8 +529,12 @@ public class TrainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        String path = "src/main/resources/Test1.xml";
         btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
+        
+        // 添加完成测试监听器
+        listener = new FinishTrainingListener(newsSummaryList);
+        btnNewButton.addSelectionListener(listener);
+        
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
 
@@ -597,7 +609,7 @@ public class TrainWindow extends ApplicationWindow {
     @Override
     protected void configureShell(Shell newShell) {
         super.configureShell(newShell);
-        newShell.setText("News");
+        newShell.setText("Training");
     }
 
     /**
@@ -607,5 +619,17 @@ public class TrainWindow extends ApplicationWindow {
     protected Point getInitialSize() {
         return new Point(1009, 734);
     }
-
+    
+    public static TrainWindow getTrainWindow() {
+        return trainWindow;
+    }
+    
+    public List getNewsSummaryList() {
+        return newsSummaryList;
+    }
+    
+    public FinishTrainingListener getFinishTrainingListener() {
+        return listener;
+    }
+ 
 }

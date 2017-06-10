@@ -16,7 +16,6 @@ import org.lbchild.controller.AddMarksAction;
 import org.lbchild.controller.DeleteAction;
 import org.lbchild.model.NewsList;
 
-
 import org.eclipse.swt.widgets.Text;
 import org.lbchild.res.management.SWTResourceManager;
 import org.lbchild.url.UrlContentDownloader;
@@ -31,21 +30,24 @@ public class ReadMoreWindow extends ApplicationWindow {
     private Text content;
     private static ReadMoreWindow readMoreWindow;
 
+    private String path;
 
     /**
      * Create the application window.
+     * 
+     * @param path
      */
-    public ReadMoreWindow(NewsList newsList, int lineId) {
+    public ReadMoreWindow(NewsList newsList, int lineId, String path) {
         super(null);
         this.newsList = newsList;
         this.lineId = lineId;
+        this.path = path;
         readMoreWindow = this;
         createActions();
         addToolBar(SWT.FLAT | SWT.WRAP);
         addMenuBar();
         addStatusLine();
     }
-
 
     /**
      * Create contents of the application window.
@@ -57,7 +59,7 @@ public class ReadMoreWindow extends ApplicationWindow {
         Composite container = new Composite(parent, SWT.NONE);
         container.setFont(SWTResourceManager.getFont("Microsoft YaHei UI", 15, SWT.NORMAL));
         container.setLayout(new GridLayout(1, true));
-        
+
         {
             Composite composite_title = new Composite(container, SWT.NONE);
             composite_title.setLayout(new FillLayout(SWT.HORIZONTAL));
@@ -95,7 +97,7 @@ public class ReadMoreWindow extends ApplicationWindow {
                 content = new Text(composite_content, SWT.BORDER | SWT.WRAP);
                 content.setEditable(false);
             }
-            
+
             String newsContent = newsList.getNewsItem(getLineId()).getContent();
             if (content != null) {
                 setContent(newsContent);
@@ -109,14 +111,11 @@ public class ReadMoreWindow extends ApplicationWindow {
      */
     private void createActions() {
         // Create the actions
-        {
-            deleteToolItem = new DeleteAction(newsList);
-            deleteToolItem.setText("Delete");
-        }
-        {
-            addMarksToolItem = new AddMarksAction(newsList, lineId);     
-            addMarksToolItem.setText("AddMarks");
-        }
+
+        deleteToolItem = new DeleteAction(newsList);
+        deleteToolItem.setText("Delete");
+        addMarksToolItem = new AddMarksAction(newsList, lineId, path);
+        addMarksToolItem.setText("AddMarks");
     }
 
     /**
@@ -154,7 +153,6 @@ public class ReadMoreWindow extends ApplicationWindow {
         return statusLineManager;
     }
 
-
     /**
      * Configure the shell.
      * 
@@ -186,11 +184,9 @@ public class ReadMoreWindow extends ApplicationWindow {
         this.title.setText(title);
     }
 
-
     public void setDate(String date) {
         this.date.setText(date);
     }
-
 
     public void setContent(String content) {
         if (content.startsWith("http:")) {

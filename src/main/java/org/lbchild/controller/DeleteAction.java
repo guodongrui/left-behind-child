@@ -5,6 +5,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
 import org.lbchild.model.NewsList;
+import org.lbchild.model.TrashNewsList;
 import org.lbchild.window.MainWindow;
 import org.lbchild.window.ReadMoreWindow;
 import org.lbchild.xml.XMLSelectionIdWriter;
@@ -29,7 +30,9 @@ public class DeleteAction extends Action {
 
             MainWindow.getMainWindow().getNewsSummaryList().remove(selectionId);
             new XMLSelectionIdWriter().updateXml(selectionId, "true");
-            newsList.deleteIndex(selectionId);
+            
+            // 往回收站列表添加删除的新闻
+            TrashNewsList.getInstance().add(XMLSelectionIdWriter.lineIdInFile(selectionId), newsList.deleteIndex(selectionId));
             
             // 删除后显示下一条新闻
             ReadMoreWindow.getReadMoreWindow().setLineId(ReadMoreWindow.getReadMoreWindow().getLineId() % (newsList.getNewsList().size()));

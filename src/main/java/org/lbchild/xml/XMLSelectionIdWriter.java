@@ -1,10 +1,9 @@
 package org.lbchild.xml;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
-import org.lbchild.util.DeleteIndex;
+import org.lbchild.model.TrashNewsList;
 import org.lbchild.window.MainWindow;
 import org.lbchild.window.MainWindow.Newspaper;
 import org.slf4j.Logger;
@@ -18,27 +17,14 @@ public class XMLSelectionIdWriter extends XMLWriter {
     public void updateXml(int selectionId, String delete) {
         try {
             
-            int sum = 0;
-            List<Integer> deleteIndex = DeleteIndex.getInstance();
-            for (int index = 0; index < deleteIndex.size(); index++) {
-                int d_id = deleteIndex.get(index);
-                if (selectionId + sum >= d_id && sum <= d_id) {
-                    sum++;
-                }
-            }
-            
-            int writeId = selectionId + sum;
-            logger.info("xml update deleted id: " + writeId);
-            // deleteIndex 是个递增的列表，需要排序
-            deleteIndex.add(writeId);
-            Collections.sort(deleteIndex);
+            int writeId = lineIdInFile(selectionId);
             
             // 修改 xml 的 <IsDeleted> 标签写文件
             if (writeId < guangmingWriteId()) {
                 super.file = new File("src/main/resources/guangming2.xml");
-                super.updateXml(writeId, "true");
+                super.updateXml(writeId, delete);
             } else if (writeId < guangmingWriteId() + nanfangWriteId()) {
-                super.file = new File("src/main/resources/nanfangdailyId2.xml");
+                super.file = new File("src/main/resources/nanfangdaily2.xml");
                 super.updateXml(writeId - guangmingWriteId(), delete);
             } else if (writeId < guangmingWriteId() + nanfangWriteId() + sichuanWriteId()) {
                 super.file = new File("src/main/resources/sichuan2.xml");
@@ -53,18 +39,7 @@ public class XMLSelectionIdWriter extends XMLWriter {
     
     @Override
     public void updateEncodedContent(String encodedContent, int selectionId) {
-        int sum = 0;
-        List<Integer> deleteIndex = DeleteIndex.getInstance();
-        for (int index = 0; index < deleteIndex.size(); index++) {
-            int d_id = deleteIndex.get(index);
-            if (selectionId + sum >= d_id && sum <= d_id) {
-                sum++;
-            }
-        }
-        
-        int writeId = selectionId + sum;
-        logger.info("xml update encoded content id: " + writeId);
-
+        int writeId = lineIdInFile(selectionId);
         if (writeId < guangmingWriteId()) {
             super.file = new File("src/main/resources/guangming2.xml");
             super.updateEncodedContent(encodedContent, writeId);
@@ -77,6 +52,20 @@ public class XMLSelectionIdWriter extends XMLWriter {
         } else {}
     }
 
+    public static int lineIdInFile(int selectionId) {
+        int sum = 0;
+        List<Integer> deleteIndexes = TrashNewsList.getInstance().getIndices();
+        for (int index = 0; index < deleteIndexes.size(); index++) {
+            int d_id = deleteIndexes.get(index);
+            if (selectionId + sum >= d_id && sum <= d_id) {
+                sum++;
+            }
+        }
+        
+        int writeId = selectionId + sum;
+        logger.info("xml update encoded content id: " + writeId);
+        return writeId;
+    }
     private int nanfangWriteId() {
         return MainWindow.newsSourceFileLength[Newspaper.NANFANG.ordinal()];
     }

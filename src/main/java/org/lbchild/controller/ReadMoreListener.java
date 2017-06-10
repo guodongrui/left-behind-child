@@ -11,11 +11,12 @@ import org.slf4j.LoggerFactory;
 public class ReadMoreListener implements SelectionListener {
 
     private NewsList newsList;
+    private String path;
     private static Logger logger = LoggerFactory.getLogger(ReadMoreListener.class);
-    public ReadMoreListener(NewsList newsList) {
-        // TODO Auto-generated constructor stub
+    public ReadMoreListener(NewsList newsList, String path) {
         super();
         this.newsList = newsList;
+        this.path = path;
     }
 
     @Override
@@ -30,15 +31,7 @@ public class ReadMoreListener implements SelectionListener {
         int id = list.getSelectionIndex(); 
         logger.info("NewsItem selection id: " + id);
         
-//        if (newsList.getNewsList().get(id).getLocation().contains("四川日报")) {
-//            UrlContentDownloader.writeEncodedContent(newsList, id);
-//        } else if (newsList.getNewsList().get(id).getLocation().contains("光明日报")) {
-//            UrlContentDownloader.writeEncodedContent(newsList, id);
-//        } else if (newsList.getNewsList().get(id).getLocation().contains("南方都市报")) {
-//        }
-         
-        
-        ReadMoreWindow readmoreWindow = new ReadMoreWindow(newsList, id);
+        ReadMoreWindow readmoreWindow = new ReadMoreWindow(newsList, id, path);
         readmoreWindow.open();
     }
 }

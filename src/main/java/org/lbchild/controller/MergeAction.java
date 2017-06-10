@@ -15,7 +15,7 @@ public class MergeAction extends Action {
         xmlMerger.mergeAll();
         logger.info("merge all files");
         new MessageDialog(MainWindow.getMainWindow().getShell(), "合并", null, "合并成功",
-                MessageDialog.INFORMATION, new String[]{"确定"}, 0).open();
+                MessageDialog.INFORMATION, new String[]{"OK"}, 0).open();
     }
 
     public MergeAction(String str) {

@@ -118,4 +118,8 @@ public class XMLWriter {
             ex.printStackTrace();
         }
     }
+    
+    public static void main(String[] args) {
+        new XMLWriter(new File("src/main/resources/guangming2.xml")).updateXml(0, "");
+    }
 }
