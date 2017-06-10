@@ -66,7 +66,7 @@ public class NewsItem {
     public void setTitle(String title) {
         this.title = title;
     }
-
+  
     public String getId() {
         return id;
     }
@@ -74,6 +74,4 @@ public class NewsItem {
     public void setId(String id) {
         this.id = id;
     }
-
-
 }
