@@ -41,9 +41,12 @@ public class XMLMerger {
         logger.info("directory list number: " + directoryList.size());
     }
 
-    public void mergeXml(File file1, File file2) {
+    public void mergeXml(String file1Path, String file2Path) {
 
         try {
+            File file1 = new File(file1Path);
+            File file2 = new File(file2Path);
+            
             // 获取读取xml的对象
             SAXReader sr = new SAXReader();
 
@@ -88,8 +91,14 @@ public class XMLMerger {
 
                     // 创建NewsData结点下的NewsMark子结点
                     Element newsMark = newsData.addElement("NewsMarks");
-                    newsMark.setText(Crypt.encryptContent(listBranch.get(branchIndex).element("NewsMarks").getText(),
-                            User.getInstance().getUserName()));
+                    String key = file2Path.replace("src/main/resources/", "").replaceAll("/.*", "");
+                    logger.info("filepath: " + file2Path + ", key: " + key);
+
+                    
+                    String decodeNewsMarks = decodeNewsMarks(listBranch.get(branchIndex).element("NewsMarks").getText(), key);
+                    logger.info("decodeNewsMarks: " + decodeNewsMarks);
+                    String encodeNewsMarks = encodeNewsMarks(decodeNewsMarks, "admin");
+                    newsMark.setText(encodeNewsMarks);
 
                     // 创建NewsData结点下的Date子结点
                     Element newsDate = newsData.addElement("Date");
@@ -101,8 +110,15 @@ public class XMLMerger {
 
                     branchIndex++;
                 } else {
+                    String key = file2Path.replace("src/main/resources/", "").replaceAll("/.*", "");
+                    logger.info("filepath: " + file2Path + ", key: " + key);
+
+                    String decodeNewsMarks = decodeNewsMarks(listBranch.get(branchIndex).element("NewsMarks").getText(), key);
+                    logger.info("decodeNewsMarks: " + decodeNewsMarks);
+                    String encodeNewsMarks = encodeNewsMarks(decodeNewsMarks, "admin");
+                    
                     listMaster.get(masterIndex).element("NewsMarks")
-                            .setText(listBranch.get(branchIndex).element("NewsMarks").getText());
+                            .setText(encodeNewsMarks);
 
                     masterIndex++;
                     branchIndex++;
@@ -114,8 +130,16 @@ public class XMLMerger {
 
                 // 创建NewsData结点下的NewsMark子结点
                 Element newsMark = newsData.addElement("NewsMarks");
-                newsMark.setText(listBranch.get(branchIndex).element("NewsMarks").getText());
+                String key = file2Path.replace("src/main/resources/", "").replaceAll("/.*", "");
+                logger.info("filepath: " + file2Path + ", key: " + key);
 
+                String decodeNewsMarks = decodeNewsMarks(listBranch.get(branchIndex).element("NewsMarks").getText(), key);
+                
+                logger.info("decodeNewsMarks: " + decodeNewsMarks);
+                
+                String encodeNewsMarks = encodeNewsMarks(decodeNewsMarks, "admin");
+                newsMark.setText(encodeNewsMarks);
+                
                 // 创建NewsData结点下的Date子结点
                 Element newsDate = newsData.addElement("Date");
                 newsDate.setText(listBranch.get(branchIndex).element("Date").getText());
@@ -132,6 +156,16 @@ public class XMLMerger {
         }
     }
 
+    private String decodeNewsMarks(String s, String key) {
+        String decodedString = Crypt.decryptContent(s, key);
+        return decodedString;
+    }
+    
+    private String encodeNewsMarks(String s, String key) {
+        String encodedString = Crypt.encryptContent(s, key);
+        return encodedString;
+    }
+    
     private void writeIntoXml(File file, Document document) {
         try {
             OutputFormat format = OutputFormat.createPrettyPrint();
@@ -167,13 +201,13 @@ public class XMLMerger {
 
     public void mergeAll() {
         for (int i = 0; i < directoryList.size(); i++) {
-            mergeXml(new File(path + "/" + userName + NEWSMARKS),
-                    new File(path + "/" + directoryList.get(i).getName() + NEWSMARKS));
+            mergeXml(path + userName + NEWSMARKS,
+                    path  + directoryList.get(i).getName() + NEWSMARKS);
         }
     }
 
     public static void main(String[] args) {
-        XMLMerger xmlMerger = new XMLMerger("src/main/resources/", "user2");
+        XMLMerger xmlMerger = new XMLMerger("src/main/resources/", "admin");
         xmlMerger.mergeAll();
     }
 

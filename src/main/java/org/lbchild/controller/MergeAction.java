@@ -12,6 +12,7 @@ public class MergeAction extends Action {
     private static Logger logger = LoggerFactory.getLogger(MergeAction.class);
     public void run() {
         XMLMerger xmlMerger = new XMLMerger("src/main/resources/", User.getInstance().getUserName());
+        logger.info("admin: " + User.getInstance().getUserName());
         xmlMerger.mergeAll();
         logger.info("merge all files");
         new MessageDialog(MainWindow.getMainWindow().getShell(), "合并", null, "合并成功",
