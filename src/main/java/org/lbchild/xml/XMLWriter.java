@@ -100,7 +100,30 @@ public class XMLWriter {
             e.printStackTrace();
         }
     }
-    
+
+    private boolean hasNewsData() {
+        try {
+            // 获取读取xml的对象
+            SAXReader sr = new SAXReader();
+
+            // 创建XML文档树
+            Document document = sr.read(file);
+
+            // 获得根结点
+            Element arrayOfNewsData = document.getRootElement();
+
+            Element newsData = arrayOfNewsData.element("NewsData");
+
+            if (newsData == null) {
+                return true;
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private void writeIntoXml(File file, Document document) {
         try {
             OutputFormat format = OutputFormat.createPrettyPrint();
@@ -117,4 +140,13 @@ public class XMLWriter {
             ex.printStackTrace();
         }
     }
+    
+    public static void main(String[] args) {
+        if (new XMLWriter(new File("src/main/resources/newsmarks2.xml")).hasNewsData()) {
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+    }
+
 }
