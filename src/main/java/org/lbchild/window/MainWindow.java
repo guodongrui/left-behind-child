@@ -586,7 +586,8 @@ public class MainWindow extends ApplicationWindow {
         openTrashAction = new OpenTrashAction("Trash", newsList);
         trainAction = new TrainAction("Train", newsList);
         mergeAction = new MergeAction("Merge");
-        logoutAction = new LogoutAction("Logout");
+        String user = User.getInstance().getUserName();
+        logoutAction = new LogoutAction("[" + user.substring(0, 5) + ((user.length() <= 5) ? "" : "..") + "]" + " Logout");
     }
 
     /**
