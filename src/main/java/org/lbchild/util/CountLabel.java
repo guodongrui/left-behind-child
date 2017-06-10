@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.lbchild.model.User;
 import org.lbchild.xml.XMLReader;
 
 public class CountLabel {
@@ -28,7 +29,7 @@ public class CountLabel {
             if (!map.containsKey(NEWSMARKS)) {
                 continue;
             }
-            labelToList(map.get(NEWSMARKS));
+            labelToList(Crypt.decryptContent(map.get(NEWSMARKS), User.getInstance().getUserName()));
 
             for (int j = 0; j < allMarks[news_i].length - 1; ++j)
                 allMarks[news_i][j] = labelList.get(j);
@@ -78,7 +79,7 @@ public class CountLabel {
             if (!map.containsKey(NEWSMARKS)) {
                 continue;
             }
-            labelToList(map.get(NEWSMARKS));
+            labelToList(Crypt.decryptContent(map.get(NEWSMARKS), User.getInstance().getUserName()));
 
             for (int j = 0; j < allMarks[news_i].length; ++j)
                 allMarks[news_i][j] = labelList.get(j);
@@ -300,7 +301,7 @@ public class CountLabel {
             if (!map.containsKey(NEWSMARKS)) {
                 continue;
             }
-            labelToList(map.get(NEWSMARKS));
+            labelToList(Crypt.decryptContent(map.get(NEWSMARKS), User.getInstance().getUserName()));
 
             for (int i = 0; i < labelList.size(); i++) {
                 String label = labelList.get(i);
@@ -340,7 +341,7 @@ public class CountLabel {
     }
 
     public static void main(String[] args) {
-        File file = new File("src/main/resources/newsmarks.xml");
+        File file = new File("src/main/resources/guodongrui/newsmarks.xml");
         XMLReader in = new XMLReader(file);
         ArrayList<Map<String, String>> arr = in.readXml();
 

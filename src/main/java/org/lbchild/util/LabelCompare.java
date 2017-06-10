@@ -4,10 +4,16 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.lbchild.xml.XMLReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LabelCompare {
+    
+    private static Logger logger = LoggerFactory.getLogger(LabelCompare.class);
+    
     public void compare(String user1path, String user2path) {
         File user1 = new File(user1path);
         File user2 = new File(user2path);
@@ -18,17 +24,21 @@ public class LabelCompare {
         ArrayList<Map<String, String>> user2List = in2.readXml();
         ArrayList<String> labelList2 = new ArrayList<>();
         for (int i = 0; i < user1List.size(); i++) {
+
+            String user1Name = user1path.replace("src/main/resources/", "").replace("/*", "");
+            String user2Name = user2path.replace("src/main/resources/", "").replace("/*", "");
+            logger.info("compare user1: " + user1Name + ", compare user2: " + user2Name);
             
-            labelToList(user1List.get(i).get("NewsMarks"), labelList1);
-            labelToList(user2List.get(i).get("NewsMarks"), labelList2);
+            String user1marks = Crypt.decryptContent(user1List.get(i).get("NewsMarks"), user1Name);
+            String user2marks = Crypt.decryptContent(user2List.get(i).get("NewsMarks"), user2Name);
+            
+            labelToList(user1marks, labelList1);
+            labelToList(user2marks, labelList2);
             
             List<Integer> diflist = compareLabelList(labelList1, labelList2);
             
             double rate = (1 - (double)diflist.size() / labelList1.size()) * 100;
-            System.out.println("一致率为" + rate + "%");
-            if (!diflist.isEmpty()) {
-                System.out.print(":" + diflist.toString());
-            }
+
         }
 
     }
@@ -62,6 +72,6 @@ public class LabelCompare {
     
     public static void main(String[] args) {
         LabelCompare lc = new LabelCompare();
-        lc.compare("src/main/resources/Test1.xml", "src/main/resources/Test2.xml");
+        lc.compare("src/main/resources/guodongrui/training.xml", "src/main/resources/admin/training.xml");
     }
 }

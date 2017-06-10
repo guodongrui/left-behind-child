@@ -12,6 +12,8 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.lbchild.model.User;
+import org.lbchild.util.Crypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,12 +83,13 @@ public class XMLMerger {
                     masterIndex++;
                 } else if (listBranch.get(branchIndex).element("ID").getText()
                         .compareTo(listMaster.get(masterIndex).element("ID").getText()) < 0) {
-                    
+
                     Element newsData = arrayOfNewsData1.addElement("NewsData");
 
                     // 创建NewsData结点下的NewsMark子结点
                     Element newsMark = newsData.addElement("NewsMarks");
-                    newsMark.setText(listBranch.get(branchIndex).element("NewsMarks").getText());
+                    newsMark.setText(Crypt.encryptContent(listBranch.get(branchIndex).element("NewsMarks").getText(),
+                            User.getInstance().getUserName()));
 
                     // 创建NewsData结点下的Date子结点
                     Element newsDate = newsData.addElement("Date");

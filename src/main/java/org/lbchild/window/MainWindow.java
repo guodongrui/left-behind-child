@@ -17,6 +17,7 @@ import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
 import org.lbchild.model.TrashNewsList;
 import org.lbchild.model.User;
+import org.lbchild.xml.NewXMLFile;
 import org.lbchild.xml.XMLReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +32,6 @@ import org.lbchild.res.management.SWTResourceManager;
 import org.eclipse.swt.widgets.Text;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -61,7 +59,6 @@ public class MainWindow extends ApplicationWindow {
     private TrainAction trainAction;
     private MergeAction mergeAction;
 
-    
     private TrashNewsList trashNewsList;
     private LogoutAction logoutAction;
 
@@ -153,7 +150,7 @@ public class MainWindow extends ApplicationWindow {
     @Override
     protected Control createContents(Composite parent) {
         Composite container = new Composite(parent, SWT.NONE);
-        
+
         String path = "src/main/resources/" + User.getInstance().getUserName() + "/newsmarks.xml";
 
         ScrolledComposite scrolledComposite = new ScrolledComposite(container,
@@ -661,14 +658,7 @@ public class MainWindow extends ApplicationWindow {
                 dir.mkdir();
             }
             String newsMark = "/newsmarks.xml";
-            try {
-                PrintWriter initNewsMarksOutput = new PrintWriter(new FileWriter(dirName + newsMark));
-                initNewsMarksOutput.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n" + "<ArrayOfNewsData>\n"
-                        + "</ArrayOfNewsData>");
-                initNewsMarksOutput.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            new NewXMLFile(new File(dirName + newsMark));
 
             logger.info("create " + dirName + " directory");
         } else {

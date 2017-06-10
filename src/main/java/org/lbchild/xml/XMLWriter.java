@@ -10,12 +10,16 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.lbchild.model.User;
+import org.lbchild.util.Crypt;
 
 public class XMLWriter {
 
     protected File file;
 
-    public XMLWriter() {}
+    public XMLWriter() {
+    }
+
     public XMLWriter(File file) {
         this.file = file;
     }
@@ -46,7 +50,7 @@ public class XMLWriter {
 
             // 创建NewsData结点下的NewsMark子结点
             Element newsMark = newsData.addElement("NewsMarks");
-            newsMark.setText(newsMarks);
+            newsMark.setText(Crypt.encryptContent(newsMarks, User.getInstance().getUserName()));
 
             // 创建NewsData结点下的Date子结点
             Element newsDate = newsData.addElement("Date");
@@ -102,29 +106,6 @@ public class XMLWriter {
         }
     }
 
-    private boolean hasNewsData() {
-        try {
-            // 获取读取xml的对象
-            SAXReader sr = new SAXReader();
-
-            // 创建XML文档树
-            Document document = sr.read(file);
-
-            // 获得根结点
-            Element arrayOfNewsData = document.getRootElement();
-
-            Element newsData = arrayOfNewsData.element("NewsData");
-
-            if (newsData == null) {
-                return true;
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     private void writeIntoXml(File file, Document document) {
         try {
             OutputFormat format = OutputFormat.createPrettyPrint();
@@ -141,14 +122,8 @@ public class XMLWriter {
             ex.printStackTrace();
         }
     }
-    
+
     public static void main(String[] args) {
-        if (new XMLWriter(new File("src/main/resources/newsmarks2.xml")).hasNewsData()) {
-            System.out.println("true");
-        } else {
-            System.out.println("false");
-        }
-      
         new XMLWriter(new File("src/main/resources/guangming2.xml")).updateXml(0, "");
     }
 }
