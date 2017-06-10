@@ -3,3 +3,634 @@ INFO main org.lbchild.window.MainWindow - finishing reading news from file
 INFO main org.lbchild.window.MainWindow - finishing initializing newsList
 INFO main org.lbchild.window.MainWindow - finishing reading news from file
 INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 3810]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2385
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2385
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2385
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2388
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2385
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2390
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2390
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2393
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2385
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2385
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2390
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2388
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2394
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2387
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2393
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2385
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 2391
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 2392
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 2393
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 2394
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2390
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2390
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 2400
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2401
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394, 2400]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 0
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2326
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2390
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394, 2400]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2416
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2416
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394, 2400]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2413
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2414
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2411
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2405
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 47
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2414
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 2425
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2414 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2426
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2414into file
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394, 2400]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394, 2400, 2425]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2395
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2395 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2406
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2395into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2396
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2396 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2407
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2396into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2396
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2396 content which from url
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394, 2400]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2391, 2392, 2393, 2394, 2400, 2425]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2426
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2426 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2438
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2426into file
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2385
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2385 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2391
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2385into file
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2385
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2389
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2389 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2395
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2389into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2395
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2395 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2401
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2395into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2396
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2396 content which from url
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2560
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2560 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2566
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2560into file
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 2566
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2560 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2567
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2560into file
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 2567
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2560 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2568
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2560into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2560
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2561
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2561 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2569
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2561into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2536
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2536 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2542
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2536into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2537
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2537 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2543
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2537into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2103
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2075
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3034
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 124
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 122
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2566]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 2566, 2567]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3802
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 3810
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 6
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 2566]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 2566, 2567]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 2566, 2567, 3810]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 0
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 7
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 2566]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 2566, 2567]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 2566, 2567, 3810]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 2566]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 2566, 2567]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 2566, 2567, 3810]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3799
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 3809
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update deleted id: 8
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 8]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 8, 2566]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 8, 2566, 2567]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 8, 2566, 2567, 3809]
+INFO main org.lbchild.window.MainWindow - deleteIndex is[0, 1, 2, 3, 4, 5, 6, 7, 8, 2566, 2567, 3809, 3810]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3797
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3794
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3766
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3716
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3290
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3260
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3232
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 3195
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2466
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2466 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2475
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2466into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2468
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2468 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2477
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2468into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2474
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2474 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2483
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2474into file
+INFO main org.lbchild.controller.ReadMoreListener - NewsItem selection id: 2476
+INFO main org.lbchild.url.UrlContentDownloader - set selectionId: 2476 content which from url
+INFO main org.lbchild.xml.XMLSelectionIdWriter - xml update encoded content id: 2485
+INFO main org.lbchild.url.UrlContentDownloader - download selectionId: 2476into file
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is[3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - create src/main/resources/guodongrui directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 1
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is w
+INFO main org.lbchild.window.LoginDialog - close status: false
+INFO main Main - status: 0
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/null directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - close status: true
+INFO main Main - status: 1
+INFO main Main - status: 1
+INFO main Main - status: 1
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is guodongrui
+INFO main Main - status: 1
+INFO main Main - create src/main/resources/guodongrui directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is 
+INFO main org.lbchild.window.LoginDialog - read user.txt, user is “”
+INFO main Main - status: 0
+INFO main Main - create src/main/resources/“” directory
+INFO main org.lbchild.window.MainWindow - finishing reading news from file
+INFO main org.lbchild.window.MainWindow - deleteIndex is [3]
+INFO main org.lbchild.window.MainWindow - finishing initializing newsList

@@ -3,9 +3,6 @@ package org.lbchild.url;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.MessageBox;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -53,7 +50,6 @@ public class UrlAnalyzer {
 
         if (classMain.size() > 0 && classTitle.size() > 0) {
             Elements labelP = classMain.select("p");
-            Elements labelI = classTitle.select("i");
 
             if (labelP.size() > 0) {
                 newsContent = labelP.get(0).text();

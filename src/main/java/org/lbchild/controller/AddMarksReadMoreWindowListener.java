@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 import org.lbchild.model.NewsList;
 import org.lbchild.window.ReadMoreWindow;
+import org.lbchild.xml.NewXMLFile;
 import org.lbchild.xml.XMLWriter;
 
 public class AddMarksReadMoreWindowListener implements SelectionListener {
     
     private ArrayList<ArrayList<Button>> btnMarks;
     private NewsList newsList;
+    private String path;
 
-    public AddMarksReadMoreWindowListener(NewsList newsList, ArrayList<ArrayList<Button>> btnMarks) {
+    public AddMarksReadMoreWindowListener(NewsList newsList, ArrayList<ArrayList<Button>> btnMarks, String path) {
         this.btnMarks = btnMarks;
         this.newsList = newsList;
+        this.path = path;
     }
 
     @Override
@@ -52,10 +52,11 @@ public class AddMarksReadMoreWindowListener implements SelectionListener {
             }
         }
         
-        File file = new File("src/main/resources/newsmarks.xml");
+        File file = new File(path);
+        new NewXMLFile(file);
         XMLWriter out = new XMLWriter(file);
         
-        win.setLineId(win.getLineId() + 1);
+        win.setLineId((win.getLineId() + 1) % newsList.getNewsSummaryList().length);
         win.setTitle(newsList.getNewsItem(win.getLineId()).getTitle());
         win.setDate("日期：" + newsList.getNewsItem(win.getLineId()).getDate());
         String newsContent = newsList.getNewsItem(win.getLineId()).getContent();

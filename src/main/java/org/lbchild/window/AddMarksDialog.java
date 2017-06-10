@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Text;
 import org.lbchild.controller.AddMarksReadMoreWindowListener;
 import org.lbchild.model.NewsList;
 import org.lbchild.res.management.SWTResourceManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.widgets.Label;
@@ -18,9 +20,6 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 
 public class AddMarksDialog {
 
@@ -36,17 +35,22 @@ public class AddMarksDialog {
     private Text text_Subject;
     private Text text_Praise;
     private Text text_Sex;
+    private Button btnNext;
+    
+    private static AddMarksDialog addMarksDialog;
 
     ArrayList<ArrayList<Button>> btnMarks;
 
     private int lineId;
+    private static Logger logger = LoggerFactory.getLogger(AddMarksDialog.class);    
+    
 
     /**
      * Create the dialog.
      * 
      * @param parentShell
      */
-    public AddMarksDialog(Shell parentShell, NewsList newsList, int lineId) {
+    public AddMarksDialog(Shell parentShell, NewsList newsList, int lineId, String path) {
         shell = new Shell(parentShell, SWT.CLOSE | SWT.BORDER | SWT.TITLE);
         FillLayout layout = new FillLayout();
         shell.setLayout(layout);
@@ -415,12 +419,16 @@ public class AddMarksDialog {
             markGroupType.get(0).setSelection(true);
         }
 
-        Button btnNext = new Button(composite_2, SWT.NONE);
+        btnNext = new Button(composite_2, SWT.NONE);
         btnNext.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
         btnNext.setText("Next");
-        AddMarksReadMoreWindowListener addmarksListener = new AddMarksReadMoreWindowListener(newsList, btnMarks);
+        AddMarksReadMoreWindowListener addmarksListener = new AddMarksReadMoreWindowListener(newsList, btnMarks, path);
         btnNext.addSelectionListener(addmarksListener);
-
+        TrainWindow win = TrainWindow.getTrainWindow();
+        if (win != null) {
+            btnNext.addSelectionListener(TrainWindow.getTrainWindow().getFinishTrainingListener());
+            logger.info("add finishTrainingListener in training mode");
+        }
        
         scrolledComposite.setContent(composite);
         scrolledComposite.setMinWidth(500);
@@ -438,11 +446,19 @@ public class AddMarksDialog {
         }
     }
 
+    public static AddMarksDialog getAddMarksDialog() {
+        return addMarksDialog;
+    }
+    
     public int getLineId() {
         return lineId;
     }
 
     public void setLineId(int lineId) {
         this.lineId = lineId;
+    }
+    
+    public Button getNextButton() {
+        return btnNext;
     }
 }

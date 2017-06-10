@@ -1,13 +1,13 @@
 package org.lbchild.url;
 
-import java.io.File;
-
 import org.lbchild.model.NewsList;
 import org.lbchild.util.Base64Content;
-import org.lbchild.xml.XMLWriter;
+import org.lbchild.xml.XMLSelectionIdWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UrlContentDownloader {
-
+    private static Logger logger = LoggerFactory.getLogger(UrlContentDownloader.class);
     public static void writeEncodedContent(NewsList newsList, int selectionId) {
 
         try {
@@ -26,7 +26,7 @@ public class UrlContentDownloader {
                 fileName = "src/main/resources/guangming2.xml";
             } else {}
           
-            
+            logger.info("set selectionId: " + selectionId + " content which from url");
             // 将爬取的内容加密写入新闻文件 xml 中
             String encodedContent = null;
 
@@ -35,8 +35,9 @@ public class UrlContentDownloader {
             }
             
             if (fileName != null && encodedContent != null) {
-                File file = new File(fileName);
-                new XMLWriter(file).updateEncodedContent(encodedContent, selectionId);
+                new XMLSelectionIdWriter().updateEncodedContent(encodedContent, selectionId);
+                logger.info("download selectionId: " + selectionId + " into file");
+
             }
             
         } catch (Exception e) {

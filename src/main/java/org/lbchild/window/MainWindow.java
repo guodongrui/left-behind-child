@@ -15,19 +15,25 @@ import org.eclipse.swt.widgets.Group;
 import org.lbchild.util.Base64Content;
 import org.lbchild.model.NewsItem;
 import org.lbchild.model.NewsList;
+import org.lbchild.model.TrashNewsList;
+import org.lbchild.model.User;
 import org.lbchild.xml.XMLReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
+import org.lbchild.controller.LogoutAction;
+import org.lbchild.controller.MergeAction;
+import org.lbchild.controller.OpenTrashAction;
 import org.lbchild.controller.ReadMoreListener;
+import org.lbchild.controller.TrainAction;
 import org.lbchild.res.management.SWTResourceManager;
 import org.eclipse.swt.widgets.Text;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -35,7 +41,6 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.custom.ScrolledComposite;
 
 public class MainWindow extends ApplicationWindow {
-    private AnalyzeAction analyzeAction;
     private Text text_Type;
     private Text text_Theme;
     private Text text_Source;
@@ -51,12 +56,21 @@ public class MainWindow extends ApplicationWindow {
     private static MainWindow mainWindow;
 
     private List newsSummaryList;
+    private AnalyzeAction analyzeAction;
+    private OpenTrashAction openTrashAction;
+    private TrainAction trainAction;
+    private MergeAction mergeAction;
 
-    private static java.util.List<Integer> deleteIndex;
     
-    public static enum Newspaper { GUANGMING, NANFANG, SICHUAN }
+    private TrashNewsList trashNewsList;
+    private LogoutAction logoutAction;
+
+    public static enum Newspaper {
+        GUANGMING, NANFANG, SICHUAN
+    }
+
     public static int[] newsSourceFileLength = new int[Newspaper.values().length];
-    
+
     private static Logger logger = LoggerFactory.getLogger(MainWindow.class);
 
     /**
@@ -65,6 +79,7 @@ public class MainWindow extends ApplicationWindow {
     public MainWindow() {
         super(null);
         mainWindow = this;
+        login(mainWindow.getShell());
         initNewsList();
         createActions();
         addToolBar(SWT.FLAT | SWT.WRAP);
@@ -73,26 +88,27 @@ public class MainWindow extends ApplicationWindow {
     }
 
     private void initNewsList() {
-        try {            
-            File newsSourcefile[] = new File[3]; 
+        try {
+            File newsSourcefile[] = new File[3];
             newsSourcefile[Newspaper.GUANGMING.ordinal()] = new File("src/main/resources/guangming2.xml");
             newsSourcefile[Newspaper.NANFANG.ordinal()] = new File("src/main/resources/nanfangdaily2.xml");
             newsSourcefile[Newspaper.SICHUAN.ordinal()] = new File("src/main/resources/sichuan2.xml");
-            
+
             ArrayList<Map<String, String>> list = new ArrayList<>();
-            for (Newspaper newspaper: Newspaper.values()) {
+            for (Newspaper newspaper : Newspaper.values()) {
                 int num = newspaper.ordinal();
-                
+
                 // 将各新闻文件新闻总条数存储到 newsSourceFileLength 里
                 ArrayList<Map<String, String>> temp = new XMLReader(newsSourcefile[num]).readXml();
-                newsSourceFileLength[num] = temp.size(); 
+                newsSourceFileLength[num] = temp.size();
                 list.addAll(temp);
             }
 
             logger.info("finishing reading news from file");
-            
+
             int n = list.size();
             ArrayList<NewsItem> li = new ArrayList<>();
+            trashNewsList = TrashNewsList.getInstance();
             for (int i = 0; i < n; ++i) {
                 NewsItem newsItem = new NewsItem();
                 newsItem.setDate(list.get(i).get("Date"));
@@ -112,18 +128,18 @@ public class MainWindow extends ApplicationWindow {
                 newsItem.setDeleted(Boolean.parseBoolean(list.get(i).get("IsDeleted")));
                 newsItem.setLocation(list.get(i).get("Location"));
                 newsItem.setId(list.get(i).get("ID"));
-                
+
                 if (newsItem.isDeleted()) {
-                    continue;
+                    trashNewsList.add(i, newsItem);
                 } else {
                     li.add(newsItem);
                 }
             }
 
             newsList = new NewsList(li);
-            
+
             logger.info("finishing initializing newsList");
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -137,6 +153,8 @@ public class MainWindow extends ApplicationWindow {
     @Override
     protected Control createContents(Composite parent) {
         Composite container = new Composite(parent, SWT.NONE);
+        
+        String path = "src/main/resources/" + User.getInstance().getUserName() + "/newsmarks.xml";
 
         ScrolledComposite scrolledComposite = new ScrolledComposite(container,
                 SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -147,7 +165,8 @@ public class MainWindow extends ApplicationWindow {
         newsSummaryList = new List(container, SWT.BORDER | SWT.V_SCROLL);
         newsSummaryList.setBounds(0, 0, 478, 613);
         newsSummaryList.setItems(newsList.getNewsSummaryList());
-        newsSummaryList.addSelectionListener(new ReadMoreListener(newsList));
+        newsSummaryList.setSelection(0);
+        newsSummaryList.addSelectionListener(new ReadMoreListener(newsList, path));
 
         Group group_AddMarks = new Group(scrolledComposite, SWT.NONE);
 
@@ -551,7 +570,7 @@ public class MainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks));
+        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
 
@@ -565,9 +584,12 @@ public class MainWindow extends ApplicationWindow {
      * Create the actions.
      */
     private void createActions() {
-
         // Create the actions
         analyzeAction = new AnalyzeAction("Analysis");
+        openTrashAction = new OpenTrashAction("Trash", newsList);
+        trainAction = new TrainAction("Train", newsList);
+        mergeAction = new MergeAction("Merge");
+        logoutAction = new LogoutAction("Logout");
     }
 
     /**
@@ -590,6 +612,11 @@ public class MainWindow extends ApplicationWindow {
     protected ToolBarManager createToolBarManager(int style) {
         ToolBarManager toolBarManager = new ToolBarManager(style);
         toolBarManager.add(analyzeAction);
+        toolBarManager.add(openTrashAction);
+        toolBarManager.add(trainAction);
+        if (User.getInstance().getUserName().equals("admin"))
+            toolBarManager.add(mergeAction);
+        toolBarManager.add(logoutAction);
         return toolBarManager;
     }
 
@@ -610,13 +637,42 @@ public class MainWindow extends ApplicationWindow {
      * @param args
      */
     public static void main(String args[]) {
-        try {
-            MainWindow window = new MainWindow();
-            window.setBlockOnOpen(true);
-            window.open();
+        MainWindow window = new MainWindow();
+        window.setBlockOnOpen(true);
+        window.open();
+        if (Display.getCurrent() != null) {
             Display.getCurrent().dispose();
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+    }
+
+    public void login(Shell shell) {
+        int status = LoginDialog.LOGIN_ID;
+        User user = User.getInstance();
+        if (user.getUserName() == null || user.getUserName().equals("")) {
+            LoginDialog dialog = new LoginDialog(shell);
+            status = dialog.open(); // 对话框取消时，status 变为 LOGOUT_ID
+            logger.info("status: " + status);
+        }
+        if (status == LoginDialog.LOGIN_ID) {
+            String dirName = "src/main/resources/" + user.getUserName();
+            File dir = new File(dirName);
+            if (dir.exists()) {
+            } else {
+                dir.mkdir();
+            }
+            String newsMark = "/newsmarks.xml";
+            try {
+                PrintWriter initNewsMarksOutput = new PrintWriter(new FileWriter(dirName + newsMark));
+                initNewsMarksOutput.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\n" + "<ArrayOfNewsData>\n"
+                        + "</ArrayOfNewsData>");
+                initNewsMarksOutput.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            logger.info("create " + dirName + " directory");
+        } else {
+            System.exit(0);
         }
     }
 
@@ -647,44 +703,4 @@ public class MainWindow extends ApplicationWindow {
         return newsSummaryList;
     }
 
-    public static java.util.List<Integer> getDeleteInstance() {
-        deleteIndex = readFile();
-        return deleteIndex;
-    }
-
-    public static java.util.List<Integer> readFile() {
-        File file = new File("src/main/resources/delete-index.txt");
-        java.util.List<Integer> ret = new ArrayList<>();
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(file));
-            String lineStr = in.readLine();
-
-            if (lineStr != null) {
-                String[] deleteIndexStr = lineStr.split(" ");
-                for (String s : deleteIndexStr) {
-                    ret.add(Integer.valueOf(s));
-                }
-            }
-            in.close();
-            
-            logger.info("finishing reading delte-index.txt");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ret;
-    }
-
-    public static void writeFile() {
-        try {
-            FileWriter out = new FileWriter(new File("src/main/resources/delete-index.txt"));
-            for (int i = 0; i < deleteIndex.size(); i++) {
-                out.write(deleteIndex.get(i) + " ");
-            }
-            out.close();
-            
-            logger.info("finishing writing delte-index.txt");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

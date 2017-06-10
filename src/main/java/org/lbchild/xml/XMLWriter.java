@@ -13,8 +13,9 @@ import org.dom4j.io.SAXReader;
 
 public class XMLWriter {
 
-    private File file;
+    protected File file;
 
+    public XMLWriter() {}
     public XMLWriter(File file) {
         this.file = file;
     }
@@ -147,6 +148,7 @@ public class XMLWriter {
         } else {
             System.out.println("false");
         }
+      
+        new XMLWriter(new File("src/main/resources/guangming2.xml")).updateXml(0, "");
     }
-
 }
