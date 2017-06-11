@@ -94,7 +94,6 @@ public class TrainWindow extends ApplicationWindow {
                 newsItem.setLocation(list.get(i).get("Location"));
                 newsItem.setId(list.get(i).get("ID"));
                 li.add(newsItem);
-
             }
 
             newsList.addNewList(li);

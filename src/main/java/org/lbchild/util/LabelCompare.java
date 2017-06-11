@@ -17,7 +17,7 @@ public class LabelCompare {
     private ArrayList<String> labelList1;
     private ArrayList<String> labelList2;
     private NewsList newsList;
-    private List<ConsistencyCheck> consistencyCheckTable;
+    private List<ConsistencyCheck> consistencyCheckTable = new ArrayList<>();
  
     private static Logger logger = LoggerFactory.getLogger(LabelCompare.class);
     
@@ -27,7 +27,8 @@ public class LabelCompare {
         for (int i = 0; i < diflist.size(); ++i) {
             ConsistencyCheck c = new ConsistencyCheck();
             int index = diflist.get(i);
-            c.setDifferentLineIndex(index);
+            c.setDifferentLineIndex(index / 9 + 1);
+            c.setNewsMarksType(CountLabel.findNewsType(index % 10));
             c.setUser1differentMarks(labelList1.get(index));
             c.setUser2differentMarks(labelList2.get(index));
             c.setTitle(newsList.getNewsItem((index/9)).getTitle());
@@ -58,7 +59,9 @@ public class LabelCompare {
             
             String user1marks = Crypt.decryptContent(user1List.get(i).get("NewsMarks"), user1Name);
             String user2marks = Crypt.decryptContent(user2List.get(i).get("NewsMarks"), user2Name);
-            
+            logger.info(user1Name + " decrypt: " + user1marks);
+            logger.info(user2Name + " decrypt: " + user2marks);
+
             labelToList(user1marks, labelList1);
             labelToList(user2marks, labelList2);
             

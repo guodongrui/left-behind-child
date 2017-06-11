@@ -2,6 +2,7 @@ package org.lbchild.model;
 
 public class ConsistencyCheck {
     private int differentLineIndex;
+    private String newsMarksType;
     private String user1differentMarks;
     private String user2differentMarks;
     private String title;
@@ -12,6 +13,14 @@ public class ConsistencyCheck {
 
     public void setDifferentLineIndex(int differentLineIndex) {
         this.differentLineIndex = differentLineIndex;
+    }
+    
+    public String getNewsMarksType() {
+        return newsMarksType;
+    }
+
+    public void setNewsMarksType(String newsMarksType) {
+        this.newsMarksType = newsMarksType;
     }
 
     public String getUser1differentMarks() {

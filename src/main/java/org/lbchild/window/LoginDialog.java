@@ -45,6 +45,7 @@ public class LoginDialog extends Dialog {
      */
     @Override
     protected Control createDialogArea(Composite parent) {
+        this.getShell().setText("登录");
         Composite container = (Composite) super.createDialogArea(parent);
         GridLayout gridLayout = (GridLayout) container.getLayout();
         gridLayout.numColumns = 4;

@@ -39,7 +39,7 @@ public class XMLWriter {
             List<Element> list = arrayOfNewsData.elements("NewsData");
             for (Element e : list) {
                 if (e.element("ID").getText().equals(id)) {
-                    e.element("NewsMarks").setText(newsMarks);
+                    e.element("NewsMarks").setText(Crypt.encryptContent(newsMarks, User.getInstance().getUserName()));
                     writeIntoXml(file, document);
                     return;
                 }
