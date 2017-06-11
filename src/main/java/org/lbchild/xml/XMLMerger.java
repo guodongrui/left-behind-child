@@ -97,7 +97,7 @@ public class XMLMerger {
                     
                     String decodeNewsMarks = decodeNewsMarks(listBranch.get(branchIndex).element("NewsMarks").getText(), key);
                     logger.info("decodeNewsMarks: " + decodeNewsMarks);
-                    String encodeNewsMarks = encodeNewsMarks(decodeNewsMarks, "admin");
+                    String encodeNewsMarks = encodeNewsMarks(decodeNewsMarks, User.getInstance().getUserName());
                     newsMark.setText(encodeNewsMarks);
 
                     // 创建NewsData结点下的Date子结点
@@ -115,7 +115,7 @@ public class XMLMerger {
 
                     String decodeNewsMarks = decodeNewsMarks(listBranch.get(branchIndex).element("NewsMarks").getText(), key);
                     logger.info("decodeNewsMarks: " + decodeNewsMarks);
-                    String encodeNewsMarks = encodeNewsMarks(decodeNewsMarks, "admin");
+                    String encodeNewsMarks = encodeNewsMarks(decodeNewsMarks, User.getInstance().getUserName());
                     
                     listMaster.get(masterIndex).element("NewsMarks")
                             .setText(encodeNewsMarks);
@@ -137,7 +137,7 @@ public class XMLMerger {
                 
                 logger.info("decodeNewsMarks: " + decodeNewsMarks);
                 
-                String encodeNewsMarks = encodeNewsMarks(decodeNewsMarks, "admin");
+                String encodeNewsMarks = encodeNewsMarks(decodeNewsMarks, User.getInstance().getUserName());
                 newsMark.setText(encodeNewsMarks);
                 
                 // 创建NewsData结点下的Date子结点

@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.lbchild.controller.AddMarksListener;
 import org.lbchild.controller.AnalyzeAction;
+import org.lbchild.controller.ConsistencyCheckAction;
 import org.lbchild.controller.LogoutAction;
 import org.lbchild.controller.MergeAction;
 import org.lbchild.controller.OpenTrashAction;
@@ -61,6 +62,7 @@ public class MainWindow extends ApplicationWindow {
 
     private TrashNewsList trashNewsList;
     private LogoutAction logoutAction;
+    private ConsistencyCheckAction consistencyCheckAction;
 
     public static enum Newspaper {
         GUANGMING, NANFANG, SICHUAN
@@ -585,6 +587,7 @@ public class MainWindow extends ApplicationWindow {
         analyzeAction = new AnalyzeAction("Analysis");
         openTrashAction = new OpenTrashAction("Trash", newsList);
         trainAction = new TrainAction("Train", newsList);
+        consistencyCheckAction = new ConsistencyCheckAction("Check");
         mergeAction = new MergeAction("Merge");
         String user = User.getInstance().getUserName();
         logoutAction = new LogoutAction("[" + user.substring(0, 5) + ((user.length() <= 5) ? "" : "..") + "]" + " Logout");
@@ -612,6 +615,7 @@ public class MainWindow extends ApplicationWindow {
         toolBarManager.add(analyzeAction);
         toolBarManager.add(openTrashAction);
         toolBarManager.add(trainAction);
+        toolBarManager.add(consistencyCheckAction);
         if (User.getInstance().getUserName().equals("admin"))
             toolBarManager.add(mergeAction);
         toolBarManager.add(logoutAction);

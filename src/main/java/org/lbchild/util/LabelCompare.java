@@ -4,25 +4,52 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
+import org.lbchild.model.ConsistencyCheck;
+import org.lbchild.model.NewsList;
 import org.lbchild.xml.XMLReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LabelCompare {
     
+    private List<Integer> diflist;
+    private ArrayList<String> labelList1;
+    private ArrayList<String> labelList2;
+    private NewsList newsList;
+    private List<ConsistencyCheck> consistencyCheckTable;
+ 
     private static Logger logger = LoggerFactory.getLogger(LabelCompare.class);
     
-    public void compare(String user1path, String user2path) {
+    public LabelCompare(NewsList newsList, String user1path, String user2path) {
+        this.newsList = newsList;
+        compare(user1path, user2path);
+        for (int i = 0; i < diflist.size(); ++i) {
+            ConsistencyCheck c = new ConsistencyCheck();
+            int index = diflist.get(i);
+            c.setDifferentLineIndex(index);
+            c.setUser1differentMarks(labelList1.get(index));
+            c.setUser2differentMarks(labelList2.get(index));
+            c.setTitle(newsList.getNewsItem((index/9)).getTitle());
+            consistencyCheckTable.add(c);
+        }
+    }
+    
+    
+    public List<ConsistencyCheck> getConsistencyCheckTable() {
+        return consistencyCheckTable;
+    }
+
+
+    private void compare(String user1path, String user2path) {
         File user1 = new File(user1path);
         File user2 = new File(user2path);
         XMLReader in1 = new XMLReader(user1);
         XMLReader in2 = new XMLReader(user2);
         ArrayList<Map<String, String>> user1List = in1.readXml();
-        ArrayList<String> labelList1 = new ArrayList<>();
+        labelList1 = new ArrayList<>();
         ArrayList<Map<String, String>> user2List = in2.readXml();
-        ArrayList<String> labelList2 = new ArrayList<>();
+        labelList2 = new ArrayList<>();
         for (int i = 0; i < user1List.size(); i++) {
 
             String user1Name = user1path.replace("src/main/resources/", "").replaceAll("/.*", "");
@@ -35,10 +62,8 @@ public class LabelCompare {
             labelToList(user1marks, labelList1);
             labelToList(user2marks, labelList2);
             
-            List<Integer> diflist = compareLabelList(labelList1, labelList2);
+            diflist = compareLabelList(labelList1, labelList2);
             
-            double rate = (1 - (double)diflist.size() / labelList1.size()) * 100;
-
         }
 
     }
@@ -70,8 +95,16 @@ public class LabelCompare {
 
     }
     
+    public double getRate() {
+        return (1 - (double)diflist.size() / labelList1.size()) * 100;
+    }
+    
+    public NewsList getNewsList() {
+        return newsList;
+    }
+    
     public static void main(String[] args) {
-        LabelCompare lc = new LabelCompare();
-        lc.compare("src/main/resources/guodongrui/training.xml", "src/main/resources/admin/training.xml");
+//        LabelCompare lc = new LabelCompare();
+//        lc.compare("src/main/resources/guodongrui/training.xml", "src/main/resources/admin/training.xml");
     }
 }

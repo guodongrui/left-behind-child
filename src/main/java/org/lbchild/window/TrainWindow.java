@@ -105,6 +105,10 @@ public class TrainWindow extends ApplicationWindow {
 
     }
 
+    public NewsList getNewsList() {
+        return newsList;
+    }
+
     /**
      * Create contents of the application window.
      * 
