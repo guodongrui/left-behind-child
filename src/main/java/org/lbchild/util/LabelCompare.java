@@ -24,14 +24,16 @@ public class LabelCompare {
     public LabelCompare(NewsList newsList, String user1path, String user2path) {
         this.newsList = newsList;
         compare(user1path, user2path);
+        final int MARKS_LENGTH = 10;
         for (int i = 0; i < diflist.size(); ++i) {
             ConsistencyCheck c = new ConsistencyCheck();
             int index = diflist.get(i);
-            c.setDifferentLineIndex(index / 9 + 1);
-            c.setNewsMarksType(CountLabel.findNewsType(index % 10));
+            
+            c.setDifferentLineIndex(index / MARKS_LENGTH + 1);
+            c.setNewsMarksType(CountLabel.findNewsType(index % MARKS_LENGTH));
             c.setUser1differentMarks(labelList1.get(index));
             c.setUser2differentMarks(labelList2.get(index));
-            c.setTitle(newsList.getNewsItem((index/9)).getTitle());
+            c.setTitle(newsList.getNewsItem((index / MARKS_LENGTH)).getTitle());
             consistencyCheckTable.add(c);
         }
     }

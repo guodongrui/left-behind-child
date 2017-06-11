@@ -198,7 +198,7 @@ public class ConsistencyCheckDialog extends Dialog {
      */
     @Override
     protected void createButtonsForButtonBar(Composite parent) {
-        Button ok_bt = createButton(parent, IDialogConstants.YES_ID, IDialogConstants.OK_LABEL, true);
+        Button ok_bt = createButton(parent, IDialogConstants.YES_ID, "Check", true);
         ok_bt.addSelectionListener(new SelectionAdapter() {
             
             @Override

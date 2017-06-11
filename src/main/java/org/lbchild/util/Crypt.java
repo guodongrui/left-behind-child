@@ -101,6 +101,11 @@ public class Crypt {
     }
 
     public static String decryptContent(String content, String password) {
-        return new String(decrypt(parseHexStr2Byte(content), password));
+        try {
+            return new String(decrypt(parseHexStr2Byte(content), password), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "error";
     }
 }
