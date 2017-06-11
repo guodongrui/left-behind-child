@@ -127,7 +127,7 @@ public class TrainWindow extends ApplicationWindow {
         newsSummaryList = new List(container, SWT.BORDER | SWT.V_SCROLL);
         newsSummaryList.setBounds(0, 0, 478, 613);
         newsSummaryList.setItems(newsList.getNewsSummaryList());
-        newsSummaryList.setSelection(0);
+        newsSummaryList.setSelection(0);         
         newsSummaryList.addSelectionListener(new ReadMoreListener(newsList, path));
 
         Group group_AddMarks = new Group(scrolledComposite, SWT.NONE);
@@ -138,23 +138,20 @@ public class TrainWindow extends ApplicationWindow {
         text_Type = new Text(composite_Type, SWT.CENTER);
         text_Type.setBounds(0, 0, 73, 20);
         text_Type.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
-        text_Type.setEnabled(true);
         text_Type.setEditable(false);
         text_Type.setText("报纸类别");
 
         Button btnRadioButtonTypeCenter = new Button(composite_Type, SWT.RADIO);
-        btnRadioButtonTypeCenter.setBounds(0, 25, 97, 17);
         btnRadioButtonTypeCenter.setEnabled(true);
+        btnRadioButtonTypeCenter.setBounds(0, 25, 97, 17);
         btnRadioButtonTypeCenter.setText("中央一级");
 
         Button btnRadioButtonTypeProvince = new Button(composite_Type, SWT.RADIO);
         btnRadioButtonTypeProvince.setBounds(0, 45, 100, 17);
-        btnRadioButtonTypeProvince.setEnabled(true);
         btnRadioButtonTypeProvince.setText("省一级");
 
         Button btnRadioButtonTypeMarket = new Button(composite_Type, SWT.RADIO);
         btnRadioButtonTypeMarket.setBounds(0, 65, 100, 17);
-        btnRadioButtonTypeMarket.setEnabled(true);
         btnRadioButtonTypeMarket.setText("经营模式市场化");
 
         final ArrayList<Button> btnType = new ArrayList<>();
@@ -169,7 +166,6 @@ public class TrainWindow extends ApplicationWindow {
         text_Theme.setBounds(0, 0, 73, 20);
         text_Theme.setForeground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_FOREGROUND));
         text_Theme.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
-        text_Theme.setEnabled(true);
         text_Theme.setEditable(false);
         text_Theme.setText("报道主题");
 
@@ -231,7 +227,7 @@ public class TrainWindow extends ApplicationWindow {
         text_Source = new Text(composite_Source, SWT.CENTER);
         text_Source.setBounds(0, 0, 80, 20);
         text_Source.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
-        text_Source.setEnabled(true);
+//        text_Source.setEnabled(true);
         text_Source.setEditable(false);
         text_Source.setText("新闻报道来源");
 
@@ -283,7 +279,7 @@ public class TrainWindow extends ApplicationWindow {
         text_Reason = new Text(composite_Reason, SWT.NONE);
         text_Reason.setBounds(0, 0, 260, 20);
         text_Reason.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
-        text_Reason.setEnabled(true);
+//        text_Reason.setEnabled(true);
         text_Reason.setEditable(false);
         text_Reason.setText("新闻报道中农民工子女不能留在城市读书的原因");
 
@@ -320,7 +316,6 @@ public class TrainWindow extends ApplicationWindow {
         text_NType = new Text(composite_NType, SWT.CENTER);
         text_NType.setBounds(0, 0, 73, 20);
         text_NType.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
-        text_NType.setEnabled(true);
         text_NType.setEditable(false);
         text_NType.setText("新闻类型");
 
@@ -352,7 +347,6 @@ public class TrainWindow extends ApplicationWindow {
         text_Image = new Text(composite_Image, SWT.CENTER);
         text_Image.setBounds(0, 0, 90, 20);
         text_Image.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
-        text_Image.setEnabled(true);
         text_Image.setEditable(false);
         text_Image.setText("媒体呈现形象");
 
@@ -389,7 +383,6 @@ public class TrainWindow extends ApplicationWindow {
         text_Subject = new Text(composite_Subject, SWT.CENTER);
         text_Subject.setBounds(0, 0, 110, 20);
         text_Subject.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
-        text_Subject.setEnabled(true);
         text_Subject.setEditable(false);
         text_Subject.setText("帮助类新闻的主体");
 
@@ -426,7 +419,6 @@ public class TrainWindow extends ApplicationWindow {
         text_Specific = new Text(composite_Specific, SWT.CENTER);
         text_Specific.setBounds(0, 0, 120, 20);
         text_Specific.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
-        text_Specific.setEnabled(true);
         text_Specific.setEditable(false);
         text_Specific.setText("帮助新闻的具体种类");
 
@@ -463,7 +455,6 @@ public class TrainWindow extends ApplicationWindow {
         text_Praise = new Text(composite_Praise, SWT.CENTER);
         text_Praise.setBounds(0, 0, 110, 20);
         text_Praise.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
-        text_Praise.setEnabled(true);
         text_Praise.setEditable(false);
         text_Praise.setText("表彰奖励的新闻主体");
 
@@ -500,7 +491,6 @@ public class TrainWindow extends ApplicationWindow {
         text_Sex = new Text(composite_Sex, SWT.CENTER);
         text_Sex.setBounds(0, 0, 62, 20);
         text_Sex.setText("性别");
-        text_Sex.setEnabled(true);
         text_Sex.setEditable(false);
         text_Sex.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
 
@@ -544,6 +534,8 @@ public class TrainWindow extends ApplicationWindow {
         scrolledComposite.setContent(group_AddMarks);
         scrolledComposite.setMinSize(group_AddMarks.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
+        
+        
         return container;
     }
 
