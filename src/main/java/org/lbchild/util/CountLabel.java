@@ -144,6 +144,31 @@ public class CountLabel {
         return -1;
     }
 
+    public static String findNewsType(int index) {
+        if (index == 0) {
+            return new String("报纸类别");
+        } else if (index == 1) {
+            return new String("新闻类型");
+        } else if (index == 2) {
+            return new String("报道主题");
+        } else if (index == 3) {
+            return new String("新闻报道来源");
+        } else if (index == 4) {
+            return new String("媒体呈现形象");
+        } else if (index == 5) {
+            return new String("帮助新闻的具体种类");
+        } else if (index == 6) {
+            return new String("帮助类新闻的主体");
+        } else if (index == 7) {
+            return new String("表彰奖励的新闻主体");
+        } else if (index == 8) {
+            return new String("农民工子女不能留在城市读书的原因");
+        } else if (index == 9) {
+            return new String("性别");
+        }
+        return "";
+    }
+    
     public static int countLabelPos(int i, String s) {
         if (i == 0) {
             if (s.equals("中央一级")) {

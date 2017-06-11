@@ -13,8 +13,7 @@ public class ConsistencyCheckAction extends Action {
     }
 
     public void run() {
-        ConsistencyCheckDialog dialog = new ConsistencyCheckDialog(Display.getCurrent().getActiveShell(),
-                TrainWindow.getTrainWindow().getNewsList());
+        ConsistencyCheckDialog dialog = new ConsistencyCheckDialog(Display.getCurrent().getActiveShell());
         dialog.open();
     }
 }

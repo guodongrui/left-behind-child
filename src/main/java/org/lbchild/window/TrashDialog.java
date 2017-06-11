@@ -55,6 +55,7 @@ public class TrashDialog extends Dialog {
      */
     @Override
     protected Control createDialogArea(Composite parent) {
+        this.getShell().setText("回收站");
         Composite container = (Composite) super.createDialogArea(parent);
         container.setLayout(new FillLayout());
 
