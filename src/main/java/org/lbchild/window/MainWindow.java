@@ -564,9 +564,9 @@ public class MainWindow extends ApplicationWindow {
         btnMarks.add(btnPraise);
         btnMarks.add(btnReason);
         btnMarks.add(btnSex);
-        for (ArrayList<Button> markGroupType : btnMarks) {
-            markGroupType.get(0).setSelection(true);
-        }
+//        for (ArrayList<Button> markGroupType : btnMarks) {
+//            markGroupType.get(0).setSelection(true);
+//        }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
         btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));

@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class FinishTrainingListener implements SelectionListener {
+    private static int counter = 0;
     private HashSet<Integer> markedNewsIndex = new HashSet<>();
     private List newsSummaryList;
 

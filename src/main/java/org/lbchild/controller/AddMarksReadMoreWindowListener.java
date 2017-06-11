@@ -41,12 +41,12 @@ public class AddMarksReadMoreWindowListener implements SelectionListener {
                     if (pFlag == 0) {
                         newsMarks += btn.getText();
                         btn.setSelection(false);
-                        markGroupType.get(0).setSelection(true);
+//                        markGroupType.get(0).setSelection(true);
                         pFlag = 1;
                     } else {
                         newsMarks += "|" + btn.getText();
                         btn.setSelection(false);
-                        markGroupType.get(0).setSelection(true);
+//                        markGroupType.get(0).setSelection(true);
                     }
                 }
             }

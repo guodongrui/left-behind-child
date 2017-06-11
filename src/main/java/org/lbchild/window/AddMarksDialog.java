@@ -415,9 +415,9 @@ public class AddMarksDialog {
         btnMarks.add(btnPraise);
         btnMarks.add(btnReason);
         btnMarks.add(btnSex);
-        for (ArrayList<Button> markGroupType : btnMarks) {
-            markGroupType.get(0).setSelection(true);
-        }
+//        for (ArrayList<Button> markGroupType : btnMarks) {
+//            markGroupType.get(0).setSelection(true);
+//        }
 
         btnNext = new Button(composite_2, SWT.NONE);
         btnNext.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
