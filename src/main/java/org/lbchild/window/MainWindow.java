@@ -590,7 +590,7 @@ public class MainWindow extends ApplicationWindow {
         consistencyCheckAction = new ConsistencyCheckAction("Check");
         mergeAction = new MergeAction("Merge");
         String user = User.getInstance().getUserName();
-        logoutAction = new LogoutAction("[" + user.substring(0, 5) + ((user.length() <= 5) ? "" : "..") + "]" + " Logout");
+        logoutAction = new LogoutAction("[" + ((user.length() <= 5) ? user : user.substring(0, 5) + "..") + "]" + " Logout");
     }
 
     /**

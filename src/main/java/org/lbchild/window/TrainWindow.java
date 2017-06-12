@@ -7,9 +7,12 @@ import java.util.Map;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.StatusLineManager;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -28,9 +31,13 @@ import org.lbchild.model.User;
 import org.lbchild.res.management.SWTResourceManager;
 import org.lbchild.util.Base64Content;
 import org.lbchild.xml.XMLReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TrainWindow extends ApplicationWindow {
 
+    private static Logger logger = LoggerFactory.getLogger(TrainWindow.class);
+    
     private Text text_Type;
     private Text text_Theme;
     private Text text_Source;
@@ -45,7 +52,6 @@ public class TrainWindow extends ApplicationWindow {
     private List newsSummaryList;
     private FinishTrainingListener listener; 
     private static TrainWindow trainWindow;
-    
     /**
      * Create the application window.
      */
@@ -522,20 +528,45 @@ public class TrainWindow extends ApplicationWindow {
         }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
-        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
+       
+        btnNewButton.setBounds(432, 586, 54, 20);
+        btnNewButton.setText("Next");
+        btnNewButton.addSelectionListener(new SelectionAdapter() {
+            int countMarks = 0;
+            @Override
+            public void widgetSelected(SelectionEvent arg0) {
+                for (int i = 0; i < btnMarks.size(); i++) {
+                    for (int j = 0; j < btnMarks.get(i).size(); j++) {
+                        if (btnMarks.get(i).get(j).getSelection()) {
+                            countMarks++;
+                            logger.info("select radio button number: " + countMarks);
+                            break;
+                        }
+                    } 
+                }
+                if (countMarks != 10) {
+                    new MessageDialog(Display.getCurrent().getActiveShell(), "提示", null, "尚有标签未贴！",
+                            MessageDialog.INFORMATION, new String[]{"OK"}, 0).open(); 
+                    countMarks = 0;
+                    logger.info("show warning: marks num is not 10");
+                } else {
+//                    int lineId = newsSummaryList.getFocusIndex();
+//                    logger.info("lineId in TrainWindow: " + lineId);
+//                    newsSummaryList.setSelection((lineId + 1) % newsSummaryList.getItems().length);
+                    countMarks = 0;
+                }
+            }
+        });
         
+        btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
+
         // 添加完成测试监听器
         listener = new FinishTrainingListener(newsSummaryList);
         btnNewButton.addSelectionListener(listener);
         
-        btnNewButton.setBounds(432, 586, 54, 20);
-        btnNewButton.setText("Next");
-
         scrolledComposite.setContent(group_AddMarks);
         scrolledComposite.setMinSize(group_AddMarks.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
-        
-        
+ 
         return container;
     }
 

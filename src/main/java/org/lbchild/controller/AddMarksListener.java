@@ -20,12 +20,13 @@ public class AddMarksListener implements SelectionListener {
     private NewsList newsList;
     private String path;
     private Logger logger = LoggerFactory.getLogger(AddMarksListener.class);
-    
-    public AddMarksListener(NewsList newsList, List newsSummaryList, ArrayList<ArrayList<Button>> btnMarks,String path) {
+
+    public AddMarksListener(NewsList newsList, List newsSummaryList, ArrayList<ArrayList<Button>> btnMarks,
+            String path) {
         this.newsSummaryList = newsSummaryList;
         this.btnMarks = btnMarks;
         this.newsList = newsList;
-        this.path=path;
+        this.path = path;
     }
 
     @Override
@@ -35,38 +36,48 @@ public class AddMarksListener implements SelectionListener {
 
     @Override
     public void widgetSelected(SelectionEvent e) {
-        
+
         logger.info("add marks listener");
-        
+
         String newsMarks = "";
-        int pFlag = 0;  // 若为1打印"|"
+        int pFlag = 0; // 若为1打印"|"
         for (ArrayList<Button> markGroupType : btnMarks) {
             for (Button btn : markGroupType) {
                 if (btn.getSelection()) {
                     if (pFlag == 0) {
                         newsMarks += btn.getText();
                         btn.setSelection(false);
-//                        markGroupType.get(0).setSelection(true);
                         pFlag = 1;
                     } else {
                         newsMarks += "|" + btn.getText();
                         btn.setSelection(false);
-//                        markGroupType.get(0).setSelection(true);
                     }
                 }
             }
         }
         logger.info("finish adding news marks");
-        
+
         File file = new File(path);
         new NewXMLFile(file);
-        logger.info("write to file path: " + path);
+        logger.info("file path: " + path);
         XMLWriter out = new XMLWriter(file);
 
         int lineId = newsSummaryList.getFocusIndex();
-        newsSummaryList.setSelection((lineId + 1) % newsSummaryList.getItems().length);
-        out.insertXml(newsMarks, newsList.getNewsItem(lineId).getDate().split("-")[0], newsList.getNewsItem(lineId).getId());
+        logger.info("lineId in TrainWindow: " + lineId);
         
+        String[] splitNewsMarks = newsMarks.split("\\|");
+        for (int i = 0; i < splitNewsMarks.length; i++) {
+            logger.debug("splitNewsMarks: " + splitNewsMarks[i]);
+        }
+        
+        logger.info("splitNewsMarks: " + splitNewsMarks.length);
+        if (splitNewsMarks.length == 10) {
+            out.insertXml(newsMarks, newsList.getNewsItem(lineId).getDate().split("-")[0],
+                    newsList.getNewsItem(lineId).getId());
+            logger.info("write newsMarks in file: " + newsMarks + ", lineId: " + lineId);
+            newsSummaryList.setSelection((lineId + 1) % newsSummaryList.getItems().length);
+        }
+
     }
 
 }
