@@ -249,14 +249,10 @@ public class AddMarksDialog {
         GridData gd_composite_1 = new GridData(SWT.FILL, SWT.FILL, true, true);
         gd_composite_1.widthHint = 309;
         composite_1.setLayoutData(gd_composite_1);
-        // scrolledComposite.setContent(composite);
-        // scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT,
-        // SWT.DEFAULT));
-
+        
         Composite composite_3 = new Composite(composite_2, SWT.NONE);
         composite_3.setLayout(new GridLayout(1, false));
         composite_3.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
 
         text_NType = new Text(composite_3, SWT.READ_ONLY);
         text_NType.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND));
@@ -415,9 +411,6 @@ public class AddMarksDialog {
         btnMarks.add(btnPraise);
         btnMarks.add(btnReason);
         btnMarks.add(btnSex);
-//        for (ArrayList<Button> markGroupType : btnMarks) {
-//            markGroupType.get(0).setSelection(true);
-//        }
 
         btnNext = new Button(composite_2, SWT.NONE);
         btnNext.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
@@ -435,7 +428,6 @@ public class AddMarksDialog {
         scrolledComposite.setMinHeight(820); 
         shell.setSize(530, 593);
 
-        //shell.pack();
     }
 
     public void open() {

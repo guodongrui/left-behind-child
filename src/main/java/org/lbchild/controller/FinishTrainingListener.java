@@ -7,6 +7,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.List;
+import org.lbchild.window.AddMarksDialog;
 import org.lbchild.window.MainWindow;
 import org.lbchild.window.ReadMoreWindow;
 import org.lbchild.window.TrainWindow;
@@ -32,10 +33,10 @@ public class FinishTrainingListener implements SelectionListener {
     public void widgetSelected(SelectionEvent arg0) {
         // 加 TrainWindow 或 ReadMoreWindow 的标记项
         int trainLineId = newsSummaryList.getFocusIndex();
-        ReadMoreWindow win = ReadMoreWindow.getReadMoreWindow();
+        AddMarksDialog addMarksDialog = AddMarksDialog.getAddMarksDialog();
         int readLineId = trainLineId;
-        if (win != null)
-            readLineId = win.getLineId();
+        if (addMarksDialog != null)
+            readLineId = addMarksDialog.getLineId();
 
         markedNewsIndex.add(trainLineId);
         markedNewsIndex.add(readLineId);
