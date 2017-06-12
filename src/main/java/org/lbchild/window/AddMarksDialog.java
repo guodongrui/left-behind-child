@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Text;
 import org.lbchild.controller.AddMarksReadMoreWindowListener;
+import org.lbchild.controller.AllTypesChosenListener;
 import org.lbchild.model.NewsList;
 import org.lbchild.res.management.SWTResourceManager;
 import org.slf4j.Logger;
@@ -416,6 +417,7 @@ public class AddMarksDialog {
         btnNext.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
         btnNext.setText("Next");
         AddMarksReadMoreWindowListener addmarksListener = new AddMarksReadMoreWindowListener(newsList, btnMarks, path);
+        btnNext.addSelectionListener(new AllTypesChosenListener(btnMarks));
         btnNext.addSelectionListener(addmarksListener);
         TrainWindow win = TrainWindow.getTrainWindow();
         if (win != null) {

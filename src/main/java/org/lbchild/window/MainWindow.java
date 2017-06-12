@@ -22,6 +22,7 @@ import org.lbchild.xml.XMLReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.lbchild.controller.AddMarksListener;
+import org.lbchild.controller.AllTypesChosenListener;
 import org.lbchild.controller.AnalyzeAction;
 import org.lbchild.controller.ConsistencyCheckAction;
 import org.lbchild.controller.LogoutAction;
@@ -569,10 +570,11 @@ public class MainWindow extends ApplicationWindow {
 //        }
 
         Button btnNewButton = new Button(group_AddMarks, SWT.NONE);
+        btnNewButton.addSelectionListener(new AllTypesChosenListener(btnMarks));
         btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
-
+        
         scrolledComposite.setContent(group_AddMarks);
         scrolledComposite.setMinSize(group_AddMarks.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
