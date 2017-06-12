@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.lbchild.controller.AddMarksListener;
+import org.lbchild.controller.AllTypesChosenListener;
 import org.lbchild.controller.FinishTrainingListener;
 import org.lbchild.controller.ReadMoreListener;
 import org.lbchild.model.NewsItem;
@@ -531,32 +532,7 @@ public class TrainWindow extends ApplicationWindow {
        
         btnNewButton.setBounds(432, 586, 54, 20);
         btnNewButton.setText("Next");
-        btnNewButton.addSelectionListener(new SelectionAdapter() {
-            int countMarks = 0;
-            @Override
-            public void widgetSelected(SelectionEvent arg0) {
-                for (int i = 0; i < btnMarks.size(); i++) {
-                    for (int j = 0; j < btnMarks.get(i).size(); j++) {
-                        if (btnMarks.get(i).get(j).getSelection()) {
-                            countMarks++;
-                            logger.info("select radio button number: " + countMarks);
-                            break;
-                        }
-                    } 
-                }
-                if (countMarks != 10) {
-                    new MessageDialog(Display.getCurrent().getActiveShell(), "提示", null, "尚有标签未贴！",
-                            MessageDialog.INFORMATION, new String[]{"OK"}, 0).open(); 
-                    countMarks = 0;
-                    logger.info("show warning: marks num is not 10");
-                } else {
-//                    int lineId = newsSummaryList.getFocusIndex();
-//                    logger.info("lineId in TrainWindow: " + lineId);
-//                    newsSummaryList.setSelection((lineId + 1) % newsSummaryList.getItems().length);
-                    countMarks = 0;
-                }
-            }
-        });
+        btnNewButton.addSelectionListener(new AllTypesChosenListener(btnMarks));
         
         btnNewButton.addSelectionListener(new AddMarksListener(newsList, newsSummaryList, btnMarks, path));
 
