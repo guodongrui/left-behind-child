@@ -10,12 +10,15 @@ import org.lbchild.model.NewsList;
 import org.lbchild.window.ReadMoreWindow;
 import org.lbchild.xml.NewXMLFile;
 import org.lbchild.xml.XMLWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AddMarksReadMoreWindowListener implements SelectionListener {
     
     private ArrayList<ArrayList<Button>> btnMarks;
     private NewsList newsList;
     private String path;
+    private static Logger logger = LoggerFactory.getLogger(AddMarksReadMoreWindowListener.class);
 
     public AddMarksReadMoreWindowListener(NewsList newsList, ArrayList<ArrayList<Button>> btnMarks, String path) {
         this.btnMarks = btnMarks;
@@ -55,16 +58,24 @@ public class AddMarksReadMoreWindowListener implements SelectionListener {
         File file = new File(path);
         new NewXMLFile(file);
         XMLWriter out = new XMLWriter(file);
-        
-        win.setLineId((win.getLineId() + 1) % newsList.getNewsSummaryList().length);
-        win.setTitle(newsList.getNewsItem(win.getLineId()).getTitle());
-        win.setDate("日期：" + newsList.getNewsItem(win.getLineId()).getDate());
-        String newsContent = newsList.getNewsItem(win.getLineId()).getContent();
-        if (newsContent != null) {
-            win.setContent(newsContent);
+        String[] splitNewsMarks = newsMarks.split("\\|");
+        for (int i = 0; i < splitNewsMarks.length; i++) {
+            logger.debug("splitNewsMarks: " + splitNewsMarks[i]);
         }
         
-        out.insertXml(newsMarks, newsList.getNewsItem(win.getLineId()).getDate().split("-")[0], newsList.getNewsItem(win.getLineId()).getId());
+        logger.info("splitNewsMarks: " + splitNewsMarks.length);
+        if (splitNewsMarks.length == 10) {
+            win.setLineId((win.getLineId() + 1) % newsList.getNewsSummaryList().length);
+            win.setTitle(newsList.getNewsItem(win.getLineId()).getTitle());
+            win.setDate("日期：" + newsList.getNewsItem(win.getLineId()).getDate());
+            String newsContent = newsList.getNewsItem(win.getLineId()).getContent();
+            if (newsContent != null) {
+                win.setContent(newsContent);
+            }
+            
+            out.insertXml(newsMarks, newsList.getNewsItem(win.getLineId()).getDate().split("-")[0], newsList.getNewsItem(win.getLineId()).getId());
+        }
+        
         
     }
 }
